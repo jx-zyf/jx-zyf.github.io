@@ -10,6 +10,14 @@
 
     <!--Description-->
     
+        <meta name="description" content="HTML&amp;amp;CSS1.主要浏览器有哪些？内核分别是什么？主流浏览器及内核：
+(1)Chrome：Webkit
+(2)IE：Trident
+(3)Safari：Webkit
+(4)Firefox:Gecko
+(5)Opera:Presto
+2.DoctypeDOCTYPE是用来声明文档类型和DT">
+    
 
     <!--Author-->
     
@@ -18,7 +26,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Go with the flow"/>
+        <meta property="og:title" content="HTML&amp;CSS基础知识（一）"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +37,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -40,7 +48,7 @@
 
     <!-- Title -->
     
-    <title>Go with the flow</title>
+    <title>HTML&amp;CSS基础知识（一） - Go with the flow</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -145,96 +153,91 @@
 
     <!-- Main Content -->
     <!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+
+
+
+
 <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>Go with the flow</h1>
-                    <hr class="small">
-                    <span class="subheading"></span>
+                <div class="post-heading">
+                    <h1>HTML&CSS基础知识（一）</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2017-08-25
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            
-                <div class="post-preview">
-    <a href="/2017/08/25/HTML与CSS/">
-        <h2 class="post-title">
-            HTML&CSS基础知识（一）
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2017-08-25
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2017/08/15/20170815/">
-        <h2 class="post-title">
-            生活啊！！！
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2017-08-15
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2017/08/10/test/">
-        <h2 class="post-title">
-            test
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2017-08-10
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2017/08/05/第一篇博客/">
-        <h2 class="post-title">
-            My first blog
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2017-08-05
-    </p>
-</div>
-<hr>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
             
 
-            <ul class="pager">
-    
-    
-</ul>
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="HTML-amp-CSS"><a href="#HTML-amp-CSS" class="headerlink" title="HTML&amp;CSS"></a>HTML&amp;CSS</h2><h3 id="1-主要浏览器有哪些？内核分别是什么？"><a href="#1-主要浏览器有哪些？内核分别是什么？" class="headerlink" title="1.主要浏览器有哪些？内核分别是什么？"></a>1.主要浏览器有哪些？内核分别是什么？</h3><p>主流浏览器及内核：</p>
+<pre><code>(1)Chrome：Webkit
+(2)IE：Trident
+(3)Safari：Webkit
+(4)Firefox:Gecko
+(5)Opera:Presto
+</code></pre><h3 id="2-Doctype"><a href="#2-Doctype" class="headerlink" title="2.Doctype"></a>2.Doctype</h3><p>DOCTYPE是用来<strong>声明文档类型</strong>和DTD(document type definition,文档类型定义)规范的</p>
+<p>HTML5只有一种&lt;!DOCTYPE&gt;声明</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+</code></pre><p></p><p style="font-size:14px;background-color:#eee;padding:10px"><br>    HTML5不基于 SGML，所以不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）。<br>    而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。<br></p><br><em>注意：&lt;!DOCTYPE&gt;不是HTML标签，没有结束标签，不区分大小写</em><p></p>
+<h3 id="3-浏览器模式"><a href="#3-浏览器模式" class="headerlink" title="3.浏览器模式"></a>3.浏览器模式</h3><p>浏览器模式分两种：<br>(1).标准模式(standards mode)：<strong>浏览器根据标准规约来渲染页面</strong></p>
+<p>以下情况浏览器会采用标准模式渲染：</p>
+<li>给出了完整的DOCTYPE声明</li><!--
+--><li>DOCTYPE声明了Strict DTD</li><!--
+--><li>DOCTYPE声明了Transitional DTD和URI</li>
+
+<p>(2).混杂/怪异/兼容模式(quirks mode)：<strong>浏览器采用更宽松的，向后兼容的方式来渲染页面</strong></p>
+<p>以下情况浏览器会采用混杂模式渲染：</p>
+<p><li>DOCTYPE声明了Transitional DTD但未给出URI</li><!--
+--><li>DOCTYPE声明不合法 DTD</li><!--
+--><li>未给出DOCTYPE声明</li><br><em>混杂模式下，浏览器会模仿旧浏览器的行为</em></p>
+<h3 id="4-页面引入CSS样式时，link和-import的区别"><a href="#4-页面引入CSS样式时，link和-import的区别" class="headerlink" title="4.页面引入CSS样式时，link和@import的区别"></a>4.页面引入CSS样式时，link和@import的区别</h3><blockquote>
+<ol style="font-size:16px;font-style:normal"><br>    <li>link属于XHTML标签，除了加载CSS外，还能用于定义RSS，定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS；</li><!--
+    --><li>页面加载时，link引入的样式会同时被加载；而@import引入的样式只有在页面加载完才会被加载</li><!--
+    --><li>import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题。</li><br></ol>
+
+</blockquote>
+<h3 id="5-浏览器渲染原理"><a href="#5-浏览器渲染原理" class="headerlink" title="5.浏览器渲染原理"></a>5.浏览器渲染原理</h3><p>挂上大佬的博客，讲的很详细</p>
+<p><a href="http://www.jianshu.com/p/a32b890c29b1" target="_blank" rel="external">深度剖析浏览器渲染性能原理，你到底知道多少？</a></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
-
+</article>
 
     <!-- Footer -->
     <hr />
