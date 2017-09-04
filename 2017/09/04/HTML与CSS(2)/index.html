@@ -208,7 +208,19 @@
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <h2 id="HTML-amp-CSS"><a href="#HTML-amp-CSS" class="headerlink" title="HTML&amp;CSS"></a>HTML&amp;CSS</h2><h3 id="1-盒子模型"><a href="#1-盒子模型" class="headerlink" title="1.盒子模型"></a>1.盒子模型</h3><h3 id="2-行内元素和块级元素"><a href="#2-行内元素和块级元素" class="headerlink" title="2.行内元素和块级元素"></a>2.行内元素和块级元素</h3><p><strong>行内元素和块级元素的区别：</strong></p>
+                <h2 id="HTML-amp-CSS"><a href="#HTML-amp-CSS" class="headerlink" title="HTML&amp;CSS"></a>HTML&amp;CSS</h2><h3 id="1-盒子模型"><a href="#1-盒子模型" class="headerlink" title="1.盒子模型"></a>1.盒子模型</h3><p>盒子模型都包含 content(内容)，padding(内边距/内填充)，margin(外边距/外填充)，border(边框)</p>
+<p><strong>标准盒子模型(content-box)</strong></p>
+<p><img src="https://github.com/jx-zyf/jx-zyf.github.io/raw/master/img/content_box.png" alt=""></p>
+<p>标准盒子模型是w3c盒子模型，从上图可以看出width/height的计算规则是只包含content部分</p>
+<p><strong>IE盒子模型(border-box)</strong></p>
+<p><img src="https://github.com/jx-zyf/jx-zyf.github.io/raw/master/img/border_box.png" alt=""></p>
+<p>从上图可以看出IE盒子模型的width/height计算包含border，padding和content</p>
+<pre><code>只要在HTML文件顶部有doctype声明，浏览器就会使用w3c的标准盒子模型；如果没有声明，则不同浏览器会使用不同的盒子模型去加载，如IE使用IE盒子模型，Chrome和Firefox会使用w3c标准盒子模型
+
+在CSS3中，我们可以自己定义盒子模型(box-sizing)
+
+box-sizing 有两个值，一个是content-box(默认标准模型)，另一个是border-box(IE盒子模型，也加边框模型)
+</code></pre><h3 id="2-行内元素和块级元素"><a href="#2-行内元素和块级元素" class="headerlink" title="2.行内元素和块级元素"></a>2.行内元素和块级元素</h3><p><strong>行内元素和块级元素的区别：</strong></p>
 <pre><code>1.行内元素会在一条直线上排列，而块级元素占据一行，在垂直方向上排列。
 2.一般情况下(HTML5之前)，行内元素只能包含文本和其他行内元素，而块级元素可以包含行内元素和块级元素
 </code></pre><p><em style="font-style:normal;font-size:14px">按照新的HTML规范，已经不按inline和block来区分元素类型了</em></p>
