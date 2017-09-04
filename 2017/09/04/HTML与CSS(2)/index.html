@@ -226,7 +226,7 @@ box-sizing 有两个值，一个是content-box(默认标准模型)，另一个�
 </code></pre><p><em style="font-style:normal;font-size:14px">按照新的HTML规范，已经不按inline和block来区分元素类型了</em></p>
 <p><strong>替换元素与非替换元素</strong></p>
 <h4 id="从元素本身特点来讲，元素分为替换元素和非替换元素"><a href="#从元素本身特点来讲，元素分为替换元素和非替换元素" class="headerlink" title="从元素本身特点来讲，元素分为替换元素和非替换元素"></a>从元素本身特点来讲，元素分为替换元素和非替换元素</h4><ul>
-<li>替换元素：浏览器根据元素属性来决定元素具体显示的内容。比如说浏览器胡根据 img 标签的src来读取图片信息，根据 input 标签的type来决定是输入框还是按钮等。HTML中的 img ，input ， select ， textarea 等都是替换元素，因为这些元素没有实际内容，浏览器根据标签类型或属性来显示这些元素</li>
+<li>替换元素：浏览器根据元素属性来决定元素具体显示的内容。比如说浏览器会根据 img 标签的src来读取图片信息，根据 input 标签的type来决定是输入框还是按钮等。HTML中的 img ，input ， select ， textarea 等都是替换元素，因为这些元素没有实际内容，浏览器根据标签类型或属性来显示这些元素</li>
 <li>非替换元素：HTML中多数元素都是不可替换元素，其内容直接显示在浏览器上。<br>接下来就是重点了：<p style="font-size:16px;background-color:#eee;padding:10px;font-weight:bolder;line-height:30px"><br>1.块级元素width/height/margin/padding的设置都有效<br>2.行内替换元素width/height/margin/padding的设置都有效<br>3.行内非替换元素width/height的设置无效，一般用line-height控制行高(大部分行内元素都是行内非替换元素，如span,a,i,label等)；margin的左右设置有效，上下设置无效；padding的上下左右设置我认为其实都有效，但是由于行高没有发生变化，元素的位置只相对于左右变化，而上下没有变化。<br></p>
 
 </li>
