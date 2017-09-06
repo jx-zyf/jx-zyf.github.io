@@ -232,7 +232,40 @@ box-sizing 有两个值，一个是content-box(默认标准模型)，另一个�
 </li>
 </ul>
 <p><img src="https://github.com/jx-zyf/jx-zyf.github.io/raw/master/img/inline_block.png" alt=""></p>
-<h3 id="3-定位-position"><a href="#3-定位-position" class="headerlink" title="3.定位(position)"></a>3.定位(position)</h3><h3 id="4-浮动-float"><a href="#4-浮动-float" class="headerlink" title="4.浮动(float)"></a>4.浮动(float)</h3><h3 id="5-css常用布局"><a href="#5-css常用布局" class="headerlink" title="5.css常用布局"></a>5.css常用布局</h3>
+<h3 id="3-定位-position"><a href="#3-定位-position" class="headerlink" title="3.定位(position)"></a>3.定位(position)</h3><ul>
+<li><p>static: 静态定位，默认(没有定位)</p>
+</li>
+<li><p>relative: 绝对定位，相对元素本身定位，也就是相对于它本该存在的位置(正常位置)定位，位置通过 left / right / top / bottom 确定</p>
+</li>
+<li><p>absolute: 相对定位，相对该元素第一个不是static定位的父元素定位，位置通过 left / right / top / bottom 确定</p>
+</li>
+<li><p>fixed: 固定定位，相对浏览器窗口定位，位置通过 left / right / top / bottom 确定</p>
+</li>
+<li><p>inherit: 继承，从父元素继承position定位</p>
+</li>
+</ul>
+<p><em style="font-style:normal;font-size:14px">定位会脱离文档流，父元素计算高度的时候不会将其计算进去</em></p>
+<h3 id="4-浮动-float"><a href="#4-浮动-float" class="headerlink" title="4.浮动(float)"></a>4.浮动(float)</h3><h4 id="浮动的特点"><a href="#浮动的特点" class="headerlink" title="浮动的特点"></a>浮动的特点</h4><ul>
+<li><p>浮动元素不会遮住其它元素内容，但是会遮住非浮动元素的布局</p>
+</li>
+<li><p>浮动元素的父元素在对内容进行排版展示时会忽略浮动子元素的存在(脱离文档流)</p>
+</li>
+<li><p>浮动元素会自动变成块级元素</p>
+</li>
+</ul>
+<h4 id="清除浮动的方法"><a href="#清除浮动的方法" class="headerlink" title="清除浮动的方法"></a>清除浮动的方法</h4><ul>
+<li><p>父元素设置overflow:hidden</p>
+</li>
+<li><p>父元素设置height</p>
+</li>
+<li><p>父元素定义伪类 :after</p>
+</li>
+<li><p>父元素结尾处加一个空标签：clear both</p>
+</li>
+<li><p>父元素也设置浮动，但是需要设置宽度</p>
+</li>
+</ul>
+<h3 id="5-css常用布局"><a href="#5-css常用布局" class="headerlink" title="5.css常用布局"></a>5.css常用布局</h3>
 
                 
             </div>
