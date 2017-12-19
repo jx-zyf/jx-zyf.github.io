@@ -5,9 +5,9 @@
   <subtitle>linxunzyf</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://jx-zyf.github.io/"/>
   <updated>2017-12-19T03:19:58.015Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://jx-zyf.github.io/</id>
   
   <author>
     <name>linxunzyf</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>HTML&amp;CSS基础知识（二）</title>
-    <link href="http://yoursite.com//d8be64fd/"/>
-    <id>http://yoursite.com//d8be64fd/</id>
+    <link href="https://jx-zyf.github.io//d8be64fd/"/>
+    <id>https://jx-zyf.github.io//d8be64fd/</id>
     <published>2017-09-04T10:58:38.229Z</published>
     <updated>2017-12-19T03:19:58.015Z</updated>
     
@@ -34,17 +34,17 @@
     
     </summary>
     
-      <category term="coder" scheme="http://yoursite.com/categories/coder/"/>
+      <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
     
     
-      <category term="HTML" scheme="http://yoursite.com/tags/HTML/"/>
+      <category term="HTML" scheme="https://jx-zyf.github.io/tags/HTML/"/>
     
   </entry>
   
   <entry>
     <title>HTML&amp;CSS基础知识（一）</title>
-    <link href="http://yoursite.com//e8a88825/"/>
-    <id>http://yoursite.com//e8a88825/</id>
+    <link href="https://jx-zyf.github.io//e8a88825/"/>
+    <id>https://jx-zyf.github.io//e8a88825/</id>
     <published>2017-08-25T08:59:32.655Z</published>
     <updated>2017-12-19T03:19:54.463Z</updated>
     
@@ -59,17 +59,17 @@
     
     </summary>
     
-      <category term="coder" scheme="http://yoursite.com/categories/coder/"/>
+      <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
     
     
-      <category term="HTML" scheme="http://yoursite.com/tags/HTML/"/>
+      <category term="HTML" scheme="https://jx-zyf.github.io/tags/HTML/"/>
     
   </entry>
   
   <entry>
     <title>About Me</title>
-    <link href="http://yoursite.com//f0b34752/"/>
-    <id>http://yoursite.com//f0b34752/</id>
+    <link href="https://jx-zyf.github.io//f0b34752/"/>
+    <id>https://jx-zyf.github.io//f0b34752/</id>
     <published>2017-08-04T16:00:00.000Z</published>
     <updated>2017-12-19T06:20:01.672Z</updated>
     
@@ -84,15 +84,15 @@
     
     </summary>
     
-      <category term="about" scheme="http://yoursite.com/categories/about/"/>
+      <category term="about" scheme="https://jx-zyf.github.io/categories/about/"/>
     
     
   </entry>
   
   <entry>
     <title>2017 in ShenZhen</title>
-    <link href="http://yoursite.com//293f0615/"/>
-    <id>http://yoursite.com//293f0615/</id>
+    <link href="https://jx-zyf.github.io//293f0615/"/>
+    <id>https://jx-zyf.github.io//293f0615/</id>
     <published>2017-08-04T16:00:00.000Z</published>
     <updated>2017-12-19T03:36:19.746Z</updated>
     
@@ -108,7 +108,7 @@
     
     </summary>
     
-      <category term="Mylife" scheme="http://yoursite.com/categories/Mylife/"/>
+      <category term="Mylife" scheme="https://jx-zyf.github.io/categories/Mylife/"/>
     
     
   </entry>
