@@ -6,13 +6,13 @@
     
     
     
-    <title>linxun | linxunzyf</title>
+    <title>HTML&amp;CSS基础知识（二） | linxun | linxunzyf</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     
     <meta name="theme-color" content="#77AAFF">
     
     
-    <meta name="keywords" content="">
+    <meta name="keywords" content="HTML">
     
     
 
@@ -39,15 +39,21 @@
 
 
     
-    <meta name="description" content="林寻的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="linxun">
-<meta property="og:url" content="https://jx-zyf.github.io/index.html">
+    <meta name="description" content="HTML&amp;amp;CSS1.盒子模型盒子模型都包含 content(内容)，padding(内边距/内填充)，margin(外边距/外填充)，border(边框) 标准盒子模型(content-box)">
+<meta name="keywords" content="HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML&amp;CSS基础知识（二）">
+<meta property="og:url" content="https://jx-zyf.github.io/d8be64fd/index.html">
 <meta property="og:site_name" content="linxun">
-<meta property="og:description" content="林寻的博客">
+<meta property="og:description" content="HTML&amp;amp;CSS1.盒子模型盒子模型都包含 content(内容)，padding(内边距/内填充)，margin(外边距/外填充)，border(边框) 标准盒子模型(content-box)">
+<meta property="og:image" content="https://github.com/jx-zyf/jx-zyf.github.io/raw/master/img/content_box.png">
+<meta property="og:image" content="https://github.com/jx-zyf/jx-zyf.github.io/raw/master/img/border_box.png">
+<meta property="og:image" content="https://github.com/jx-zyf/jx-zyf.github.io/raw/master/img/inline_block.png">
+<meta property="og:updated_time" content="2017-12-19T03:19:58.015Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linxun">
-<meta name="twitter:description" content="林寻的博客">
+<meta name="twitter:title" content="HTML&amp;CSS基础知识（二）">
+<meta name="twitter:description" content="HTML&amp;amp;CSS1.盒子模型盒子模型都包含 content(内容)，padding(内边距/内填充)，margin(外边距/外填充)，border(边框) 标准盒子模型(content-box)">
+<meta name="twitter:image" content="https://github.com/jx-zyf/jx-zyf.github.io/raw/master/img/content_box.png">
     
         <link rel="alternate" type="application/atom+xml" title="linxun" href="/atom.xml">
     
@@ -83,7 +89,7 @@
     <div class="scroll-wrap flex-col">
       <ul class="nav">
         
-              <li class="waves-block waves-effect active">
+              <li class="waves-block waves-effect">
                   <a href="/"  >
                     <i class="icon icon-lg icon-home"></i>
                     <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
@@ -146,7 +152,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">linxun</div>
+        <div class="flex-col header-title ellipsis">HTML&amp;CSS基础知识（二）</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -163,19 +169,16 @@
         </a>
     </div>
 </header>
-<header class="content-header index-header">
+<header class="content-header post-header">
     
     
     <div class="container fade-scale">
         <div id="myheader">
             <h1 class="title">
-                 
-                    linxun
                 
             </h1>
             <h5 class="subtitle">
                 
-                    在前端的坑里继续爬行
                 
             </h5>
         </div>
@@ -183,42 +186,46 @@
 
 </header>
 
+
 <div class="container body-wrap">
-    <ul class="post-list">
     
-        <li class="post-list-item fade">
-            <article id="post-HTML与CSS(2)"
-  class="article-card article-type-post" itemprop="blogPost">
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTML-amp-CSS"><span class="post-toc-number">1.</span> <span class="post-toc-text">HTML&CSS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-盒子模型"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.盒子模型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-行内元素和块级元素"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2.行内元素和块级元素</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#从元素本身特点来讲，元素分为替换元素和非替换元素"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">从元素本身特点来讲，元素分为替换元素和非替换元素</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-定位-position"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3.定位(position)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-浮动-float"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4.浮动(float)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#浮动的特点"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">浮动的特点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#清除浮动的方法"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">清除浮动的方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-css常用布局"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">5.css常用布局</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-HTML与CSS(2)"
+  class="post-article article-type-post fade" itemprop="blogPost">
 
-    
+    <div class="post-card">
+        <h1 class="post-card-title">HTML&CSS基础知识（二）</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2017-09-04 18:58:38" datetime="2017-09-04T10:58:38.229Z"  itemprop="datePublished">2017-09-04</time>
 
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/d8be64fd/">HTML&amp;CSS基础知识（二）</a>
-    </h3>
-  
-
-
-
-
-     <div class="post-meta">
-        <time class="post-time" title="2017-09-04 18:58:38" datetime="2017-09-04T10:58:38.229Z"  itemprop="datePublished">2017-09-04</time>
-
-        <!--
+            <br id="mybreak"/>
+            
 	<i class="icon icon-lg icon-folder-o"></i>
 	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coder/">coder</a></li></ul>
 
--->
-       
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
 </span>
 
-    </div>
 
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <h2 id="HTML-amp-CSS"><a href="#HTML-amp-CSS" class="headerlink" title="HTML&amp;CSS"></a>HTML&amp;CSS</h2><h3 id="1-盒子模型"><a href="#1-盒子模型" class="headerlink" title="1.盒子模型"></a>1.盒子模型</h3><p>盒子模型都包含 content(内容)，padding(内边距/内填充)，margin(外边距/外填充)，border(边框)</p>
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">4</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="HTML-amp-CSS"><a href="#HTML-amp-CSS" class="headerlink" title="HTML&amp;CSS"></a>HTML&amp;CSS</h2><h3 id="1-盒子模型"><a href="#1-盒子模型" class="headerlink" title="1.盒子模型"></a>1.盒子模型</h3><p>盒子模型都包含 content(内容)，padding(内边距/内填充)，margin(外边距/外填充)，border(边框)</p>
 <p><strong>标准盒子模型(content-box)</strong></p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -294,202 +301,134 @@ box-sizing 有两个值，一个是content-box(默认标准模型)，另一个�
 </li>
 </ul>
 <h3 id="5-css常用布局"><a href="#5-css常用布局" class="headerlink" title="5.css常用布局"></a>5.css常用布局</h3>
-    
-        <div>
-            <a href="/d8be64fd/" class="post-more waves-button">
-                Leer más
-            </a>
         </div>
-    </div>
-    
-    <div class="post-footer">
+
+        <blockquote class="post-copyright">
+    <div class="content">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-HTML与CSS"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/e8a88825/">HTML&amp;CSS基础知识（一）</a>
-    </h3>
-  
-
-
-
-
-     <div class="post-meta">
-        <time class="post-time" title="2017-08-25 16:59:32" datetime="2017-08-25T08:59:32.655Z"  itemprop="datePublished">2017-08-25</time>
-
-        <!--
-	<i class="icon icon-lg icon-folder-o"></i>
-	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coder/">coder</a></li></ul>
-
--->
-       
+<span class="post-time">
+    Última actualización<time datetime="2017-12-19T03:19:58.015Z" itemprop="dateUpdated">2017-12-19 11:19:58</time>
 </span>
 
+
+        
+        原文链接：<a href="/d8be64fd/" target="_blank" rel="external">https://jx-zyf.github.io/d8be64fd/</a>
+        
     </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <h2 id="HTML-amp-CSS"><a href="#HTML-amp-CSS" class="headerlink" title="HTML&amp;CSS"></a>HTML&amp;CSS</h2><h3 id="1-主要浏览器有哪些？内核分别是什么？"><a href="#1-主要浏览器有哪些？内核分别是什么？" class="headerlink" title="1.主要浏览器有哪些？内核分别是什么？"></a>1.主要浏览器有哪些？内核分别是什么？</h3><p>主流浏览器及内核：</p>
-<pre><code>(1)Chrome：Webkit
-(2)IE：Trident
-(3)Safari：Webkit
-(4)Firefox:Gecko
-(5)Opera:Presto
-</code></pre><h3 id="2-Doctype"><a href="#2-Doctype" class="headerlink" title="2.Doctype"></a>2.Doctype</h3><p>DOCTYPE是用来<strong>声明文档类型</strong>和DTD(document type definition,文档类型定义)规范的</p>
-<p>HTML5只有一种&lt;!DOCTYPE&gt;声明</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-</code></pre><p></p><p style="font-size:14px;background-color:#eee;padding:10px"><br>    HTML5不基于 SGML，所以不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）。<br>    而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。<br></p><br><em>注意：&lt;!DOCTYPE&gt;不是HTML标签，没有结束标签，不区分大小写</em><p></p>
-<h3 id="3-浏览器模式"><a href="#3-浏览器模式" class="headerlink" title="3.浏览器模式"></a>3.浏览器模式</h3><p>浏览器模式分两种：<br>(1).标准模式(standards mode)：<strong>浏览器根据标准规约来渲染页面</strong></p>
-<p>以下情况浏览器会采用标准模式渲染：</p>
-<li>给出了完整的DOCTYPE声明</li><!--
---><li>DOCTYPE声明了Strict DTD</li><!--
---><li>DOCTYPE声明了Transitional DTD和URI</li>
-
-<p>(2).混杂/怪异/兼容模式(quirks mode)：<strong>浏览器采用更宽松的，向后兼容的方式来渲染页面</strong></p>
-<p>以下情况浏览器会采用混杂模式渲染：</p>
-<p><li>DOCTYPE声明了Transitional DTD但未给出URI</li><!--
---><li>DOCTYPE声明不合法 DTD</li><!--
---><li>未给出DOCTYPE声明</li><br><em>混杂模式下，浏览器会模仿旧浏览器的行为</em></p>
-<h3 id="4-页面引入CSS样式时，link和-import的区别"><a href="#4-页面引入CSS样式时，link和-import的区别" class="headerlink" title="4.页面引入CSS样式时，link和@import的区别"></a>4.页面引入CSS样式时，link和@import的区别</h3><blockquote>
-<ol style="font-size:16px;font-style:normal"><br>    <li>link属于XHTML标签，除了加载CSS外，还能用于定义RSS，定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS；</li><!--
-    --><li>页面加载时，link引入的样式会同时被加载；而@import引入的样式只有在页面加载完才会被加载</li><!--
-    --><li>import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题。</li><br></ol>
-
+    <footer>
+        <div onclick="location.href='https://jx-zyf.github.io'">
+            <img src="/img/avatar.jpg" alt="linxunzyf">
+            <a>linxunzyf</a>
+        </div>
+    </footer>
 </blockquote>
-<h3 id="5-浏览器渲染原理"><a href="#5-浏览器渲染原理" class="headerlink" title="5.浏览器渲染原理"></a>5.浏览器渲染原理</h3><p>挂上大佬的博客，讲的很详细</p>
-<p><a href="http://www.jianshu.com/p/a32b890c29b1" target="_blank" rel="external">深度剖析浏览器渲染性能原理，你到底知道多少？</a><span style="float:right">文章作者：齐修_qixiuss</span></p>
 
-    
-        <div>
-            <a href="/e8a88825/" class="post-more waves-button">
-                Leer más
-            </a>
-        </div>
-    </div>
-    
-    <div class="post-footer">
         
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
 
-    </div>
-    
-</article>
 
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-About"
-  class="article-card article-type-post" itemprop="blogPost">
-
+            
+<div class="page-share-wrap">
     
 
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/f0b34752/">About Me</a>
-    </h3>
-  
-
-
-
-
-     <div class="post-meta">
-        <time class="post-time" title="2017-08-05 00:00:00" datetime="2017-08-04T16:00:00.000Z"  itemprop="datePublished">2017-08-05</time>
-
-        <!--
-	<i class="icon icon-lg icon-folder-o"></i>
-	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/about/">about</a></li></ul>
-
--->
-       
-</span>
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <p><a href="https://jx-zyf.github.io" style="text-decoration:none">林寻丶<a><br><a href="http://www.weibo.com/linxun001" style="text-decoration:none" target="_blank" rel="external">我的微博</a></a></a></p>
-<p>我是 <strong> 林寻丶 </strong><br>热爱生活，热爱生命<br>喜欢音乐，喜欢篮球的热血boy</p>
-<h4 id="motto"><a href="#motto" class="headerlink" title="motto"></a>motto</h4><input type="text" placeholder="Go with the flow" disabled="disabled" style="text-indent:2em">
-
-
-    
-        <div>
-            <a href="/f0b34752/" class="post-more waves-button">
-                Leer más
-            </a>
-        </div>
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-Mylife"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/293f0615/">2017 in ShenZhen</a>
-    </h3>
-  
-
-
-
-
-     <div class="post-meta">
-        <time class="post-time" title="2017-08-05 00:00:00" datetime="2017-08-04T16:00:00.000Z"  itemprop="datePublished">2017-08-05</time>
-
-        <!--
-	<i class="icon icon-lg icon-folder-o"></i>
-	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Mylife/">Mylife</a></li></ul>
-
--->
-       
-</span>
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <h3 id="深圳"><a href="#深圳" class="headerlink" title="深圳"></a>深圳</h3><p>群居生活中…</p>
-
-    
-        <div>
-            <a href="/293f0615/" class="post-more waves-button">
-                Leer más
-            </a>
-        </div>
-    </div>
-    
-</article>
-
-        </li>
-    
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/d8be64fd/&title=《HTML&CSS基础知识（二）》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/d8be64fd/&title=《HTML&CSS基础知识（二）》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/d8be64fd/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTML&CSS基础知识（二）》 — linxun&url=https://jx-zyf.github.io/d8be64fd/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/d8be64fd/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
     </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
 
     
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/e8a88825/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：HTML&amp;CSS基础知识（一）">下一篇：HTML&amp;CSS基础知识（一）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: '',
+            repo: '',
+            oauth: {
+                client_id: '',
+                client_secret: '',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
 
 </div>
 
@@ -534,8 +473,83 @@ box-sizing 有两个值，一个是content-box(默认标准模型)，另一个�
 </footer>
     </main>
     
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
     <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/d8be64fd/&title=《HTML&CSS基础知识（二）》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/d8be64fd/&title=《HTML&CSS基础知识（二）》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/d8be64fd/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTML&CSS基础知识（二）》 — linxun&url=https://jx-zyf.github.io/d8be64fd/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/d8be64fd/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABx0lEQVR42u3aSW7DMAwF0Nz/0u62QBvhk5Qct3haGRmspw3BQa9XvK5v6+fn63/1vh0tXFzcMfdarne/ybfM37M24OLi3s9NtslBa1z+flxc3L/CTZ7zY+Di4v4P7nrLPOnBxcV9PjcpfvKSJi9vDtZquLi4A27epTz3fKS/i4uL2+JexTU5Rh623u6Oi4t7C7c6Dskbo+sm6aRMwsXFvYe7rWGx6fpF4Ui4uLgHuHkrpJcA5SFplJHh4uJu5SbBpdpOrV7qyt+Ji4t7DzdvX1YTmmQEmw9scHFx7+TmwWsS7Kojk2gmjIuLe4yb50H5KKU3MolKJlxc3Fu41SJk3eDoHSkJYbi4uE/gzpuevQMUih9cXNzD3GqjsxfU8rZLobOLi4t7jNu7VpUj8rFKlBLh4uJ+iJsURXlplCc9o+IHFxf3GHc+NO01RAoDXVxc3MPcq7jydKQXvMrTV1xc3APc3pWIvGTqtULyFi0uLu45bm/j6ui0OlJtJjq4uLhbub1AMx+6JJ5fAhkuLu7juZNLFdVdcHFxn89N0qB5+2NbIMPFxS1yk+Knd2GiN8QtzIRxcXEPcKuhpDpq7bVfN/R3cXFxO9wvtVLiMU3XHH0AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
 
 
     <!-- waves按钮特效 -->
@@ -543,7 +557,7 @@ box-sizing 有两个值，一个是content-box(默认标准模型)，另一个�
 
 <!-- 主题配置脚本 -->
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 </script>
 
 <!-- jquery -->
