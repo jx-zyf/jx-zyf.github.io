@@ -63,7 +63,7 @@
 
 <body>
     <div id="loading" class="active"></div>
-    <aside id="menu"   >
+    <aside id="menu"  class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -76,7 +76,7 @@
         <hgroup class="introduce">
           <h5 class="nickname" id="name">linxunzyf</h5>
           
-            <div id="mymotto" class="motto"></div>
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
           
         </hgroup>
       </div>
@@ -213,23 +213,6 @@
 
         
     
-<section class="comments" id="comments">
-    <div id="gitment_thread"></div>
-    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
-    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
-    <script>
-        var gitment = new Gitment({
-            owner: '',
-            repo: '',
-            oauth: {
-                client_id: '',
-                client_secret: '',
-            },
-        })
-        gitment.render('comments')
-    </script>
-</section>
-
 
     
 
@@ -380,12 +363,7 @@ postshow();
 
 /* 座右铭 */
 
-    elasticText({
-        id: "mymotto",
-        duration: 100,
-        effact: "easeOut",
-        content: ""
-    });
+   getHitokoto();
 
 
 

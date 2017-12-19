@@ -75,7 +75,7 @@
         <hgroup class="introduce">
           <h5 class="nickname" id="name">linxunzyf</h5>
           
-            <div id="mymotto" class="motto"></div>
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
           
         </hgroup>
       </div>
@@ -195,7 +195,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a href="/d8be64fd/">HTML&amp;CSS基础知识（二）</a>
+      <a href="/posts/d8be64fd/">HTML&amp;CSS基础知识（二）</a>
     </h3>
   
 
@@ -218,85 +218,16 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        <h2 id="HTML-amp-CSS"><a href="#HTML-amp-CSS" class="headerlink" title="HTML&amp;CSS"></a>HTML&amp;CSS</h2><h3 id="1-盒子模型"><a href="#1-盒子模型" class="headerlink" title="1.盒子模型"></a>1.盒子模型</h3><p>盒子模型都包含 content(内容)，padding(内边距/内填充)，margin(外边距/外填充)，border(边框)</p>
-<p><strong>标准盒子模型(content-box)</strong></p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/jx-zyf/jx-zyf.github.io/raw/master/img/content_box.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<p>标准盒子模型是w3c盒子模型，从上图可以看出width/height的计算规则是只包含content部分</p>
-<p><strong>IE盒子模型(border-box)</strong></p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/jx-zyf/jx-zyf.github.io/raw/master/img/border_box.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<p>从上图可以看出IE盒子模型的width/height计算包含border，padding和content</p>
-<pre><code>只要在HTML文件顶部有doctype声明，浏览器就会使用w3c的标准盒子模型；如果没有声明，则不同浏览器会使用不同的盒子模型去加载，如IE使用IE盒子模型，Chrome和Firefox会使用w3c标准盒子模型
+        HTML&amp;CSS1.盒子模型盒子模型都包含 content(内容)，padding(内边距/内填充)，margin(外边距/外填充)，border(边框)
+标准盒子模型(content-box)
 
-在CSS3中，我们可以自己定义盒子模型(box-sizing)
-
-box-sizing 有两个值，一个是content-box(默认标准模型)，另一个是border-box(IE盒子模型，也加边框模型)
-</code></pre><h3 id="2-行内元素和块级元素"><a href="#2-行内元素和块级元素" class="headerlink" title="2.行内元素和块级元素"></a>2.行内元素和块级元素</h3><p><strong>行内元素和块级元素的区别：</strong></p>
-<pre><code>1.行内元素会在一条直线上排列，而块级元素占据一行，在垂直方向上排列。
-2.一般情况下(HTML5之前)，行内元素只能包含文本和其他行内元素，而块级元素可以包含行内元素和块级元素
-</code></pre><p><em style="font-style:normal;font-size:14px">按照新的HTML规范，已经不按inline和block来区分元素类型了</em></p>
-<p><strong>替换元素与非替换元素</strong></p>
-<h4 id="从元素本身特点来讲，元素分为替换元素和非替换元素"><a href="#从元素本身特点来讲，元素分为替换元素和非替换元素" class="headerlink" title="从元素本身特点来讲，元素分为替换元素和非替换元素"></a>从元素本身特点来讲，元素分为替换元素和非替换元素</h4><ul>
-<li>替换元素：浏览器根据元素属性来决定元素具体显示的内容。比如说浏览器会根据 img 标签的src来读取图片信息，根据 input 标签的type来决定是输入框还是按钮等。HTML中的 img ，input ， select ， textarea 等都是替换元素，因为这些元素没有实际内容，浏览器根据标签类型或属性来显示这些元素</li>
-<li>非替换元素：HTML中多数元素都是不可替换元素，其内容直接显示在浏览器上。<br>接下来就是重点了：<p style="font-size:16px;background-color:#eee;padding:10px;font-weight:bolder;line-height:30px"><br>1.块级元素width/height/margin/padding的设置都有效<br>2.行内替换元素width/height/margin/padding的设置都有效<br>3.行内非替换元素width/height的设置无效，一般用line-height控制行高(大部分行内元素都是行内非替换元素，如span,a,i,label等)；margin的左右设置有效，上下设置无效；padding的上下左右设置我认为其实都有效，但是由于行高没有发生变化，元素的位置只相对于左右变化，而上下没有变化。<br></p>
-
-</li>
-</ul>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/jx-zyf/jx-zyf.github.io/raw/master/img/inline_block.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<h3 id="3-定位-position"><a href="#3-定位-position" class="headerlink" title="3.定位(position)"></a>3.定位(position)</h3><ul>
-<li><p>static: 静态定位，默认(没有定位)</p>
-</li>
-<li><p>relative: 绝对定位，相对元素本身定位，也就是相对于它本该存在的位置(正常位置)定位，位置通过 left / right / top / bottom 确定</p>
-</li>
-<li><p>absolute: 相对定位，相对该元素第一个不是static定位的父元素定位，位置通过 left / right / top / bottom 确定</p>
-</li>
-<li><p>fixed: 固定定位，相对浏览器窗口定位，位置通过 left / right / top / bottom 确定</p>
-</li>
-<li><p>inherit: 继承，从父元素继承position定位</p>
-</li>
-</ul>
-<p><em style="font-style:normal;font-size:14px">定位会脱离文档流，父元素计算高度的时候不会将其计算进去</em></p>
-<h3 id="4-浮动-float"><a href="#4-浮动-float" class="headerlink" title="4.浮动(float)"></a>4.浮动(float)</h3><h4 id="浮动的特点"><a href="#浮动的特点" class="headerlink" title="浮动的特点"></a>浮动的特点</h4><ul>
-<li><p>浮动元素不会遮住其它元素内容，但是会遮住非浮动元素的布局</p>
-</li>
-<li><p>浮动元素的父元素在对内容进行排版展示时会忽略浮动子元素的存在(脱离文档流)</p>
-</li>
-<li><p>浮动元素会自动变成块级元素</p>
-</li>
-</ul>
-<h4 id="清除浮动的方法"><a href="#清除浮动的方法" class="headerlink" title="清除浮动的方法"></a>清除浮动的方法</h4><ul>
-<li><p>父元素设置overflow:hidden</p>
-</li>
-<li><p>父元素设置height</p>
-</li>
-<li><p>父元素定义伪类 :after</p>
-</li>
-<li><p>父元素结尾处加一个空标签：clear both</p>
-</li>
-<li><p>父元素也设置浮动，但是需要设置宽度…</p>
-</li>
-</ul>
-<h3 id="5-css常用布局"><a href="#5-css常用布局" class="headerlink" title="5.css常用布局"></a>5.css常用布局</h3>
+                
+                    
+                    
+          ...
     
         <div>
-            <a href="/d8be64fd/" class="post-more waves-button">
+            <a href="/posts/d8be64fd/" class="post-more waves-button">
                 続きを読む…
             </a>
         </div>
@@ -321,7 +252,7 @@ box-sizing 有两个值，一个是content-box(默认标准模型)，另一个�
 
   
     <h3 class="post-title" itemprop="name">
-      <a href="/e8a88825/">HTML&amp;CSS基础知识（一）</a>
+      <a href="/posts/e8a88825/">HTML&amp;CSS基础知识（一）</a>
     </h3>
   
 
@@ -344,39 +275,16 @@ box-sizing 有两个值，一个是content-box(默认标准模型)，另一个�
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        <h2 id="HTML-amp-CSS"><a href="#HTML-amp-CSS" class="headerlink" title="HTML&amp;CSS"></a>HTML&amp;CSS</h2><h3 id="1-主要浏览器有哪些？内核分别是什么？"><a href="#1-主要浏览器有哪些？内核分别是什么？" class="headerlink" title="1.主要浏览器有哪些？内核分别是什么？"></a>1.主要浏览器有哪些？内核分别是什么？</h3><p>主流浏览器及内核：</p>
-<pre><code>(1)Chrome：Webkit
+        HTML&amp;CSS1.主要浏览器有哪些？内核分别是什么？主流浏览器及内核：
+(1)Chrome：Webkit
 (2)IE：Trident
 (3)Safari：Webkit
 (4)Firefox:Gecko
 (5)Opera:Presto
-</code></pre><h3 id="2-Doctype"><a href="#2-Doctype" class="headerlink" title="2.Doctype"></a>2.Doctype</h3><p>DOCTYPE是用来<strong>声明文档类型</strong>和DTD(document type definition,文档类型定义)规范的</p>
-<p>HTML5只有一种&lt;!DOCTYPE&gt;声明</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-</code></pre><p></p><p style="font-size:14px;background-color:#eee;padding:10px"><br>    HTML5不基于 SGML，所以不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）。<br>    而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。<br></p><br><em>注意：&lt;!DOCTYPE&gt;不是HTML标签，没有结束标签，不区分大小写</em><p></p>
-<h3 id="3-浏览器模式"><a href="#3-浏览器模式" class="headerlink" title="3.浏览器模式"></a>3.浏览器模式</h3><p>浏览器模式分两种：<br>(1).标准模式(standards mode)：<strong>浏览器根据标准规约来渲染页面</strong></p>
-<p>以下情况浏览器会采用标准模式渲染：</p>
-<li>给出了完整的DOCTYPE声明</li><!--
---><li>DOCTYPE声明了Strict DTD</li><!--
---><li>DOCTYPE声明了Transitional DTD和URI</li>
-
-<p>(2).混杂/怪异/兼容模式(quirks mode)：<strong>浏览器采用更宽松的，向后兼容的方式来渲染页面</strong></p>
-<p>以下情况浏览器会采用混杂模式渲染：</p>
-<p><li>DOCTYPE声明了Transitional DTD但未给出URI</li><!--
---><li>DOCTYPE声明不合法 DTD</li><!--
---><li>未给出DOCTYPE声明</li><br><em>混杂模式下，浏览器会模仿旧浏览器的行为</em></p>
-<h3 id="4-页面引入CSS样式时，link和-import的区别"><a href="#4-页面引入CSS样式时，link和-import的区别" class="headerlink" title="4.页面引入CSS样式时，link和@import的区别"></a>4.页面引入CSS样式时，link和@import的区别</h3><blockquote>
-<ol style="font-size:16px;font-style:normal"><br>    <li>link属于XHTML标签，除了加载CSS外，还能用于定义RSS，定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS；</li><!--
-    --><li>页面加载时，link引入的样式会同时被加载；而@import引入的样式只有在页面加载完才会被加载</li><!--
-    --><li>import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题。</li><br></ol>
-
-</blockquote>
-<h3 id="5-浏览器渲染原理"><a href="#5-浏览器渲染原理" class="headerlink" title="5.浏览器渲染原理"></a>5.浏览器渲染原理</h3><p>挂上大佬的博客，讲的很详细</p>
-<p><a href="http://www.jianshu.com/p/a32b890c29b1" target="_blank" rel="external">深度剖析浏览器渲染性能原理，你到底知道多少？</a><span style="float:right">文章作者：齐修_qixiuss</span></p>
-
+2.DoctypeDOCTYPE是用来声明文档类型和DTD(document type defini...
     
         <div>
-            <a href="/e8a88825/" class="post-more waves-button">
+            <a href="/posts/e8a88825/" class="post-more waves-button">
                 続きを読む…
             </a>
         </div>
@@ -401,7 +309,7 @@ box-sizing 有两个值，一个是content-box(默认标准模型)，另一个�
 
   
     <h3 class="post-title" itemprop="name">
-      <a href="/f0b34752/">About Me</a>
+      <a href="/posts/f0b34752/">About Me</a>
     </h3>
   
 
@@ -424,14 +332,14 @@ box-sizing 有两个值，一个是content-box(默认标准模型)，另一个�
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        <p><a href="https://jx-zyf.github.io" style="text-decoration:none">林寻丶<a><br><a href="http://www.weibo.com/linxun001" style="text-decoration:none" target="_blank" rel="external">我的微博</a></a></a></p>
-<p>我是 <strong> 林寻丶 </strong><br>热爱生活，热爱生命<br>喜欢音乐，喜欢篮球的热血boy</p>
-<h4 id="motto"><a href="#motto" class="headerlink" title="motto"></a>motto</h4><input type="text" placeholder="Go with the flow" disabled="disabled" style="text-indent:2em">
+        林寻丶我的微博
+我是  林寻丶 热爱生活，热爱生命喜欢音乐，喜欢篮球的热血boy
+motto
 
 
     
         <div>
-            <a href="/f0b34752/" class="post-more waves-button">
+            <a href="/posts/f0b34752/" class="post-more waves-button">
                 続きを読む…
             </a>
         </div>
@@ -450,7 +358,7 @@ box-sizing 有两个值，一个是content-box(默认标准模型)，另一个�
 
   
     <h3 class="post-title" itemprop="name">
-      <a href="/293f0615/">2017 in ShenZhen</a>
+      <a href="/posts/293f0615/">2017 in ShenZhen</a>
     </h3>
   
 
@@ -473,11 +381,11 @@ box-sizing 有两个值，一个是content-box(默认标准模型)，另一个�
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        <h3 id="深圳"><a href="#深圳" class="headerlink" title="深圳"></a>深圳</h3><p>群居生活中…</p>
+        深圳群居生活中…
 
     
         <div>
-            <a href="/293f0615/" class="post-more waves-button">
+            <a href="/posts/293f0615/" class="post-more waves-button">
                 続きを読む…
             </a>
         </div>
@@ -632,12 +540,7 @@ postshow();
 
 /* 座右铭 */
 
-    elasticText({
-        id: "mymotto",
-        duration: 100,
-        effact: "easeOut",
-        content: ""
-    });
+   getHitokoto();
 
 
 
