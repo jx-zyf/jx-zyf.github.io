@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>JavaScript基础 | linxun | linxunzyf</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="原型在ES6之前，javascript是没有“类”的概念的，这是由于js诞生就是为了响应用户的交互，如果有了“类”，就成了一种完整的面向对象编程语言了。但是，js中都是对象，必须有一种机制，将所有对象联系起来，所以“继承”还是很有必要的。 new运算符我们都知道，C和Java都是通过new来生成实例的，于是js也使用了这个命令。在js中，new后面跟的不是原型对象，而是构造函数。 下面我们看段代码">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript基础">
+<meta property="og:url" content="https://jx-zyf.github.io/posts/a9ba4134/index.html">
+<meta property="og:site_name" content="linxun">
+<meta property="og:description" content="原型在ES6之前，javascript是没有“类”的概念的，这是由于js诞生就是为了响应用户的交互，如果有了“类”，就成了一种完整的面向对象编程语言了。但是，js中都是对象，必须有一种机制，将所有对象联系起来，所以“继承”还是很有必要的。 new运算符我们都知道，C和Java都是通过new来生成实例的，于是js也使用了这个命令。在js中，new后面跟的不是原型对象，而是构造函数。 下面我们看段代码">
+<meta property="og:image" content="https://raw.githubusercontent.com/jx-zyf/jx-zyf.github.io/master/img/prototype.png">
+<meta property="og:updated_time" content="2017-12-20T08:47:19.902Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript基础">
+<meta name="twitter:description" content="原型在ES6之前，javascript是没有“类”的概念的，这是由于js诞生就是为了响应用户的交互，如果有了“类”，就成了一种完整的面向对象编程语言了。但是，js中都是对象，必须有一种机制，将所有对象联系起来，所以“继承”还是很有必要的。 new运算符我们都知道，C和Java都是通过new来生成实例的，于是js也使用了这个命令。在js中，new后面跟的不是原型对象，而是构造函数。 下面我们看段代码">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jx-zyf/jx-zyf.github.io/master/img/prototype.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="linxun" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link id="style" rel="stylesheet" href="/css/style.css?v=2.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">linxunzyf</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>随 笔</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/jx-zyf" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/linxun001" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微信" href="javascript:;" title="微信" >
+                <i class="icon icon-lg icon-wechat wechat"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Email" href="/linxunzyf@gmail.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JavaScript基础</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#原型"><span class="post-toc-number">1.</span> <span class="post-toc-text">原型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#new运算符"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">new运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#prototype属性的引入"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">prototype属性的引入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#原型链的实现"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">原型链的实现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#属性或方法的查找"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">属性或方法的查找</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#闭包"><span class="post-toc-number">2.</span> <span class="post-toc-text">闭包</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变量的作用域"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">变量的作用域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何从函数外部读取局部变量"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">如何从函数外部读取局部变量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#闭包的概念"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">闭包的概念</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#闭包的作用"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">闭包的作用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IIFE"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">IIFE</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#闭包的缺陷"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">闭包的缺陷</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#作用域和作用域链"><span class="post-toc-number">3.</span> <span class="post-toc-text">作用域和作用域链</span></a></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-JavaScript原型，闭包及作用域"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JavaScript基础</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2017-12-20 00:00:00" datetime="2017-12-19T16:00:00.000Z"  itemprop="datePublished">2017-12-20</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coder/">coder</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">9</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>在ES6之前，javascript是没有“类”的概念的，这是由于js诞生就是为了响应用户的交互，如果有了“类”，就成了一种完整的面向对象编程语言了。但是，js中都是对象，必须有一种机制，将所有对象联系起来，所以“继承”还是很有必要的。</p>
+<h3 id="new运算符"><a href="#new运算符" class="headerlink" title="new运算符"></a>new运算符</h3><p>我们都知道，C和Java都是通过new来生成实例的，于是js也使用了这个命令。在js中，new后面跟的不是原型对象，而是构造函数。</p>
+<p>下面我们看段代码：</p>
+<pre><code>function People(name) {
+  this.name = name;
+  this.say = function() {
+    console.log(`I&apos;m ${this.name}`)
+  }
+}
+let linxun = new People(&apos;linxun&apos;);
+linxun.say()  // I&apos;m linxun
+</code></pre><p><em>注意：this指的是新创建的实例对象</em></p>
+<p>上面的例子中，People是构造函数，其中有一个name属性和一个say方法，每个实例的name属性是不一样的，say方法却是相同的，所以用new生成实例对象有一个很大的缺陷，就是不能实现共享属性和方法，每一个实例对象的属性和方法都是自身独有的，这是对资源极大的浪费。</p>
+<p>扯了这么多，终于到重点了！</p>
+<h3 id="prototype属性的引入"><a href="#prototype属性的引入" class="headerlink" title="prototype属性的引入"></a><strong>prototype</strong>属性的引入</h3><p>这个属性(只要函数才有)包含了一个对象(以下称为“prototype对象”)，所有实例需要共享的属性和方法，都放在这个对象上。而那些不需要共享的，实例独有的属性和方法就放在构造函数里面。实例创建之后，会自动引用prototype对象中的属性和方法。</p>
+<p>还是刚才那个例子，我们改写一下：</p>
+<pre><code>function People(name) {
+  this.name = name;
+}
+People.prototype = {
+  say: function() {
+    console.log(`I&apos;m ${this.name}`);
+  }
+}
+let linxun = new People(&apos;linxun&apos;);
+let zyf = new People(&apos;zyf);
+linxun.say()  // I&apos;m linxun
+zyf.say()     // I&apos;m zyf
+</code></pre><p>现在say方法就是所有实例共享的了，如果修改了它，所有的实例对象都会受影响。</p>
+<pre><code>People.prototype.say = function() {
+  console.log(&apos;我被修改了&apos;);
+}
+linxun.say()  // 我被修改了
+zyf.say()     // 我被修改了
+</code></pre><h3 id="原型链的实现"><a href="#原型链的实现" class="headerlink" title="原型链的实现"></a>原型链的实现</h3><p>引用《JavaScript权威指南》中的一段描述</p>
+<blockquote>
+<p>Every JavaScript object has a second JavaScript object (or null ,but this is rare) associated with it. This second object is known as a prototype, and the first object inherits properties from the prototype.</p>
+</blockquote>
+<p>我的理解就是每个js对象(null除外)都有一个原型对象，并且从原型对象上继承属性和方法。</p>
+<p>既然有这么一个原型对象，那么我们的对象怎么和原型对象对应起来呢？对象的 __proto__ (以下称为“原型对象”) 属性就指向它构造函数的prototype(以下称为“原型”)，而对象的原型本身也是一个对象，也有 __proto__ 属性，这就形成了原型链。原型链的最顶端是 Object.prototype ，它的 __proto__ 指向null(ECMA规定的，避免无限循环)。</p>
+<p>从前面我们知道，函数创建的时候就拥有了prototype属性，我们创建实例的时候依靠它实现属性和方法的继承。</p>
+<p>这里插入一下，new操作符到底做了什么事情？</p>
+<ol>
+<li>创建一个空对象 <code>var obj = {}</code></li>
+<li>将创建对象的 __proto__ 指向构造函数的prototype <code>obj.__proto__ = 构造函数.protootype</code></li>
+<li>将对象内部的this指向新创建的对象 <code>构造函数.call(obj)</code></li>
+</ol>
+<p>还是看代码吧：</p>
+<pre><code>var obj1 = {}
+var obj2 = new Object();
+console.log(obj1.__proto__ === Object.prototype);   // true
+console.log(obj2.__proto__ === Object.prototype);   // true
+console.log(Object.prototype.__proto__ === null);   // true
+</code></pre><p>还是有点懵？看张图吧，我轻易不放出来。其实只是因为我很懒不想打这么多字……</p>
+<p><img src="https://raw.githubusercontent.com/jx-zyf/jx-zyf.github.io/master/img/prototype.png"></p>
+<h3 id="属性或方法的查找"><a href="#属性或方法的查找" class="headerlink" title="属性或方法的查找"></a>属性或方法的查找</h3><p>当查找一个对象的属性或方法时，js会向上遍历原型链，先在自身查找，没找到就到它原型对象上找，依次向上查找，直到原型链的最顶端Object.prototype，如果仍然没有找到，就返回undefined(不存在该属性)或者抛出一个错误(不存在该方法)。</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>闭包是js的一大特色，也是一大难点。下面就是我对闭包的理解。</p>
+<h3 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h3><p>说起闭包，就不得不先了解下js特殊的变量作用域。js中变量作用域就两种：<strong>全局变量</strong>和<strong>局部变量</strong>。</p>
+<ul>
+<li>全局变量：在任何地方都能访问</li>
+<li>局部变量：只有在特定的地方才能访问</li>
+</ul>
+<p>举个例子：<br>    var a = 10;<br>    function test() {<br>      var b = ‘hello world’;<br>      console.log(a, b);<br>    }<br>    test();               // 10, hello world<br>    console.log(a, b);    // 10, error: b is not defined</p>
+<p>上面例子中的 a 就是全局变量，在哪里都能访问；b 就是局部变量，只有在 test 函数中才能访问。<br><em>注意：声明 b 变量时 var 不能省略，否则就声明了一个全局变量</em></p>
+<h3 id="如何从函数外部读取局部变量"><a href="#如何从函数外部读取局部变量" class="headerlink" title="如何从函数外部读取局部变量"></a>如何从函数外部读取局部变量</h3><p>在很多时候，我们需要得到函数内部的局部变量，在正常情况下这是做不到的。我们可以这样，在函数中再声明一个函数。下面代码中，函数fun2中是可以访问fun1函数中的局部变量的，而反过来就不行。这就是js特殊的链式作用域，在下面我们会讲到这个问题。</p>
+<pre><code>function fun1() {
+  var a = 10;
+  function fun2() {
+    console.log(a);   // 10
+  }
+}
+</code></pre><p>既然函数fun2可以读取函数fun1中的局部变量，如果我们将fun2作为fun1的返回值返回出去，那么我们不就可以在外面读取函数fun1的局部变量了吗？</p>
+<pre><code>function fun1() {
+  var a = 10;
+  return function() {
+    console.log(a);
+  }
+}
+var result = fun1();
+result();   // 10
+</code></pre><p>上面代码中，声明一个全局变量result来接收fun1的返回值(fun2)，意味着fun2将一直存在，而fun1作为fun2的依赖函数，也将一直存在作用域中。如果将result销毁，自然也就访问不到fun1中的局部变量了。</p>
+<h3 id="闭包的概念"><a href="#闭包的概念" class="headerlink" title="闭包的概念"></a>闭包的概念</h3><p>上面例子中的fun2就是闭包。参考阮一峰阮大神的文章：<a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="external">学习javascript闭包</a></p>
+<blockquote>
+<p>闭包就是能够读取其他函数内部变量的函数</p>
+</blockquote>
+<p>我的理解是：<strong>闭包是指有权访问另一个函数作用域中变量的函数。在A函数中声明定义B函数，且B函数中使用了A函数中的局部变量，这就是闭包。即使A函数调用完毕，B函数依然可以访问那个局部变量。如果A函数没有执行完，B函数中使用的局部变量的值是其当前值，如果A函数执行完毕，B函数中使用的局部变量就是最终值。</strong></p>
+<h3 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h3><p>讲了那么多，闭包究竟有什么用呢？</p>
+<ul>
+<li>上面例子中的，读取函数内部的变量</li>
+<li>让一个变量常驻内存，上面代码中的变量a就已经常驻内存了，只有通过我们手动销毁。</li>
+</ul>
+<h3 id="IIFE"><a href="#IIFE" class="headerlink" title="IIFE"></a>IIFE</h3><p>下面看一个例子：假设页面上有五个按钮，对每个按钮添加点击事件</p>
+<pre><code>var ele = document.getElementsByTagName(&apos;button&apos;);
+for(var i=0, l=ele.length; i&lt;l; i++) {
+  ele[i].addEventListener(&apos;click&apos;, function() {
+    console.log(i);
+  });
+}
+</code></pre><p>上面代码打印出了五个5，而不是我们期待的0,1,2,3,4；因为 i 是全局变量自始至终就只有一个 i，点击事件执行时，循环早已经执行完毕，它闭包到的永远是 i 最后的值。而如果改写成下面这样：</p>
+<pre><code>var ele = document.getElementsByTagName(&apos;button&apos;);
+for(var i=0, l=ele.length; i&lt;l; i++) {
+  (function(j) {
+    ele[i].addEventListener(&apos;click&apos;, function() {
+      console.log(j);
+    });
+  })(i)
+}
+</code></pre><p>上面代码就打印出我们期待的0,1,2,3,4了；使用了IIFE立即执行函数创建了五个 i 的作用域，每个作用域中的 i 相互独立不受影响，避免了 i 的共用。</p>
+<h3 id="闭包的缺陷"><a href="#闭包的缺陷" class="headerlink" title="闭包的缺陷"></a>闭包的缺陷</h3><p>前面也提到了，闭包会使得函数中的变量一直保存在内存中，所以不能滥用闭包，否则会造成性能问题。解决方法是：在不需要该变量时手动清除。</p>
+<h2 id="作用域和作用域链"><a href="#作用域和作用域链" class="headerlink" title="作用域和作用域链"></a>作用域和作用域链</h2><p>js中变量的作用域分为全局作用域和局部作用域，作用域（执行环境）就是变量和函数的可访问范围。某个执行环境中所有代码执行完毕后，该环境就会被销毁，保存在其中的所有变量和函数定义也会被销毁，全局执行环境直到应用程序退出——如关闭网页或浏览器——时才会被销毁。</p>
+<p>在任何地方都能访问到的对象拥有全局作用域，一般有以下几种情况：</p>
+<ol>
+<li>最外层函数和在最外层函数外面定义的变量</li>
+<li>未申明直接赋值的变量自动声明为全局作用域</li>
+<li>所有window对象的属性</li>
+</ol>
+<p>局部作用域只在固定的代码片段可以访问，最常见的如函数内部</p>
+<p>ES6之前，js没有块级作用域  （ IIFE 实现块级作用域 let：es6）</p>
+<p>作用域链：函数创建时有一个内部属性[[Scope]]，这个内部属性包含了函数创建时作用域中对象的集合，这个集合决定了哪些数据能被访问。</p>
+<ol>
+<li>函数创建的时候，作用域链会填入一个全局对象，包含了所有全局变量</li>
+<li>函数执行时会创建一个“运行期上下文”的内部对象，它定义了函数执行的环境。每个运行期上下文都有自己的作用域链</li>
+<li>函数[[Scope]]属性中的集合被复制到运行期上下文对象上，组成了一个新的对象，称为“活动对象”</li>
+<li>函数执行完毕后，运行期上下文被销毁，活动对象也随之销毁</li>
+</ol>
+<p>今天就到这吧了……不定期更新</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/posts/a9ba4134/" target="_blank" rel="external">https://jx-zyf.github.io/posts/a9ba4134/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://jx-zyf.github.io'">
+            <img src="/img/avatar.jpg" alt="linxunzyf">
+            <a>linxunzyf</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/a9ba4134/&title=《JavaScript基础》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/a9ba4134/&title=《JavaScript基础》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/a9ba4134/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript基础》 — linxun&url=https://jx-zyf.github.io/posts/a9ba4134/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/a9ba4134/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/d8be64fd/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：HTML&amp;CSS基础知识（二）">下一篇：HTML&amp;CSS基础知识（二）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2017
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://jx-zyf.github.io">linxunzyf.cn</a>
+            <br/>
+            <!-- Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a> -->
+        </span>
+    
+        <br/>
+
+        <!-- <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+        
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/> -->
+        
+        <!-- <span class="license">このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span> -->
+    </div>      
+</footer>
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢感谢</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    -
+<div id="wechat" class="page-modal reward-lay">
+    <a class="close" href="javascript:;">
+        <i class="icon icon-close"></i>
+    </a>
+    <h4 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>欢迎关注林寻丶</span>
+        <i class="icon icon-quote-right"></i>
+    </h4>
+    <img id="wechat_img" data-img="/img/linxun.jpg" alt="欢迎您的关注！">
+</div>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/a9ba4134/&title=《JavaScript基础》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/a9ba4134/&title=《JavaScript基础》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/a9ba4134/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript基础》 — linxun&url=https://jx-zyf.github.io/posts/a9ba4134/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/a9ba4134/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwklEQVR42u3aS47DIBAFwNz/0hlpthOT1zQGj1SssrBJ4UWL/rxe8Xr/rr+/x89cPTneZ8HCxcVtc9/DVSVeccd7JgZcXNz93GpgGh8mOXb1c+Di4j6Tm0M7h8fFxf1f3DFufK1J3sXFxX0aN0l+xptGqUt8sAW5Gi4uboPbKZiu+r2pvouLi9vuSuQB5Y63PuyDi4u7hdspbVShnUZLhMDFxV3ErSYh/dZI/lEuQxguLu4Wbj4sNTc8kZdQv6hwcXEfw01Ycxem/F8KW+Pi4i7l5iGsU06tJjwfqji4uLg3c5PwlBc953oi+dUHFxd3J3duxKqa5ORjWLi4uGe5a4cnkgtKdcDrsiyCi4t7Gzd/KCmF5AXQ6lu4uLg7udXy6KoglZdfcXFx93M7YxPVQkZnjAMXF3cnt1rU6F96qmELFxf3FHeuBVItkcwtXFzcU9y5NslcyKsGteiWhIuLu5RbDShzoW3MTUJh+TC4uLhtbjV45ZMdt7RncHFxN3Kro1r5dac6I/blGVxc3Idx83bpXGNmcSDDxcU9ys2TouoABy4u7llup+g5l0TNDWTg4uLu4XYKpnn5Y7KxiouLu5v7A4E0BhzJazUsAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="/js/jquery.min.js?v=2.0"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="/js/main.min.js?v=2.0" ></script>
+
+<!-- 动画&配置 -->
+<script src="/js/script.min.js?v=2.0" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+// setInterval(function () {
+// 	setTime("2017/10/11");
+// }, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "linxunzyf");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		// console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+		console.log('hello, I`m LinXun')
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>

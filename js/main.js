@@ -170,7 +170,10 @@
             this.onHide = noop;
             this.hide = function () {
                 mythis.onHide();
-                mask.classList.remove("in");
+                if(w.innerWidth>1200 || target!='#wechat'){
+                    mask.classList.remove('in');
+                }
+                // mask.classList.remove("in");
                 if (w.innerWidth > 800) {
                     main.classList.remove("Mask");
                     menu.classList.remove("Mask");
@@ -259,6 +262,14 @@
                     }
                 });
             }
+        },
+        weixin: function () {
+            var modal = new this.modal('#wechat');
+            var wechat_img = $('#wechat_img');
+            $('.nav2item[title=微信]').addEventListener(even, function () {
+                wechat_img.src = wechat_img.dataset.img;
+                modal.toggle()
+            });
         },
         tabBar: function (el) {
             el.parentNode.parentNode.classList.toggle("expand");
@@ -477,6 +488,7 @@
     if (w.BLOG.REWARD) {
         Blog.reward();
     }
+    Blog.weixin();
     Blog.noop = noop;
     Blog.even = even;
     Blog.$ = $;
