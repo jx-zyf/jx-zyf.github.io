@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>JS数组 | linxun | linxunzyf</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="写在开头在js中，数组应该是最常用的类型之一。并且，js中的数组和其他语言的数组有很大的区别。虽然都是有序列表，但是js中数组的每一项可以保存任何类型的值。也就是说，可以用数组的第一项来保存数值，第二项保存字符串，第三项保存对象，非常灵活。而且js数组的大小是具有呼吸性的，即可以随着数据的增加或删除自动改变length的大小。 常见的创建数组的方法有两种：一种是字面量语法，一种是使用Array构造">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS数组">
+<meta property="og:url" content="https://jx-zyf.github.io/posts/82c69460/index.html">
+<meta property="og:site_name" content="linxun">
+<meta property="og:description" content="写在开头在js中，数组应该是最常用的类型之一。并且，js中的数组和其他语言的数组有很大的区别。虽然都是有序列表，但是js中数组的每一项可以保存任何类型的值。也就是说，可以用数组的第一项来保存数值，第二项保存字符串，第三项保存对象，非常灵活。而且js数组的大小是具有呼吸性的，即可以随着数据的增加或删除自动改变length的大小。 常见的创建数组的方法有两种：一种是字面量语法，一种是使用Array构造">
+<meta property="og:updated_time" content="2017-12-22T11:23:06.801Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS数组">
+<meta name="twitter:description" content="写在开头在js中，数组应该是最常用的类型之一。并且，js中的数组和其他语言的数组有很大的区别。虽然都是有序列表，但是js中数组的每一项可以保存任何类型的值。也就是说，可以用数组的第一项来保存数值，第二项保存字符串，第三项保存对象，非常灵活。而且js数组的大小是具有呼吸性的，即可以随着数据的增加或删除自动改变length的大小。 常见的创建数组的方法有两种：一种是字面量语法，一种是使用Array构造">
+    
+        <link rel="alternate" type="application/atom+xml" title="linxun" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link id="style" rel="stylesheet" href="/css/style.css?v=2.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">linxunzyf</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>随 笔</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/jx-zyf" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/linxun001" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微信" href="javascript:;" title="微信" >
+                <i class="icon icon-lg icon-wechat wechat"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Email" href="/linxunzyf@gmail.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JS数组</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#写在开头"><span class="post-toc-number">1.</span> <span class="post-toc-text">写在开头</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">常用方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#检测数组"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">检测数组</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#转换方法"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">转换方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#栈方法（后进先出）"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">栈方法（后进先出）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#队列方法（先进先出）"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">队列方法（先进先出）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#重排序方法"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">重排序方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#操作方法"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">操作方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#位置方法"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">位置方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#迭代方法"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">迭代方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#缩小方法"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">缩小方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ES6新增"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">ES6新增</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#写在最后"><span class="post-toc-number">3.</span> <span class="post-toc-text">写在最后</span></a></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-数组"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JS数组</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2017-12-22 00:00:00" datetime="2017-12-21T16:00:00.000Z"  itemprop="datePublished">2017-12-22</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coder/">coder</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">13</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="写在开头"><a href="#写在开头" class="headerlink" title="写在开头"></a>写在开头</h3><p>在js中，数组应该是最常用的类型之一。并且，js中的数组和其他语言的数组有很大的区别。虽然都是有序列表，但是js中数组的每一项可以保存任何类型的值。也就是说，可以用数组的第一项来保存数值，第二项保存字符串，第三项保存对象，非常灵活。而且js数组的大小是具有呼吸性的，即可以随着数据的增加或删除自动改变length的大小。</p>
+<p>常见的创建数组的方法有两种：一种是字面量语法，一种是使用Array构造函数创建。</p>
+<pre><code>var arr1 = [];                  // 创建了一个空数组
+var arr2 = [1, 2, 3];           // 创建了一个包含3个数字的数组
+var arr3 = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];     // 创建了一个包含3个字符串的数组
+
+var arr4 = new Array();         // 创建了一个空数组
+var arr5 = new Array(10);       // 创建了一个length为10的数组，如果第一个参数不是数值，就会创建一个包含该项的数组
+var arr6 = new Array(&apos;a&apos;, &apos;b&apos;)  // 创建了一个包含两个字符串的数组
+</code></pre><p>我们用的最多的还是第一种方法</p>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><h4 id="检测数组"><a href="#检测数组" class="headerlink" title="检测数组"></a>检测数组</h4><ul>
+<li>instanceof操作符：此方法基于原型/构造函数判断，只适用于只有一个全局环境的情况</li>
+</ul>
+<pre><code>arr instanceof Array;   // 是数组返回true，否则返回false
+</code></pre><ul>
+<li>Array.prototype.isArray()：ES5新增，为了解决instanceof的问题，存在兼容性。IE9+，Firefox 4+，Safari 5+，Opera 10.5+和Chrome支持</li>
+</ul>
+<pre><code>arr.isArray();   // 是数组返回true，否则返回false
+</code></pre><ul>
+<li>原型链：无兼容性</li>
+</ul>
+<pre><code>Object.prototype.toString.call(arr) === &apos;[object Array]&apos;
+</code></pre><h4 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h4><ul>
+<li>Array.prototype.toString()：数组每一项转换成字符串并用’,’拼接成一个字符串</li>
+</ul>
+<pre><code>[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].toString();     // a,b,c
+</code></pre><ul>
+<li>Array.prototype.join()：使用不同的分隔符构建这个字符串，默认使用’,’</li>
+</ul>
+<pre><code>[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].join();       // a,b,c
+[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].join(&apos;|&apos;);    // a|b|c
+</code></pre><h4 id="栈方法（后进先出）"><a href="#栈方法（后进先出）" class="headerlink" title="栈方法（后进先出）"></a>栈方法（后进先出）</h4><ul>
+<li>Array.prototype.push()：接收任意数量的参数，将它们逐个添加到数组末尾，返回修改后数组的长度</li>
+<li>Array.prototype.pop()：移除数组最后一项，并返回该项</li>
+</ul>
+<pre><code>var arr = [1, 2, 3]
+var length = arr.push(4, 5);
+console.log(arr, length);     // [1, 2, 3, 4, 5], 5
+var item = arr.pop();
+console.log(arr, item);       // [1, 2, 3, 4], 5
+</code></pre><h4 id="队列方法（先进先出）"><a href="#队列方法（先进先出）" class="headerlink" title="队列方法（先进先出）"></a>队列方法（先进先出）</h4><ul>
+<li>Array.prototype.push()：同上</li>
+<li>Array.prototype.shift()：移除数组第一项，并返回该项</li>
+</ul>
+<pre><code>var arr = []
+var length = arr.push(1, 2);
+console.log(arr, length);     // [1, 2], 2
+var item = arr.shift();
+console.log(arr, item);       // [2], 1
+</code></pre><blockquote>
+<p>补充：Array.prototype.unshift()：接收任意数量的参数，将它们逐个添加到数组开头，返回修改后数组的长度</p>
+</blockquote>
+<pre><code>var arr = [1, 2, 3]
+var length = arr.unshift(4, 5);
+console.log(arr, length);     // [4, 5, 1, 2, 3], 5
+</code></pre><h4 id="重排序方法"><a href="#重排序方法" class="headerlink" title="重排序方法"></a>重排序方法</h4><ul>
+<li>Array.prototype.reverse()：翻转数组顺序，会改变原数组</li>
+</ul>
+<pre><code>console.log([1, 2, 3].reverse());   // [3, 2, 1]
+</code></pre><ul>
+<li>Array.prototype.sort()：由于翻转不够灵活而出现，可以自定义排序规则，如果不传函数参数，则数组每一项调用toString()方法，然后排序；会改变原数组</li>
+</ul>
+<pre><code>var arr = [1, 15, 2, 30];
+arr.sort(function(a, b) {
+  return a-b;
+});
+console.log(arr);     // [1, 2, 15, 30]
+</code></pre><h4 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a>操作方法</h4><ul>
+<li>Array.prototype.concat()：先创建当前数组的一个副本，然后将接收到的参数添加到该副本的末尾。如果参数是一个或多个数组，会将这些数组的每一项添加到副本数组的末尾；如果不是数组，这些值就会简单的添加到副本数组的末尾；如果没传参数，就只是简单的创建一个副本。该方法返回这个新创建的副本数组，原数组不会改变。</li>
+</ul>
+<pre><code>var arr1 = [1, 2];
+var arr2 = arr1.concat([3, 4], [5]);
+var arr3 = arr1.concat(3, 4);
+var arr4 = arr1.concat();
+console.log(arr1);      // [1, 2]
+console.log(arr2);      // [1, 2, 3, 4, 5]
+console.log(arr3);      // [1, 2, 3, 4]
+console.log(arr4);      // [1, 2]
+</code></pre><ul>
+<li>Array.prototype.slice()：基于当前数组的一或多项创建一个新数组，即截取数组。接收两个参数，第一个参数（起始位置）必须，第二个参数（结束位置，不截取该项）可选，若不传则默认截取从开始位置到当前数组末尾所有项，即数组的length-1。该方法返回截取的新数组，不会改变原数组。</li>
+</ul>
+<pre><code>var arr1 = [1, 2, 3, 4];
+var arr2 = arr1.slice(1);
+var arr3 = arr1.slice(1, 3);
+console.log(arr1);        // [ 1, 2, 3, 4 ]
+console.log(arr2);        // [ 2, 3, 4 ]
+console.log(arr3);        // [ 2, 3 ]
+</code></pre><ul>
+<li>Array.prototype.splice()：最强大的数组操作方法，删除，插入，替换均可。接收多个参数，分别是操作位置，删除元素个数，新增的元素（可多个）；该方法返回删除元素组成的数组（如果没有删除元素则返回一个空数组），会改变原数组。</li>
+</ul>
+<pre><code>var arr1 = [1, 2, 3];
+var arr2 = arr1.splice(1, 1);
+console.log(arr1);                      // [1, 3]
+console.log(arr2);                      // [2]
+var arr3 = arr1.splice(0, 0, 4, 5);
+console.log(arr1);                      // [4, 5, 1, 3]
+console.log(arr3);                      // []
+var arr4 = arr1.splice(1, 1, 6);
+console.log(arr1);                      // [4, 6, 1, 3]
+console.log(arr4);                      // [5]
+</code></pre><h4 id="位置方法"><a href="#位置方法" class="headerlink" title="位置方法"></a>位置方法</h4><ul>
+<li>Array.prototype.indexOf()</li>
+<li>Array.prototype.lastIndexOf()：这两个方法都接收两个参数，要查找的项（必须）和查找起点位置的索引（可选，包含该位置）；找到了返回该项在数组中的索引，否则返回-1。不同的是前者从前向后查找，后者从后向前查找。</li>
+</ul>
+<pre><code>var arr = [1, 2, 3, 4, 5, 6, 4, 2];
+console.log(arr.indexOf(4));        // 3
+console.log(arr.indexOf(4, 4))      // 6
+console.log(arr.indexOf(4, 7))      // -1
+console.log(arr.lastIndexOf(4))     // 6
+console.log(arr.lastIndexOf(4, 4))  // 3
+console.log(arr.lastIndexOf(4, 2))  // -1
+</code></pre><h4 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h4><p>五个迭代方法：每个方法都接收两个参数，要在每一项上运行的函数（必须）和运行该函数的作用域对象（可选，影响this的值）。这个函数参数会接收三个参数，分别是迭代的每一项，该项的索引和数组对象本身。原数组都不会改变。</p>
+<ul>
+<li>Array.prototype.every()：函数参数对每一项都返回true，则返回true，否则返回false。</li>
+<li>Array.prototype.filter()：返回函数参数返回true的项组成的数组。</li>
+<li>Array.prototype.forEach()：没有返回值。</li>
+<li>Array.prototype.map()：返回每次调用函数参数的结果组成的数组。</li>
+<li>Array.prototype.some()：函数参数对任何一项返回true，则返回true，否则返回false。</li>
+</ul>
+<pre><code>var arr = [1, 2, 3, 4, 5];
+
+var result1 = arr.every(function(item, index, arr) {
+  return (item &lt; 3);
+});
+console.log(result1);   // false
+
+var result2 = arr.some(function(item, index, arr) {
+  return (item &lt; 3);
+});
+console.log(result2);   // true
+
+var result3 = arr.filter(function(item, index, arr) {
+  return (item &lt; 3);
+});
+console.log(result3);   // [1, 2]
+
+var result4 = arr.map(function(item, index, arr) {
+  return (item * 2)
+});
+console.log(result4);   // [2, 4, 6, 8, 10]
+
+arr.forEach(function(item, index, arr) {
+  // 执行某些操作...
+});
+</code></pre><blockquote>
+<p>注意：函数参数的三个参数根据实际需要来确定是否接收，如不需要原数组对象，可以不接收。</p>
+</blockquote>
+<h4 id="缩小方法"><a href="#缩小方法" class="headerlink" title="缩小方法"></a>缩小方法</h4><ul>
+<li>Array.prototype.reduce()：</li>
+<li>Array.prototype.reduceRight()：这两个方法都接收两个参数，一个在每一项调用的函数（必须）和作为缩小基础的初始值（可选）。不会改变原数组，并且构建出一个最终的值作为返回值。函数参数接收四个参数：前一项，当前项，当前项索引和原数组对象。这个函数返回的任何值都会作为下次调用该函数时的第一个参数，即前一项。第一次调用该函数时当前项是数组的第二项（即索引为1），第一个参数则为第一项（索引为0）。这两个函数的区别是前者从第一项开始，逐个遍历到最后；后者从最后一项开始，逐个遍历到第一项。</li>
+</ul>
+<pre><code>var arr = [1, 2, 3, 4];
+var result = arr.reduce(function(pre, cur, index, arr) {
+  return (pre + cur);
+});
+console.log(arr);       // [1, 2, 3, 4]
+console.log(result);    // 10
+</code></pre><h4 id="ES6新增"><a href="#ES6新增" class="headerlink" title="ES6新增"></a>ES6新增</h4><ul>
+<li>Array.from()：将类似数组的对象和可遍历的对象（包括ES6中的Set和Map）转化为真正的数组并返回该数组；字符串也能转化为数组</li>
+</ul>
+<pre><code>let arrayLike = {
+  &apos;0&apos;: &apos;a&apos;,
+  &apos;1&apos;: &apos;b&apos;,
+  &apos;2&apos;: &apos;c&apos;,
+  length: 3
+};
+
+// es5
+console.log(Array.prototype.slice.call(arrayLike, 0));    // [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]
+
+// es6
+console.log(Array.from(arrayLike))    // [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]
+
+console.log(Array.from(&apos;hello&apos;));     // [&apos;h&apos;, &apos;e&apos;, &apos;l&apos;, &apos;l&apos;, &apos;o&apos;]
+</code></pre><p>Array.from 方法还接受第二个参数，作用类似于数组的 map() 方法，用来对每个元素进行处理，将处理后的值放入返回的数组</p>
+<pre><code>let arrayLike = {
+  &apos;0&apos;: 1,
+  &apos;1&apos;: 2,
+  &apos;2&apos;: 3,
+  length: 3
+};
+console.log(Array.from(arrayLike, x =&gt; x * x));       // [1, 4, 9]
+// 等同于
+console.log(Array.from(arrayLike).map(x =&gt; x * x));   // [1, 4, 9]
+</code></pre><ul>
+<li>Array.of()：将一组值转换为数组</li>
+</ul>
+<pre><code>Array.of(1,2,3);      // [1, 2, 3]
+Array.of(3);          // [3]
+Array.of();           // []
+Array.of(1,,2,&apos;a&apos;);   // error
+Array.of(1,2,&apos;a&apos;);    // [1,2,&apos;a&apos;]
+</code></pre><ul>
+<li>Array.prototype.copyWithin()：在当前数组内部，将指定位置的成员，复制到其他位置（会覆盖原有成员，修改原数组），然后返回替换后的数组。该方法接收三个参数：（三个参数都是数值，如果不是会自动转化成数值）<br>-target（必需）：从该位置开始替换数据<br>-start（可选）：从该位置开始读取目标数据，默认值是0<br>-end（可选）：从该位置（不包括它）停止读取目标数据，默认值是数组长度<br>（将start到end的成员替换从target开始的成员）</li>
+</ul>
+<pre><code>console.log([5, 3, 1, 8, 0, 2].copyWithin(3, 0, 2));    // [5, 3, 1, 5, 3, 2]
+</code></pre><ul>
+<li>Array.prototype.find(): 该方法接收一个函数作为参数，用于找出参数函数返回true的第一个数组成员（即满足条件的成员），没找到返回 undefined。该函数参数接收三个参数（value，index，arr），分别是当前值，当前位置和原数组。</li>
+<li>Array.prototype.findIndex():该方法参数同find()，返回符合条件的第一个数组成员的索引，没找到返回 -1。</li>
+</ul>
+<pre><code>console.log([1, 2, 3, 4].find((x) =&gt; x &gt; 2))          // 3
+console.log([1, 2, 3, 4].find((x) =&gt; x &gt; 4))          // undefined
+console.log([1, 2, 3, 4].findIndex((x) =&gt; x &gt; 2))     // 2
+console.log([1, 2, 3, 4].findIndex((x) =&gt; x &gt; 4))     // -1
+</code></pre><ul>
+<li>Array.prototype.fill()：使用指定的值，填充一个数组并返回，会改变原数组。接收三个参数：<br>-value（必需）：填充的值<br>-start（可选）：填充的起始位置，默认是0<br>-end（可选）：填充的结束位置（不包括它），默认是数组的长度</li>
+</ul>
+<pre><code>var arr = [1, 2, 3, 4];
+console.log(arr.fill(6));          // [6, 6, 6, 6]
+console.log(arr);                  // [6, 6, 6, 6]
+console.log(arr.fill(3,1,3));      // [6, 3, 3, 6]
+console.log(arr);                  // [6, 3, 3, 6]
+</code></pre><ul>
+<li>Array.prototype.entries()，Array.prototype.keys() 和 Array.prototype.values()：这三个方法都返回一个遍历器对象，可以用<code>for...of</code>循环遍历，区别是<code>keys()</code>是对键名的遍历，<code>values()</code>是对键值的遍历，<code>entries()</code>是对键值对的遍历。</li>
+</ul>
+<pre><code>for (let key of [1, 2].keys()) {
+  console.log(key);   // 0, 1
+}
+for (let value of [1, 2].values()) {
+  console.log(value);
+}
+for (let [key, value] of [1, 2].entries()) {
+  console.log(key, value);   // 0 1 , 1 2
+}
+</code></pre><blockquote>
+<p>注意：对于values()， Chrome 未实现，Firefox未实现，Edge已实现。</p>
+</blockquote>
+<ul>
+<li>Array.prototype.includes()：该方法返回了一个布尔值，判断数组中是否包含给定的值，与字符串的 includes() 类似。该方法可以检测到 NaN，弥补了 indexOf() 的不足；并且 indexOf() 不够具有语义化，它检测的是在数组中的位置。它接收两个参数：<br>-target（必需）：需要在数组中匹配的值<br>-start（可选）：从该位置（包含该位置）开始匹配，默认为0。如果为负数则表示倒数的位置，如果大于数组长度则重置为0</li>
+</ul>
+<pre><code>console.log([1, 2, 3].includes(2))          // true
+console.log([1, 2, 3].includes(2, 2))       // false
+console.log([1, 2, 3].includes(2, -2))      // true
+</code></pre><blockquote>
+<p>注意：该方法目前还存在兼容性</p>
+</blockquote>
+<pre><code>// 兼容性写法
+const contains = (() =&gt; 
+  Array.prototype.includes 
+    ? (arr, value, index) =&gt; arr.includes(value, index)
+    : (arr, value, index) =&gt; arr.some((el, index) =&gt; el === value)
+)();
+
+console.log(contains([1,2,3], 1, 1));    // false
+</code></pre><blockquote>
+<p>另外：Map 和 Set 数据结构有一个 has 方法，注意与 includes() 的区别：<br>-Map：查找键名（key）<br>-Set：查找键值（value）</p>
+</blockquote>
+<p>参考：<a href="https://book.douban.com/subject/10546125/" target="_blank" rel="external">JavaScript高级程序设计（第三版）</a> <a href="http://es6.ruanyifeng.com/#docs/array" target="_blank" rel="external">阮一峰es6入门：数组的扩展</a></p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>在如此多的数组方法中，非常容易记混。我认为要抓住以下几点：该方法的作用？所需的参数（必需的和可选的）有哪些？是否有返回值？返回值是什么？是否会改变原数组？</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/posts/82c69460/" target="_blank" rel="external">https://jx-zyf.github.io/posts/82c69460/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://jx-zyf.github.io'">
+            <img src="/img/avatar.jpg" alt="linxunzyf">
+            <a>linxunzyf</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/82c69460/&title=《JS数组》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/82c69460/&title=《JS数组》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/82c69460/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS数组》 — linxun&url=https://jx-zyf.github.io/posts/82c69460/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/82c69460/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/a9ba4134/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：JavaScript基础">下一篇：JavaScript基础</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'jx-zyf',
+            repo: 'jx-zyf.github.io',
+            oauth: {
+                client_id: 'fb0e41d3397cae4b2285',
+                client_secret: 'f2bacbf3aefe7148c4df7f00f91ef3ff3144173e',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2017
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://jx-zyf.github.io">linxunzyf.cn</a>
+            <br/>
+            <!-- Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a> -->
+        </span>
+    
+        <br/>
+
+        <!-- <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+        
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/> -->
+        
+        <!-- <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span> -->
+    </div>      
+</footer>
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢感谢</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    -
+<div id="wechat" class="page-modal reward-lay">
+    <a class="close" href="javascript:;">
+        <i class="icon icon-close"></i>
+    </a>
+    <h4 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>欢迎关注林寻丶</span>
+        <i class="icon icon-quote-right"></i>
+    </h4>
+    <img id="wechat_img" data-img="/img/linxun.jpg" alt="欢迎您的关注！">
+</div>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/82c69460/&title=《JS数组》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/82c69460/&title=《JS数组》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/82c69460/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS数组》 — linxun&url=https://jx-zyf.github.io/posts/82c69460/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/82c69460/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAByklEQVR42u3ay4rDMAwF0P7/T6fbgRLnSn4QhuNVKYl9nIWwJH8+8bj+jPEzvecXD1xc3GnuNRx3y/8udrf83Tzj/283jIuLe5CbLDOm5/+P53+w4eLivp57h0hwuLi4/5ubHInGW8LFxX0nN1m+Wi5JNrkxV8PFxZ3g5lXKfb+31HdxcXFb3Ks4qvPkZZRodVxc3CPcPKDk01U3Vm7u4uLiHufmrdO8iVK9flFosuLi4m7jrmqsVoukvUCJi4t7kpu0S+cTmGoJtdD/wcXF3cDtHTvyZarvRkclXFzcDdw8sckTmF4iFCU/uLi4R7hJkEpCUr7hmSYNLi7uGW6vdVoNXvlWHz4cLi7uEW41AFUPN9VSbDlXw8XF3cwdv9ArZFQTnnKpFBcXdxu3V2dNvsF84+QhV8PFxd3MzYNRdeHq5YyHz4eLi3uQWy2R5MeUXpm1kJnh4uIu5a69UJXP0EyTcHFxj3DzUT3QzJRCeuEPFxd3LTcPXjNFkzyQFZIfXFzczdyZtmj1YLQgV8PFxX0ZN2++5ulTBMXFxX0xN7mktbb8seCIg4uL2+L2iqR5IFt1IQMXF/cMt1fczK9W9I5EC+q7uLi4He4XzzBn1uhwgdAAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="/js/jquery.min.js?v=2.0"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="/js/main.min.js?v=2.0" ></script>
+
+<!-- 动画&配置 -->
+<script src="/js/script.min.js?v=2.0" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+// setInterval(function () {
+// 	setTime("2017/10/11");
+// }, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "linxunzyf");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		// console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+		console.log('hello, I`m LinXun')
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>

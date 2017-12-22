@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jx-zyf.github.io/"/>
-  <updated>2017-12-20T08:47:19.902Z</updated>
+  <updated>2017-12-22T11:23:06.801Z</updated>
   <id>https://jx-zyf.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS数组</title>
+    <link href="https://jx-zyf.github.io//posts/82c69460/"/>
+    <id>https://jx-zyf.github.io//posts/82c69460/</id>
+    <published>2017-12-21T16:00:00.000Z</published>
+    <updated>2017-12-22T11:23:06.801Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;写在开头&quot;&gt;&lt;a href=&quot;#写在开头&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
+    
+    
+      <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript基础</title>
