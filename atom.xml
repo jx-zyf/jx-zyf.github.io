@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jx-zyf.github.io/"/>
-  <updated>2017-12-22T11:23:06.801Z</updated>
+  <updated>2018-01-09T06:03:39.029Z</updated>
   <id>https://jx-zyf.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>react 实战总结</title>
+    <link href="https://jx-zyf.github.io//posts/68a33ea4/"/>
+    <id>https://jx-zyf.github.io//posts/68a33ea4/</id>
+    <published>2018-01-09T01:18:09.832Z</published>
+    <updated>2018-01-09T06:03:39.029Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;虽然不是第一次接触react，但之前都没有写博客记录，好记性不如烂笔头，希望以后养成多做笔记的好习惯吧。&lt;/p&gt;
+&lt;h2 id=&quot;关于react&quot;&gt;&lt;a href=&quot;#关于react&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
+    
+    
+      <category term="react" scheme="https://jx-zyf.github.io/tags/react/"/>
+    
+  </entry>
   
   <entry>
     <title>JS数组</title>

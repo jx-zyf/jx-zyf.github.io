@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>react 实战总结 | linxun | linxunzyf</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="react">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="虽然不是第一次接触react，但之前都没有写博客记录，好记性不如烂笔头，希望以后养成多做笔记的好习惯吧。 关于react react 作为当下最流行的前端框架，之所以能被如此多前端开发者所喜爱自然是有原因的。react有一个很重要的特性——限制（Constraint），这里的“限制”并不是贬义，因为对于大部分开发者来说，代码的可维护性和扩展性并不是很好，所以只有施加“限制”，代码的管理才会更加简单">
+<meta name="keywords" content="react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react 实战总结">
+<meta property="og:url" content="https://jx-zyf.github.io/posts/68a33ea4/index.html">
+<meta property="og:site_name" content="linxun">
+<meta property="og:description" content="虽然不是第一次接触react，但之前都没有写博客记录，好记性不如烂笔头，希望以后养成多做笔记的好习惯吧。 关于react react 作为当下最流行的前端框架，之所以能被如此多前端开发者所喜爱自然是有原因的。react有一个很重要的特性——限制（Constraint），这里的“限制”并不是贬义，因为对于大部分开发者来说，代码的可维护性和扩展性并不是很好，所以只有施加“限制”，代码的管理才会更加简单">
+<meta property="og:image" content="https://raw.githubusercontent.com/jx-zyf/jx-zyf.github.io/master/img/react-demo.gif">
+<meta property="og:updated_time" content="2018-01-09T06:03:39.029Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react 实战总结">
+<meta name="twitter:description" content="虽然不是第一次接触react，但之前都没有写博客记录，好记性不如烂笔头，希望以后养成多做笔记的好习惯吧。 关于react react 作为当下最流行的前端框架，之所以能被如此多前端开发者所喜爱自然是有原因的。react有一个很重要的特性——限制（Constraint），这里的“限制”并不是贬义，因为对于大部分开发者来说，代码的可维护性和扩展性并不是很好，所以只有施加“限制”，代码的管理才会更加简单">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jx-zyf/jx-zyf.github.io/master/img/react-demo.gif">
+    
+        <link rel="alternate" type="application/atom+xml" title="linxun" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link id="style" rel="stylesheet" href="/css/style.css?v=2.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">linxunzyf</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>随 笔</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/jx-zyf" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/linxun001" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微信" href="javascript:;" title="微信" >
+                <i class="icon icon-lg icon-wechat wechat"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Email" href="/linxunzyf@gmail.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">react 实战总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Búsqueda">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于react"><span class="post-toc-number">1.</span> <span class="post-toc-text">关于react</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#项目"><span class="post-toc-number">2.</span> <span class="post-toc-text">项目</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#webpack配置"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">webpack配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前端路由配置"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">前端路由配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#服务器配置"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">服务器配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前端数据请求"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">前端数据请求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#react与redux连接"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">react与redux连接</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-react-demo项目总结"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">react 实战总结</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2018-01-09 09:18:09" datetime="2018-01-09T01:18:09.832Z"  itemprop="datePublished">2018-01-09</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coder/">coder</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">9</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>虽然不是第一次接触react，但之前都没有写博客记录，好记性不如烂笔头，希望以后养成多做笔记的好习惯吧。</p>
+<h2 id="关于react"><a href="#关于react" class="headerlink" title="关于react"></a>关于react</h2><blockquote>
+<p>react 作为当下最流行的前端框架，之所以能被如此多前端开发者所喜爱自然是有原因的。react有一个很重要的特性——限制（Constraint），这里的“限制”并不是贬义，因为对于大部分开发者来说，代码的可维护性和扩展性并不是很好，所以只有施加“限制”，代码的管理才会更加简单。必须按照react的规范来写代码，不然程序就跑不了，就是这么霸道。</p>
+</blockquote>
+<p>react 还有很多优势，个人认为最重要的就是虚拟DOM和组件化。</p>
+<ul>
+<li>虚拟DOM：现在的框架很少有直接操作DOM的，虽然jQuery曾经称霸一方。当页面上的DOM树改变的时候，虚拟DOM机制会将前后DOM树进行对比（通过一些高效的算法），如果两个DOM树有不一样的地方，react只会针对不一样的地方进行修改，自然就提高了性能。举个栗子：现在的html结构是这样</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>你想让它变成这样<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>6<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>7<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>如果是原始的DOM操作，你需要先将开始的三个<code>li</code>删除，然后再将后面的四个<code>li</code>添加进去；可能你也会这样操作：将三个<code>li</code>的<code>innerHTML</code>修改，只需要添加一个<code>7</code>就行了。那么恭喜你，做的很好。react有个很重要的思想，状态管理。只要DOM节点的对应的state发生了改变，react就会将其标注为“脏状态”，在一个<a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="external">Event loop</a>结束后，对这些有标注的地方进行修改，并且只对修改了的地方重新渲染，减少了很多冗余的DOM操作。具体实现可以参考 <a href="https://github.com/livoras/blog/issues/13" target="_blank" rel="external">深度剖析：如何实现一个 Virtual DOM 算法 </a></p>
+<ul>
+<li>组件化：简单的说下好处，可以模板化，可复用，可嵌套的UI模块，当然组件之间会存在依赖关系。可以将UI组件当作独立的js模块使用，推荐使用ES6的import来引用组件模块，当然也可以配合CommonJs、AMD、CMD等规范来require我们需要的组件模块，最重要的是处理好依赖关系。</li>
+</ul>
+<hr>
+
+<h2 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h2><p>前面说了这么多，终于到重点了。这个项目是参照慕课网实战视频做的，视频地址：<a href="https://coding.imooc.com/class/99.html" target="_blank" rel="external">React高级实战 打造大众点评 WebApp</a></p>
+<ul>
+<li><p>启动：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm i</div><div class="line">npm run mock</div><div class="line">npm start</div></pre></td></tr></table></figure>
+</li>
+<li><p>项目预览</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/jx-zyf/jx-zyf.github.io/master/img/react-demo.gif"></p>
+<ul>
+<li><p><a href="https://github.com/jx-zyf/react-app-demo" target="_blank" rel="external">项目源码</a></p>
+</li>
+<li><p>项目目录</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">│  package.json     <span class="comment">// 配置文件</span></div><div class="line">│  README.md</div><div class="line">├─build     <span class="comment">// 打包后的文件</span></div><div class="line">│</div><div class="line">├─config    <span class="comment">// 配置文件</span></div><div class="line">│</div><div class="line">├─mock     <span class="comment">// mock数据</span></div><div class="line">│  │  server.js     <span class="comment">// 请求数据接口</span></div><div class="line">│  ├─detail</div><div class="line">│  ├─home</div><div class="line">│  ├─public</div><div class="line">│  ├─search</div><div class="line">│  └─user</div><div class="line">│</div><div class="line">├─public</div><div class="line">│</div><div class="line">├─scripts</div><div class="line">│      build.js     <span class="comment">// 项目打包入口</span></div><div class="line">│      start.js     <span class="comment">// 项目启动入口</span></div><div class="line">│      test.js</div><div class="line">│</div><div class="line">└─src</div><div class="line">    │  config.js    <span class="comment">// 常量配置</span></div><div class="line">    │  index.js     <span class="comment">// 程序入口</span></div><div class="line">    │  index.less </div><div class="line">    │</div><div class="line">    ├─actions       <span class="comment">// actions</span></div><div class="line">    │</div><div class="line">    ├─components    <span class="comment">// 木偶组件</span></div><div class="line">    │</div><div class="line">    ├─containers    <span class="comment">// 智能组件，与redux连接</span></div><div class="line">    │</div><div class="line">    ├─fetch         <span class="comment">// 获取数据</span></div><div class="line">    │</div><div class="line">    ├─reducers      <span class="comment">// reducers</span></div><div class="line">    │</div><div class="line">    ├─router</div><div class="line">    │      index.jsx    <span class="comment">// 前端路由</span></div><div class="line">    │</div><div class="line">    ├─<span class="keyword">static</span>        <span class="comment">// 静态资源</span></div><div class="line">    │</div><div class="line">    └─util      <span class="comment">// 工具函数</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="webpack配置"><a href="#webpack配置" class="headerlink" title="webpack配置"></a>webpack配置</h3><p>首先，项目采用 <a href="https://github.com/facebookincubator/create-react-app" target="_blank" rel="external">create-react-app</a> 脚手架搭建，很多配置都已经帮我们写好了，但是仍需要自定义一些配置，所以我 <code>npm run eject</code>。对于这个命令，官方是这样解释的：</p>
+<blockquote>
+<p>Note: this is a one-way operation. Once you eject, you can’t go back!</p>
+<p>If you aren’t satisfied with the build tool and configuration choices, you can eject at any time. This command will remove the single build dependency from your project.</p>
+<p>Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except eject will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.</p>
+<p>You don’t have to ever use eject. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.</p>
+</blockquote>
+<p>这个项目我使用less编译css样式文件，所以需要添加配置：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    test: <span class="regexp">/\.(css|less)$/</span>,</div><div class="line">    use: [</div><div class="line">        <span class="built_in">require</span>.resolve(<span class="string">'style-loader'</span>),</div><div class="line">        &#123;</div><div class="line">            loader: <span class="built_in">require</span>.resolve(<span class="string">'css-loader'</span>),</div><div class="line">            options: &#123;</div><div class="line">                importLoaders: <span class="number">1</span>,</div><div class="line">            &#125;,</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            loader: <span class="built_in">require</span>.resolve(<span class="string">'postcss-loader'</span>),</div><div class="line">            options: &#123;</div><div class="line">                <span class="comment">// Necessary for external CSS imports to work</span></div><div class="line">                <span class="comment">// https://github.com/facebookincubator/create-react-app/issues/2677</span></div><div class="line">                ident: <span class="string">'postcss'</span>,</div><div class="line">                plugins: <span class="function"><span class="params">()</span> =&gt;</span> [</div><div class="line">                    <span class="built_in">require</span>(<span class="string">'postcss-flexbugs-fixes'</span>),</div><div class="line">                    autoprefixer(&#123;</div><div class="line">                        browsers: [</div><div class="line">                        <span class="string">'&gt;1%'</span>,</div><div class="line">                        <span class="string">'last 4 versions'</span>,</div><div class="line">                        <span class="string">'Firefox ESR'</span>,</div><div class="line">                        <span class="string">'not ie &lt; 9'</span>, <span class="comment">// React doesn't support IE8 anyway</span></div><div class="line">                        ],</div><div class="line">                        flexbox: <span class="string">'no-2009'</span>,</div><div class="line">                    &#125;),</div><div class="line">                ],</div><div class="line">            &#125;,</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            loader: <span class="built_in">require</span>.resolve(<span class="string">'less-loader'</span>) <span class="comment">// compiles Less to CSS</span></div><div class="line">        &#125;,</div><div class="line">    ],</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<p>在开发环境和产品环境都需要配置，即在<code>webpack.config.dev.js</code>和<code>webpack.config.prod.js</code>都需要配置</p>
+<h3 id="前端路由配置"><a href="#前端路由配置" class="headerlink" title="前端路由配置"></a>前端路由配置</h3><p>然后就是前端页面路由配置，视频使用的是react-router2.0的版本，我用的是4.0版本，接触过的都知道，这两者差异很大。</p>
+<ul>
+<li>history 不用props传递，使用HashRouter</li>
+<li>Route 不能嵌套使用，都在同一层级</li>
+<li>想要匹配所有不存在的路由，就不传path</li>
+<li>动态参数 :param    可选参数 :param?    精确匹配 exact</li>
+</ul>
+<p>代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; HashRouter, Route, Switch &#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span></div><div class="line"></div><div class="line">&lt;HashRouter&gt;</div><div class="line">    &lt;Switch&gt;</div><div class="line">        &lt;Route path=<span class="string">'/'</span> exact component=&#123;Home&#125; /&gt;</div><div class="line">        &lt;Route path=<span class="string">'/city'</span> component=&#123;City&#125;/&gt;</div><div class="line">        &lt;Route path=<span class="string">'/search/:category/:keyword'</span> component=&#123;Search&#125;/&gt;</div><div class="line">        &lt;Route path=<span class="string">'/detail/:id'</span> component=&#123;Detail&#125;/&gt;</div><div class="line">        &lt;Route path=<span class="string">'/login'</span> component=&#123;Login&#125;/&gt;</div><div class="line">        &lt;Route path=<span class="string">'/user'</span> component=&#123;User&#125;/&gt;</div><div class="line">        &lt;Route component=&#123;NotFound&#125;/&gt;</div><div class="line">    &lt;<span class="regexp">/Switch&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>HashRouter&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h3><p>我这里使用的koa2.0来做后端接口的模拟</p>
+<p>由于我们的数据是采用静态数据模拟的，所以请求数据其实就是请求js文件，并将数据返回</p>
+<p>代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>)</div><div class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)</div><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</div><div class="line"><span class="keyword">const</span> <span class="keyword">static</span> = <span class="built_in">require</span>(<span class="string">'koa-static'</span>)</div><div class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">'koa2-cors'</span>);</div><div class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'koa-body'</span>)();</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa()</div><div class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router()</div><div class="line"></div><div class="line"><span class="comment">// 跨域</span></div><div class="line">app.use(cors(&#123;</div><div class="line">    credentials: <span class="literal">true</span>,</div><div class="line">    allowMethods: [<span class="string">'GET'</span>, <span class="string">'POST'</span>, <span class="string">'DELETE'</span>],</div><div class="line">    allowHeaders: [<span class="string">'Content-Type'</span>, <span class="string">'Authorization'</span>, <span class="string">'Accept'</span>],</div><div class="line">&#125;))</div><div class="line"></div><div class="line"><span class="comment">// 访问静态资源</span></div><div class="line">app.use(<span class="keyword">static</span>(</div><div class="line">    path.join(__dirname, <span class="string">'/public'</span>)</div><div class="line">))</div><div class="line"></div><div class="line"><span class="comment">// 主页广告</span></div><div class="line">router.get(<span class="string">'/data/homead'</span>, <span class="keyword">async</span> (ctx) =&gt; &#123;</div><div class="line">    ctx.body = <span class="built_in">require</span>(<span class="string">'./home/ad'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 主页列表</span></div><div class="line"><span class="keyword">const</span> homeListData = <span class="built_in">require</span>(<span class="string">'./home/list'</span>)</div><div class="line">router.get(<span class="string">'/data/homelist/:cityname/:page'</span>, <span class="keyword">async</span> (ctx) =&gt; &#123;</div><div class="line">    <span class="keyword">const</span> pageSize = <span class="number">1</span></div><div class="line">    <span class="keyword">const</span> &#123; cityname, page &#125; = ctx.params</div><div class="line">    <span class="keyword">let</span> filterData = homeListData.filter(<span class="function"><span class="params">item</span> =&gt;</span></div><div class="line">        item.cityname === cityname</div><div class="line">    )</div><div class="line">    <span class="keyword">let</span> hasMore = pageSize * page &gt;= filterData.length ? <span class="literal">false</span> : <span class="literal">true</span></div><div class="line">    ctx.body = &#123;</div><div class="line">        result: filterData.slice(<span class="number">0</span>, page * pageSize),</div><div class="line">        hasMore: hasMore</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 搜索页列表</span></div><div class="line"><span class="keyword">const</span> searchListData = <span class="built_in">require</span>(<span class="string">'./search/list'</span>)</div><div class="line">router.get(<span class="string">'/data/search/:cityname/:category/:keyword/:page'</span>, <span class="keyword">async</span> (ctx) =&gt; &#123;</div><div class="line">    <span class="keyword">const</span> pageSize = <span class="number">1</span></div><div class="line">    <span class="keyword">const</span> &#123; cityname, category, keyword, page &#125; = ctx.params</div><div class="line">    <span class="keyword">let</span> filterData</div><div class="line">    <span class="keyword">let</span> filterData1 = searchListData.filter(<span class="function"><span class="params">item</span> =&gt;</span> </div><div class="line">        item.cityname === cityname</div><div class="line">    )</div><div class="line">    <span class="keyword">if</span> (keyword === <span class="string">'all'</span>) &#123;</div><div class="line">        filterData = filterData1.filter(<span class="function"><span class="params">item</span> =&gt;</span> </div><div class="line">            item.category.includes(category)</div><div class="line">        )</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        filterData = filterData1.filter(<span class="function"><span class="params">item</span> =&gt;</span> </div><div class="line">            item.title.includes(keyword) || item.subTitle.includes(keyword)</div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">let</span> hasMore = pageSize * page &gt;= filterData.length ? <span class="literal">false</span> : <span class="literal">true</span></div><div class="line">    ctx.body = &#123;</div><div class="line">        result: filterData.slice(<span class="number">0</span>, page * pageSize),</div><div class="line">        hasMore: hasMore</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 详情页 商家详情</span></div><div class="line"><span class="keyword">const</span> detailData = <span class="built_in">require</span>(<span class="string">'./detail/info'</span>)</div><div class="line">router.get(<span class="string">'/data/detail/info/:id'</span>, <span class="keyword">async</span> (ctx) =&gt; &#123;</div><div class="line">    <span class="keyword">let</span> &#123; id &#125; = ctx.params</div><div class="line">    id = <span class="built_in">parseInt</span>(id)</div><div class="line">    <span class="keyword">const</span> filterData = detailData.filter(<span class="function"><span class="params">item</span> =&gt;</span> </div><div class="line">        item.id === id</div><div class="line">    )</div><div class="line">    ctx.body = filterData</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 详情页 评论列表</span></div><div class="line"><span class="keyword">const</span> CommentData = <span class="built_in">require</span>(<span class="string">'./detail/comment'</span>)</div><div class="line">router.get(<span class="string">'/data/detail/comment/:id/:page'</span>, <span class="keyword">async</span> (ctx) =&gt; &#123;</div><div class="line">    <span class="keyword">const</span> pageSize = <span class="number">2</span></div><div class="line">    <span class="keyword">const</span> &#123; id, page &#125; = ctx.params</div><div class="line">    <span class="keyword">let</span> filterData = CommentData</div><div class="line">    <span class="keyword">let</span> hasMore = pageSize * page &gt;= filterData.length ? <span class="literal">false</span> : <span class="literal">true</span></div><div class="line">    ctx.body = &#123;</div><div class="line">        result: filterData.slice(<span class="number">0</span>, page * pageSize),</div><div class="line">        hasMore: hasMore</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 登录</span></div><div class="line">router.post(<span class="string">'/data/login'</span>, bodyParser, <span class="keyword">async</span> (ctx) =&gt; &#123;</div><div class="line">    <span class="keyword">const</span> &#123; username, password &#125; = ctx.request.body</div><div class="line">    <span class="keyword">if</span> (username === <span class="string">'linxun'</span> &amp;&amp; password === <span class="string">'linxun'</span>) &#123;</div><div class="line">        ctx.body = &#123;</div><div class="line">            status: <span class="number">1</span>,</div><div class="line">            msg: <span class="string">'登录成功'</span></div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        ctx.body = &#123;</div><div class="line">            status: <span class="number">0</span>,</div><div class="line">            msg: <span class="string">'用户名或密码错误'</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 收藏</span></div><div class="line">router.get(<span class="string">'/data/collect/:id'</span>, <span class="keyword">async</span> (ctx) =&gt; &#123;</div><div class="line">    <span class="keyword">let</span> &#123; id &#125; = ctx.params</div><div class="line">    id = <span class="built_in">parseInt</span>(id, <span class="number">10</span>)</div><div class="line">    <span class="keyword">const</span> filterData = detailData.filter(<span class="function"><span class="params">item</span> =&gt;</span> </div><div class="line">        item.id === id</div><div class="line">    )</div><div class="line">    ctx.body = filterData</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 订单</span></div><div class="line"><span class="keyword">const</span> orderListData = <span class="built_in">require</span>(<span class="string">'./user/orderList'</span>)</div><div class="line">router.get(<span class="string">'/data/orderList'</span>, <span class="keyword">async</span> (ctx) =&gt; &#123;</div><div class="line">    ctx.body = orderListData</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 加载路由中间件</span></div><div class="line">app.use(router.routes()).use(router.allowedMethods())</div><div class="line"></div><div class="line">app.listen(<span class="number">8000</span>, () =&gt; &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'route-use-middleware is starting at port 8000'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="前端数据请求"><a href="#前端数据请求" class="headerlink" title="前端数据请求"></a>前端数据请求</h3><p>由于我们的数据是采用静态数据模拟的，所以请求数据其实就是请求js文件，并将数据返回</p>
+<p>这里使用fetch和promise，在组件中只需要发送请求，然后在<code>.then()</code>中即可拿到需要的数据</p>
+<p>代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'whatwg-fetch'</span></div><div class="line"><span class="keyword">import</span> <span class="string">'es6-promise'</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params">url</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> fetch(url, &#123;</div><div class="line">        headers: &#123;</div><div class="line">            <span class="string">'Accept'</span>: <span class="string">'application/json, text/plain, */*'</span>,</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">post</span>(<span class="params">url, paramsObj</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> fetch(url, &#123;</div><div class="line">        method: <span class="string">'POST'</span>,</div><div class="line">        headers: &#123;</div><div class="line">            <span class="string">'Accept'</span>: <span class="string">'application/json, text/plain, */*'</span>,</div><div class="line">            <span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded'</span></div><div class="line">        &#125;,</div><div class="line">        body: obj2params(paramsObj)</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">obj2params</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> result = <span class="string">''</span>, item;</div><div class="line">    <span class="keyword">for</span> (item <span class="keyword">in</span> obj) &#123;</div><div class="line">        result += <span class="string">'&amp;'</span> + item + <span class="string">'='</span> + <span class="built_in">encodeURIComponent</span>(obj[item]);</div><div class="line">    &#125;</div><div class="line">    result = result.length &gt; <span class="number">0</span> ? result.slice(<span class="number">1</span>) : result;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="react与redux连接"><a href="#react与redux连接" class="headerlink" title="react与redux连接"></a>react与redux连接</h3><p>在智能组件中</p>
+<p>代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapStateToProps</span>(<span class="params">state</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123; ... &#125;  <span class="comment">// 需要的仓库中的数据</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; bindActionCreators &#125; <span class="keyword">from</span> <span class="string">'redux'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapDispatchToProps</span>(<span class="params">dispatch</span>) </span>&#123;</div><div class="line">       <span class="comment">// actionCreater：只负责生成action (一个普通对象：必须包含type，其他自定义)</span></div><div class="line">    <span class="keyword">return</span> &#123; <span class="attr">actionCreater</span>: bindActionCreators(actionCreater, dispatch) &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>主要的代码就是这些，样式和素材都是视频中的。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/posts/68a33ea4/" target="_blank" rel="external">https://jx-zyf.github.io/posts/68a33ea4/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://jx-zyf.github.io'">
+            <img src="/img/avatar.jpg" alt="linxunzyf">
+            <a>linxunzyf</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/68a33ea4/&title=《react 实战总结》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/68a33ea4/&title=《react 实战总结》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/68a33ea4/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《react 实战总结》 — linxun&url=https://jx-zyf.github.io/posts/68a33ea4/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/68a33ea4/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/82c69460/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：JS数组">下一篇：JS数组</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'jx-zyf',
+            repo: 'jx-zyf.github.io',
+            oauth: {
+                client_id: 'fb0e41d3397cae4b2285',
+                client_secret: 'f2bacbf3aefe7148c4df7f00f91ef3ff3144173e',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2017
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://jx-zyf.github.io">linxunzyf.cn</a>
+            <br/>
+            <!-- Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a> -->
+        </span>
+    
+        <br/>
+
+        <!-- <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+        
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/> -->
+        
+        <!-- <span class="license">Este blog está licenciado bajo una <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">licencia internacional Creative Commons Attribution 4.0</a>.</span> -->
+    </div>      
+</footer>
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢感谢</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    -
+<div id="wechat" class="page-modal reward-lay">
+    <a class="close" href="javascript:;">
+        <i class="icon icon-close"></i>
+    </a>
+    <h4 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>欢迎关注林寻丶</span>
+        <i class="icon icon-quote-right"></i>
+    </h4>
+    <img id="wechat_img" data-img="/img/linxun.jpg" alt="欢迎您的关注！">
+</div>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/68a33ea4/&title=《react 实战总结》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/68a33ea4/&title=《react 实战总结》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/68a33ea4/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《react 实战总结》 — linxun&url=https://jx-zyf.github.io/posts/68a33ea4/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/68a33ea4/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxElEQVR42u3aS27DMAwFwNz/0u42QCH3UbTYBBitivw06oIQH/16xet6W++vrD7z+93Vb75OLFxc3Db3ul0r7u8tV9uvfuf+9eWxcXFxB7nJNnlhSjauHhUXF/dbuHsXmuTChIuL+13cpO25PwYuLu63cJPmZ+8qk3zySK+Gi4vb4OYp5bm/j+S7uLi4W9yruKrNzF7ZWn4XFxd3hFsNQ/OhSF6Lqvvi4uKe5lYblSo6oReOhIuLO8LNRyNVbnXoUr1g4eLiznBzYnLp6bRAUYCCi4t7jHtuKFKNTpJ/GS4u7gy3H15Uy9nexOSxL+Di4hZ3vx+W5IWsGrNutky4uLjHuHlLs/dIVrWo/XFtwsXFHeEmYWXnuan80a78wLi4uPPc/pBj78DlZBcXF3eQu9fM5Ih+zIqLi/tf3Hz4Wh2Z9MczuLi489z8IlIdhfZ3wcXFneFexbUXoT7WJuHi4s4lEuUwtF+qovhj6zdxcXGf4laLVzXorBayB4asuLi4D3E7lDzaeKxXw8XF/TBuNTbNI9RCx4aLi/vB3HwY04k/WlccXFzcBnev9HTGpXuxLC4u7gy3XEoCYlIW80sPLi7uIPcHcOxI5z88I4kAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="/js/jquery.min.js?v=2.0"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="/js/main.min.js?v=2.0" ></script>
+
+<!-- 动画&配置 -->
+<script src="/js/script.min.js?v=2.0" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+// setInterval(function () {
+// 	setTime("2017/10/11");
+// }, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "linxunzyf");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		// console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+		console.log('hello, I`m LinXun')
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>
