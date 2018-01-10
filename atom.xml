@@ -148,30 +148,6 @@
   </entry>
   
   <entry>
-    <title>About Me</title>
-    <link href="https://jx-zyf.github.io//posts/f0b34752/"/>
-    <id>https://jx-zyf.github.io//posts/f0b34752/</id>
-    <published>2017-08-04T16:00:00.000Z</published>
-    <updated>2017-12-19T06:20:01.672Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;a href=&quot;https://jx-zyf.github.io&quot; style=&quot;text-decoration:none&quot;&gt;林寻丶&lt;a&gt;&lt;br&gt;&lt;a href=&quot;http://www.weibo.com/linxun001&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="about" scheme="https://jx-zyf.github.io/categories/about/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>2017 in ShenZhen</title>
     <link href="https://jx-zyf.github.io//posts/293f0615/"/>
     <id>https://jx-zyf.github.io//posts/293f0615/</id>
@@ -191,6 +167,30 @@
     </summary>
     
       <category term="Mylife" scheme="https://jx-zyf.github.io/categories/Mylife/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>About Me</title>
+    <link href="https://jx-zyf.github.io//posts/f0b34752/"/>
+    <id>https://jx-zyf.github.io//posts/f0b34752/</id>
+    <published>2017-08-04T16:00:00.000Z</published>
+    <updated>2017-12-19T06:20:01.672Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://jx-zyf.github.io&quot; style=&quot;text-decoration:none&quot;&gt;林寻丶&lt;a&gt;&lt;br&gt;&lt;a href=&quot;http://www.weibo.com/linxun001&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="about" scheme="https://jx-zyf.github.io/categories/about/"/>
     
     
   </entry>
