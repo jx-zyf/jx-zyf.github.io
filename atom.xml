@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jx-zyf.github.io/"/>
-  <updated>2018-01-09T06:03:39.029Z</updated>
+  <updated>2018-01-19T04:31:08.374Z</updated>
   <id>https://jx-zyf.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vue-music总结</title>
+    <link href="https://jx-zyf.github.io//posts/461d16ef/"/>
+    <id>https://jx-zyf.github.io//posts/461d16ef/</id>
+    <published>2018-01-19T01:42:37.013Z</published>
+    <updated>2018-01-19T04:31:08.374Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;由于本人比较喜欢听歌，所以这次跟着慕课网的实战课程做了这个项目。&lt;br&gt;视频地址：&lt;a href=&quot;https://coding.imooc.com/class/107.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Vue 2.0
+        
+      
+    
+    </summary>
+    
+      <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
+    
+    
+      <category term="vue" scheme="https://jx-zyf.github.io/tags/vue/"/>
+    
+  </entry>
   
   <entry>
     <title>react 实战总结</title>
@@ -148,30 +174,6 @@
   </entry>
   
   <entry>
-    <title>2017 in ShenZhen</title>
-    <link href="https://jx-zyf.github.io//posts/293f0615/"/>
-    <id>https://jx-zyf.github.io//posts/293f0615/</id>
-    <published>2017-08-04T16:00:00.000Z</published>
-    <updated>2017-12-19T03:36:19.746Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;深圳&quot;&gt;&lt;a href=&quot;#深圳&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Mylife" scheme="https://jx-zyf.github.io/categories/Mylife/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>About Me</title>
     <link href="https://jx-zyf.github.io//posts/f0b34752/"/>
     <id>https://jx-zyf.github.io//posts/f0b34752/</id>
@@ -191,6 +193,30 @@
     </summary>
     
       <category term="about" scheme="https://jx-zyf.github.io/categories/about/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>2017 in ShenZhen</title>
+    <link href="https://jx-zyf.github.io//posts/293f0615/"/>
+    <id>https://jx-zyf.github.io//posts/293f0615/</id>
+    <published>2017-08-04T16:00:00.000Z</published>
+    <updated>2017-12-19T03:36:19.746Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;深圳&quot;&gt;&lt;a href=&quot;#深圳&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Mylife" scheme="https://jx-zyf.github.io/categories/Mylife/"/>
     
     
   </entry>

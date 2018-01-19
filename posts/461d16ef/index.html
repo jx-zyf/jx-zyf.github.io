@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>vue-music总结 | linxun | linxunzyf</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="vue">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="由于本人比较喜欢听歌，所以这次跟着慕课网的实战课程做了这个项目。视频地址：Vue 2.0 高级实战-开发移动端音乐 WebApp 概述基于vue.js的音乐播放器，数据来源于QQ音乐。大部分接口都是JSONP，抓取较容易，其中有些接口限制了host，需要设置header，所以自己编写接口转发请求来绕过host的限制。具体代码参考build目录下dev-server.js 或者 prod.serve">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-music总结">
+<meta property="og:url" content="https://jx-zyf.github.io/posts/461d16ef/index.html">
+<meta property="og:site_name" content="linxun">
+<meta property="og:description" content="由于本人比较喜欢听歌，所以这次跟着慕课网的实战课程做了这个项目。视频地址：Vue 2.0 高级实战-开发移动端音乐 WebApp 概述基于vue.js的音乐播放器，数据来源于QQ音乐。大部分接口都是JSONP，抓取较容易，其中有些接口限制了host，需要设置header，所以自己编写接口转发请求来绕过host的限制。具体代码参考build目录下dev-server.js 或者 prod.serve">
+<meta property="og:image" content="https://raw.githubusercontent.com/jx-zyf/jx-zyf.github.io/master/img/vue-music.gif">
+<meta property="og:image" content="https://assets-cdn.github.com/images/icons/emoji/unicode/1f61c.png?v7">
+<meta property="og:image" content="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png?v7">
+<meta property="og:updated_time" content="2018-01-19T04:31:08.374Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue-music总结">
+<meta name="twitter:description" content="由于本人比较喜欢听歌，所以这次跟着慕课网的实战课程做了这个项目。视频地址：Vue 2.0 高级实战-开发移动端音乐 WebApp 概述基于vue.js的音乐播放器，数据来源于QQ音乐。大部分接口都是JSONP，抓取较容易，其中有些接口限制了host，需要设置header，所以自己编写接口转发请求来绕过host的限制。具体代码参考build目录下dev-server.js 或者 prod.serve">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jx-zyf/jx-zyf.github.io/master/img/vue-music.gif">
+    
+        <link rel="alternate" type="application/atom+xml" title="linxun" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link id="style" rel="stylesheet" href="/css/style.css?v=2.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">linxunzyf</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>随 笔</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/jx-zyf" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/linxun001" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微信" href="javascript:;" title="微信" >
+                <i class="icon icon-lg icon-wechat wechat"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Email" href="/linxunzyf@gmail.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">vue-music总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#启动"><span class="post-toc-number">2.</span> <span class="post-toc-text">启动</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#效果预览"><span class="post-toc-number">3.</span> <span class="post-toc-text">效果预览</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#src目录"><span class="post-toc-number">4.</span> <span class="post-toc-text">src目录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据处理"><span class="post-toc-number">5.</span> <span class="post-toc-text">数据处理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#细节"><span class="post-toc-number">6.</span> <span class="post-toc-text">细节</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#最后"><span class="post-toc-number">7.</span> <span class="post-toc-text">最后</span></a></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-vue-music总结"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">vue-music总结</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2018-01-19 09:42:37" datetime="2018-01-19T01:42:37.013Z"  itemprop="datePublished">2018-01-19</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coder/">coder</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">4</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>由于本人比较喜欢听歌，所以这次跟着慕课网的实战课程做了这个项目。<br>视频地址：<a href="https://coding.imooc.com/class/107.html" target="_blank" rel="external">Vue 2.0 高级实战-开发移动端音乐 WebApp</a></p>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>基于vue.js的音乐播放器，数据来源于QQ音乐。大部分接口都是JSONP，抓取较容易，其中有些接口限制了host，需要设置header，所以自己编写接口转发请求来绕过host的限制。具体代码参考build目录下<code>dev-server.js</code> 或者 <code>prod.server.js</code>。使用的技术栈：vue2.0+vuex+vue-router；另外使用了很多第三方插件。</p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm i</div><div class="line">npm start</div></pre></td></tr></table></figure>
+<h3 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h3><p><img src="https://raw.githubusercontent.com/jx-zyf/jx-zyf.github.io/master/img/vue-music.gif"></p>
+<h3 id="src目录"><a href="#src目录" class="headerlink" title="src目录"></a>src目录</h3><p>─src<br>  │  App.vue<br>  │  main.js   // 打包入口<br>  ├─api        // 数据抓取<br>  ├─base       // 基础可复用组件<br>  ├─common     // 共用字体，图片，js方法，样式等<br>  ├─components // 业务组件<br>  ├─router     // 路由<br>  └─store      // 状态管理</p>
+<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><p>由于很多JSONP请求，这里使用了一个第三方插件<a href="https://github.com/webmodules/jsonp" target="_blank" rel="external">jsonp</a>，这个插件使用很简单，有兴趣的可以学习一下。使用时，将请求的参数拼接到url上，调用他的jsonp方法即可。我们对请求回来的数据做了Promise化，方便我们后面使用数据。代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> originJSONP <span class="keyword">from</span> <span class="string">'jsonp'</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">jsonp</span>(<span class="params">url, data, option</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> subUrl = param(data).length &gt; <span class="number">0</span> ? <span class="string">`?<span class="subst">$&#123;param(data)&#125;</span>`</span> : <span class="string">''</span></div><div class="line">    url += subUrl</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">        originJSONP(url, option, (err, data) =&gt; &#123;</div><div class="line">            <span class="keyword">if</span>(!err) &#123;</div><div class="line">                resolve(data)</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                reject(err)</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">param</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> url = <span class="string">''</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> p <span class="keyword">in</span> data) &#123;</div><div class="line">        <span class="keyword">let</span> value = data[p] === <span class="literal">undefined</span> ? <span class="string">''</span> : data[p]</div><div class="line">        url += <span class="string">`&amp;<span class="subst">$&#123;p&#125;</span>=<span class="subst">$&#123;<span class="built_in">encodeURIComponent</span>(value)&#125;</span>`</span></div><div class="line">    &#125;</div><div class="line">    url = url.length &gt; <span class="number">0</span> ? url.substring(<span class="number">1</span>) : <span class="string">''</span></div><div class="line">    <span class="keyword">return</span> url</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>播放器内核是这个项目的重点，vuex的设计非常重要，这里设计好了，后面的代码书写起来才更轻松。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">singer: &#123;&#125;,                 <span class="comment">// 当前歌手</span></div><div class="line">playing: <span class="literal">false</span>,             <span class="comment">// 播放状态</span></div><div class="line">fullScreen: <span class="literal">false</span>,          <span class="comment">// 播放器状态（全屏/迷你）</span></div><div class="line">playlist: [],               <span class="comment">// 播放列表（不同的播放模式不一样）</span></div><div class="line">sequenceList: [],           <span class="comment">// 播放列表（任何模式都一样）</span></div><div class="line">mode: playMode.sequence,    <span class="comment">// 播放模式（循环播放，单曲循环，随机播放）</span></div><div class="line">currentIndex: <span class="number">-1</span>,           <span class="comment">// 当前歌曲在列表中的索引</span></div><div class="line">disc: &#123;&#125;,                   <span class="comment">// 当前歌单</span></div><div class="line">topList: &#123;&#125;,                <span class="comment">// 当前排行榜</span></div><div class="line">searchHistory: loadSearch(),<span class="comment">// 搜索历史</span></div><div class="line">playHistory: loadPlay(),    <span class="comment">// 播放历史</span></div><div class="line">likeList: loadLike()        <span class="comment">// 收藏列表</span></div></pre></td></tr></table></figure></p>
+<h3 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h3><p>1.去除移动端点击事件300ms延迟，也是用的第三方插件，fastclick，文档在<a href="https://github.com/ftlabs/fastclick" target="_blank" rel="external">这里</a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fastclick.attach(<span class="built_in">document</span>.body)</div></pre></td></tr></table></figure></p>
+<p>2.图片懒加载：项目中使用的是vue-lazyload，使用方法参考<a href="https://github.com/hilongjw/vue-lazyload" target="_blank" rel="external">文档</a>，代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Vue.use(VueLazyload, &#123;</div><div class="line">  preLoad: <span class="number">1.3</span>,</div><div class="line">  loading: <span class="built_in">require</span>(<span class="string">'common/image/default.jpg'</span>),</div><div class="line">  attempt: <span class="number">1</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>3.项目中有很多业务逻辑多个组件是可以共用的，所以使用了mixins，具体可以参考<a href="https://cn.vuejs.org/v2/guide/mixins.html" target="_blank" rel="external">官方文档</a></p>
+<blockquote>
+<p>混合 (mixins) 是一种分发 Vue 组件中可复用功能的非常灵活的方式。混合对象可以包含任意组件选项。以组件使用混合对象时，所有混合对象的选项将被混入该组件本身的选项。</p>
+</blockquote>
+<pre><code>可以把它看做一个组件，它也是一个对象，可以把各个组件中的共用代码写在里面，然后在组件中引入即可。
+</code></pre><p>4.项目中使用了很多<code>audio</code>的<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events" target="_blank" rel="external">API</a>，比如 timeupdate，play，ended 等。这都大大方便了我们的开发，比如 timeupdate 可以然我们准确得到当前播放的时间，进度条的实现就依赖这个方法。另外还要注意的是这里没有使用 canplay 而是使用了 play。我们设置了一个标志位songReady，当它为true的时候才能切换歌曲，如果我们将它设为true的时间是canplay的话，快速切换歌曲后点击暂停的话vuex中的状态虽然已经改变，但歌曲并没有停止播放。所以这里使用了play，只有当歌曲确实播放了才会将songReady置为true，这样即使点击再快也不会出现问题。</p>
+<p>5.项目作者为了更好的交互体验，很多地方用到了滚动，上拉加载更多等。这里面用到了作者自己写的一个第三方库，<a href="https://github.com/ustbhuangyi/better-scroll" target="_blank" rel="external">better-scroll</a>，确实很好用。很多地方也用到了vue的 transition 动画，比如页面之间的切换，播放器的打开和缩放到迷你播放器，这个动画比较好玩，用到了 transition 组件的几个事件：enter，after-enter，leave，after-leave。具体实现参考<a href="https://cn.vuejs.org/v2/api/#transition" target="_blank" rel="external">官方文档</a></p>
+<p>6.路由懒加载：直接上<a href="https://router.vuejs.org/zh-cn/advanced/lazy-loading.html" target="_blank" rel="external">文档</a>吧</p>
+<p>7……</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>确实用了好多插件啊！<img class="github-emoji" title="stuck_out_tongue_winking_eye" alt="stuck_out_tongue_winking_eye" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f61c.png?v7" height="20" width="20"></p>
+<p>在这个项目中学到了很多，再次感受到组件化，模块化开发的方便，也遇到了很多问题，最后都解决了。继续爬行吧！少年！<img class="github-emoji" title="smile" alt="smile" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png?v7" height="20" width="20"></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/posts/461d16ef/" target="_blank" rel="external">https://jx-zyf.github.io/posts/461d16ef/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://jx-zyf.github.io'">
+            <img src="/img/avatar.jpg" alt="linxunzyf">
+            <a>linxunzyf</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/461d16ef/&title=《vue-music总结》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/461d16ef/&title=《vue-music总结》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/461d16ef/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vue-music总结》 — linxun&url=https://jx-zyf.github.io/posts/461d16ef/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/461d16ef/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/68a33ea4/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：react 实战总结">下一篇：react 实战总结</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'jx-zyf',
+            repo: 'jx-zyf.github.io',
+            oauth: {
+                client_id: 'fb0e41d3397cae4b2285',
+                client_secret: 'f2bacbf3aefe7148c4df7f00f91ef3ff3144173e',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2017
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://jx-zyf.github.io">linxunzyf.cn</a>
+            <br/>
+            <!-- Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a> -->
+        </span>
+    
+        <br/>
+
+        <!-- <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+        
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/> -->
+        
+        <!-- <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span> -->
+    </div>      
+</footer>
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢感谢</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    -
+<div id="wechat" class="page-modal reward-lay">
+    <a class="close" href="javascript:;">
+        <i class="icon icon-close"></i>
+    </a>
+    <h4 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>欢迎关注林寻丶</span>
+        <i class="icon icon-quote-right"></i>
+    </h4>
+    <img id="wechat_img" data-img="/img/linxun.jpg" alt="欢迎您的关注！">
+</div>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/461d16ef/&title=《vue-music总结》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/461d16ef/&title=《vue-music总结》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/461d16ef/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vue-music总结》 — linxun&url=https://jx-zyf.github.io/posts/461d16ef/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/461d16ef/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxElEQVR42u3aMY7DMAwEwPz/0742TZwlKemMYFQFsGGPUwjkUq9XvK63lVy9v//9nteOhYuLO+Zet+vTPfmLk+ckBlxc3PPc5DWf7p9/ZGLAxcV9Mjeh5NsZLi7ub3CTFqjXLOHi4j6NmzQ/9w9KipijvRouLu6Am6eU+35vyXdxcXFb3Ku48mYmH7QU3o6Li3uEm28o1TB0bZiCi4t7ktuLSqsD1Orxi/IWhouLu4HbK2KqbUxeBhUqMlxc3CPc+1ImL18mIenHvwMXF/cId1WgWR3B5qPWL3UZLi7uBu7kkESvWOlNTMpVEi4u7oA7OZg137ySz1iQ5eDi4g64vVFr74hGNSrFxcU9z71vPJKrOaU6gCkUOri4uBu4eetSvToJVr48ARcXdxu3d9yqejCrNziJ8l1cXNxt3LwEyV+86i/AxcX9L251iJK0Q4U2Jn4OLi7ubm4vKk22qqQMKrdJuLi4R7j5ysOReRTS2/5wcXHXcnub1+S4RjJSbc6EcXFxl3InY9HqAGZxr4aLi/tIbi8A7W2XuLi4z+TmRcyq+GNU4uDi4g6488NYu+/ExcU9yZ2Hm3n0mcevC/JdXFzcDvcP4oNI54g7l4AAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="/js/jquery.min.js?v=2.0"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="/js/main.min.js?v=2.0" ></script>
+
+<!-- 动画&配置 -->
+<script src="/js/script.min.js?v=2.0" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+// setInterval(function () {
+// 	setTime("2017/10/11");
+// }, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "linxunzyf");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		// console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+		console.log('hello, I`m LinXun')
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>
