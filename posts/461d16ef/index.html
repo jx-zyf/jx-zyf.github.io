@@ -49,7 +49,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/jx-zyf/jx-zyf.github.io/master/img/vue-music.gif">
 <meta property="og:image" content="https://assets-cdn.github.com/images/icons/emoji/unicode/1f61c.png?v7">
 <meta property="og:image" content="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png?v7">
-<meta property="og:updated_time" content="2018-01-19T04:31:08.374Z">
+<meta property="og:updated_time" content="2018-01-19T04:38:17.836Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue-music总结">
 <meta name="twitter:description" content="由于本人比较喜欢听歌，所以这次跟着慕课网的实战课程做了这个项目。视频地址：Vue 2.0 高级实战-开发移动端音乐 WebApp 概述基于vue.js的音乐播放器，数据来源于QQ音乐。大部分接口都是JSONP，抓取较容易，其中有些接口限制了host，需要设置header，所以自己编写接口转发请求来绕过host的限制。具体代码参考build目录下dev-server.js 或者 prod.serve">
@@ -158,7 +158,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Búsqueda">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -222,7 +222,7 @@
         </div>
         <div class="post-count-custom">
             <i class="icon icon-lg icon-comment-o"></i>
-            阅读本文可能花费您&nbsp;<span class="post-count">4</span>&nbsp;分钟
+            阅读本文可能花费您&nbsp;<span class="post-count">5</span>&nbsp;分钟
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>由于本人比较喜欢听歌，所以这次跟着慕课网的实战课程做了这个项目。<br>视频地址：<a href="https://coding.imooc.com/class/107.html" target="_blank" rel="external">Vue 2.0 高级实战-开发移动端音乐 WebApp</a></p>
@@ -234,14 +234,15 @@
 <p>播放器内核是这个项目的重点，vuex的设计非常重要，这里设计好了，后面的代码书写起来才更轻松。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">singer: &#123;&#125;,                 <span class="comment">// 当前歌手</span></div><div class="line">playing: <span class="literal">false</span>,             <span class="comment">// 播放状态</span></div><div class="line">fullScreen: <span class="literal">false</span>,          <span class="comment">// 播放器状态（全屏/迷你）</span></div><div class="line">playlist: [],               <span class="comment">// 播放列表（不同的播放模式不一样）</span></div><div class="line">sequenceList: [],           <span class="comment">// 播放列表（任何模式都一样）</span></div><div class="line">mode: playMode.sequence,    <span class="comment">// 播放模式（循环播放，单曲循环，随机播放）</span></div><div class="line">currentIndex: <span class="number">-1</span>,           <span class="comment">// 当前歌曲在列表中的索引</span></div><div class="line">disc: &#123;&#125;,                   <span class="comment">// 当前歌单</span></div><div class="line">topList: &#123;&#125;,                <span class="comment">// 当前排行榜</span></div><div class="line">searchHistory: loadSearch(),<span class="comment">// 搜索历史</span></div><div class="line">playHistory: loadPlay(),    <span class="comment">// 播放历史</span></div><div class="line">likeList: loadLike()        <span class="comment">// 收藏列表</span></div></pre></td></tr></table></figure></p>
 <h3 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h3><p>1.去除移动端点击事件300ms延迟，也是用的第三方插件，fastclick，文档在<a href="https://github.com/ftlabs/fastclick" target="_blank" rel="external">这里</a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fastclick.attach(<span class="built_in">document</span>.body)</div></pre></td></tr></table></figure></p>
 <p>2.图片懒加载：项目中使用的是vue-lazyload，使用方法参考<a href="https://github.com/hilongjw/vue-lazyload" target="_blank" rel="external">文档</a>，代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Vue.use(VueLazyload, &#123;</div><div class="line">  preLoad: <span class="number">1.3</span>,</div><div class="line">  loading: <span class="built_in">require</span>(<span class="string">'common/image/default.jpg'</span>),</div><div class="line">  attempt: <span class="number">1</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>然后在需要使用图片懒加载的地方使用<code>v-lazy</code>替代<code>:src</code>即可</p>
 <p>3.项目中有很多业务逻辑多个组件是可以共用的，所以使用了mixins，具体可以参考<a href="https://cn.vuejs.org/v2/guide/mixins.html" target="_blank" rel="external">官方文档</a></p>
 <blockquote>
 <p>混合 (mixins) 是一种分发 Vue 组件中可复用功能的非常灵活的方式。混合对象可以包含任意组件选项。以组件使用混合对象时，所有混合对象的选项将被混入该组件本身的选项。</p>
 </blockquote>
-<pre><code>可以把它看做一个组件，它也是一个对象，可以把各个组件中的共用代码写在里面，然后在组件中引入即可。
-</code></pre><p>4.项目中使用了很多<code>audio</code>的<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events" target="_blank" rel="external">API</a>，比如 timeupdate，play，ended 等。这都大大方便了我们的开发，比如 timeupdate 可以然我们准确得到当前播放的时间，进度条的实现就依赖这个方法。另外还要注意的是这里没有使用 canplay 而是使用了 play。我们设置了一个标志位songReady，当它为true的时候才能切换歌曲，如果我们将它设为true的时间是canplay的话，快速切换歌曲后点击暂停的话vuex中的状态虽然已经改变，但歌曲并没有停止播放。所以这里使用了play，只有当歌曲确实播放了才会将songReady置为true，这样即使点击再快也不会出现问题。</p>
+<p>可以把它看做一个组件，它也是一个对象，可以把各个组件中的共用代码写在里面，然后在组件中引入即可。</p>
+<p>4.项目中使用了很多<code>audio</code>的<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events" target="_blank" rel="external">API</a>，比如 timeupdate，play，ended 等。这都大大方便了我们的开发，比如 timeupdate 可以然我们准确得到当前播放的时间，进度条的实现就依赖这个方法。另外还要注意的是这里没有使用 canplay 而是使用了 play。我们设置了一个标志位songReady，当它为true的时候才能切换歌曲，如果我们将它设为true的时间是canplay的话，快速切换歌曲后点击暂停的话vuex中的状态虽然已经改变，但歌曲并没有停止播放。所以这里使用了play，只有当歌曲确实播放了才会将songReady置为true，这样即使点击再快也不会出现问题。</p>
 <p>5.项目作者为了更好的交互体验，很多地方用到了滚动，上拉加载更多等。这里面用到了作者自己写的一个第三方库，<a href="https://github.com/ustbhuangyi/better-scroll" target="_blank" rel="external">better-scroll</a>，确实很好用。很多地方也用到了vue的 transition 动画，比如页面之间的切换，播放器的打开和缩放到迷你播放器，这个动画比较好玩，用到了 transition 组件的几个事件：enter，after-enter，leave，after-leave。具体实现参考<a href="https://cn.vuejs.org/v2/api/#transition" target="_blank" rel="external">官方文档</a></p>
-<p>6.路由懒加载：直接上<a href="https://router.vuejs.org/zh-cn/advanced/lazy-loading.html" target="_blank" rel="external">文档</a>吧</p>
+<p>6.路由懒加载：直接上<a href="https://router.vuejs.org/zh-cn/advanced/lazy-loading.html" target="_blank" rel="external">文档</a>吧！简单粗暴</p>
 <p>7……</p>
 <h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>确实用了好多插件啊！<img class="github-emoji" title="stuck_out_tongue_winking_eye" alt="stuck_out_tongue_winking_eye" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f61c.png?v7" height="20" width="20"></p>
 <p>在这个项目中学到了很多，再次感受到组件化，模块化开发的方便，也遇到了很多问题，最后都解决了。继续爬行吧！少年！<img class="github-emoji" title="smile" alt="smile" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png?v7" height="20" width="20"></p>
@@ -409,7 +410,7 @@
         </span>
         <br/> -->
         
-        <!-- <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span> -->
+        <!-- <span class="license">Este blog está licenciado bajo una <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">licencia internacional Creative Commons Attribution 4.0</a>.</span> -->
     </div>      
 </footer>
     </main>
