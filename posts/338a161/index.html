@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>浅谈JS运行机制 | linxun | linxunzyf</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="本文仅是我个人的见解，如理解有误，还望帮忙及时指出，方便及时更正。 正文开始~ 进程与线程这里先贴上阮大神的文章：进程与线程的一个简单解释 我是这样理解的：  一个进程就好比工厂的一个车间，一个线程就好比车间里的一个工人，对应一个进程由一个或多个线程组成 一个车间有它的独立资源，对应系统分配的独立内存 每一个车间是相互独立的，对应每个进程之间是相互独立的 每个车间有一或多个工人协同完成任务，对应多">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈JS运行机制">
+<meta property="og:url" content="https://jx-zyf.github.io/posts/338a161/index.html">
+<meta property="og:site_name" content="linxun">
+<meta property="og:description" content="本文仅是我个人的见解，如理解有误，还望帮忙及时指出，方便及时更正。 正文开始~ 进程与线程这里先贴上阮大神的文章：进程与线程的一个简单解释 我是这样理解的：  一个进程就好比工厂的一个车间，一个线程就好比车间里的一个工人，对应一个进程由一个或多个线程组成 一个车间有它的独立资源，对应系统分配的独立内存 每一个车间是相互独立的，对应每个进程之间是相互独立的 每个车间有一或多个工人协同完成任务，对应多">
+<meta property="og:image" content="https://raw.githubusercontent.com/jx-zyf/jx-zyf.github.io/master/img/chrome.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/jx-zyf/jx-zyf.github.io/master/img/event-loop.jpg">
+<meta property="og:updated_time" content="2018-01-24T03:17:42.533Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈JS运行机制">
+<meta name="twitter:description" content="本文仅是我个人的见解，如理解有误，还望帮忙及时指出，方便及时更正。 正文开始~ 进程与线程这里先贴上阮大神的文章：进程与线程的一个简单解释 我是这样理解的：  一个进程就好比工厂的一个车间，一个线程就好比车间里的一个工人，对应一个进程由一个或多个线程组成 一个车间有它的独立资源，对应系统分配的独立内存 每一个车间是相互独立的，对应每个进程之间是相互独立的 每个车间有一或多个工人协同完成任务，对应多">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jx-zyf/jx-zyf.github.io/master/img/chrome.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="linxun" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link id="style" rel="stylesheet" href="/css/style.css?v=2.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">linxunzyf</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>随 笔</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/jx-zyf" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/linxun001" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微信" href="javascript:;" title="微信" >
+                <i class="icon icon-lg icon-wechat wechat"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Email" href="/linxunzyf@gmail.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">浅谈JS运行机制</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Búsqueda">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#进程与线程"><span class="post-toc-number">1.</span> <span class="post-toc-text">进程与线程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#浏览器是多进程的"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">浏览器是多进程的</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#浏览器内核-渲染进程"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">浏览器内核(渲染进程)</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#执行栈与任务队列"><span class="post-toc-number">2.</span> <span class="post-toc-text">执行栈与任务队列</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#事件循环"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">事件循环</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#micro-task-和-macro-task"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">micro task 和 macro task</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#定时器"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">定时器</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">3.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-js运行机制"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">浅谈JS运行机制</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2018-01-23 17:35:31" datetime="2018-01-23T09:35:31.028Z"  itemprop="datePublished">2018-01-23</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coder/">coder</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">9</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本文仅是我个人的见解，如理解有误，还望帮忙及时指出，方便及时更正。</p>
+<p>正文开始~</p>
+<h3 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h3><p>这里先贴上阮大神的文章：<a href="http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html" target="_blank" rel="external">进程与线程的一个简单解释</a></p>
+<p>我是这样理解的：</p>
+<ul>
+<li>一个进程就好比工厂的一个车间，一个线程就好比车间里的一个工人，对应一个进程由一个或多个线程组成</li>
+<li>一个车间有它的独立资源，对应系统分配的独立内存</li>
+<li>每一个车间是相互独立的，对应每个进程之间是相互独立的</li>
+<li>每个车间有一或多个工人协同完成任务，对应多个线程在进程中协同完成任务</li>
+<li>每个车间的空间是工人们共享的，对应一个进程的内存空间是每个线程都可以共享</li>
+<li>车间里的房间大小不一，能容纳的工人数也不一样，当别的工人占用该房间时，其他人就不能使用。对应当一个线程使用某些内存时，其他线程必须等它结束，才能使用这块内存</li>
+<li>为了防止多个线程之间产生冲突，就有了很多协调机制，这里就不赘述了</li>
+</ul>
+<p>最后，再用官方的话解释下：</p>
+<blockquote>
+<p>进程是cpu资源分配的最小单位（是能拥有资源和独立运行的最小单位）</p>
+<p>线程是cpu调度的最小单位（线程是建立在进程的基础上的一次程序运行单位，一个进程中可以有多个线程）</p>
+</blockquote>
+<h4 id="浏览器是多进程的"><a href="#浏览器是多进程的" class="headerlink" title="浏览器是多进程的"></a>浏览器是多进程的</h4><p>稍微深入了解了进程与线程后，就得对我们js最初运行的环境——浏览器——有点新的认识了。</p>
+<ul>
+<li>浏览器之所以可以运行，是因为操作系统给它分配了CPU和内存</li>
+<li>浏览器是多进程的</li>
+<li>一般来说，一个标签页就是一个独立的浏览器进程</li>
+</ul>
+<p>上张图：</p>
+<p><img src="https://raw.githubusercontent.com/jx-zyf/jx-zyf.github.io/master/img/chrome.jpg"></p>
+<p>从上图我们可以看出，浏览器是多进程的。<br>另外，由于浏览器的优化，有些进程会合并，所以一个便签页对应一个进程并不是绝对的。</p>
+<p>浏览器多进程有很多好处，比如当我们打开很多个网页，就相当于打开了多个进程，其中一个网页的卡顿不会对别的网页造成影响，让用户的体验更佳。</p>
+<h4 id="浏览器内核-渲染进程"><a href="#浏览器内核-渲染进程" class="headerlink" title="浏览器内核(渲染进程)"></a>浏览器内核(渲染进程)</h4><p>终于到了重点！前面讲了那么多进程，然而对于前端开发工作人员，最重要的就是<strong>渲染进程</strong></p>
+<p>js的执行，页面的渲染等操作都在这个进程中进行，而它是<strong>多线程的</strong></p>
+<p>一个浏览器内核通常包括以下线程：</p>
+<ul>
+<li>GUI 渲染线程<ul>
+<li>负责页面的渲染，包括重绘</li>
+<li>它与JS引擎线程是<strong>互斥的</strong>，当JS引擎执行时GUI渲染线程会被挂起（相当于被冻结了），GUI更新会被保存在一个队列中直到JS引擎空闲时立即被执行</li>
+</ul>
+</li>
+<li>JavaScript引擎线程<ul>
+<li>负责处理js程序，运行js代码</li>
+<li>同样，它与GUI渲染引擎也是<strong>互斥的</strong>，所以当js代码执行时间过长时，就会造成页面阻塞</li>
+</ul>
+</li>
+<li>定时触发器线程<ul>
+<li>setTimeout和setInterval所在的线程</li>
+<li>浏览器定时计数器并不是由JS引擎计数的，因为JS引擎是单线程的，如果处于阻塞线程状态就会影响记计时的准确，因此通过单独线程来计时并触发定时是更为合理的方案</li>
+</ul>
+</li>
+<li>事件触发线程<ul>
+<li>当一个事件被触发时该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理。这些事件可以是当前执行的代码块如定时任务、也可来自浏览器内核的其他线程如鼠标点击、AJAX异步请求等，但由于JS的单线程关系所有这些事件都得排队等待JS引擎处理</li>
+</ul>
+</li>
+<li>异步http请求线程<ul>
+<li>在XMLHttpRequest在连接后是通过浏览器新开一个线程请求，当检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件放到JS引擎的处理队列中等待处理</li>
+</ul>
+</li>
+</ul>
+<h3 id="执行栈与任务队列"><a href="#执行栈与任务队列" class="headerlink" title="执行栈与任务队列"></a>执行栈与任务队列</h3><h4 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h4><p>javascript是单线程的，这是由于它的诞生就是浏览器脚本语言，就是为了与用户交互以及操作DOM。如果它是多线程的话，当多个线程同时操作DOM时，浏览器应该以哪个线程为准呢？所以，它生来就是单线程。</p>
+<p>当javascript代码执行的时候会将不同的变量存于内存中的不同位置：堆（heap）和栈（stack）中来加以区分。其中，堆里存放着一些对象；而栈中则存放着一些基础类型变量以及对象的索引。我们这里说的执行栈和上面这个栈的意义却有些不同。我们知道，当我们调用一个方法的时候，js会生成一个与这个方法对应的执行环境（context），也叫执行上下文。这个执行环境中存在着这个方法的私有作用域，上层作用域的指向，方法的参数，这个作用域中定义的变量以及这个作用域的this对象。而当一系列方法被依次调用的时候，因为js是单线程的，同一时间只能执行一个方法，于是这些方法被排队在一个单独的地方。这个地方被称为执行栈。</p>
+<p>单线程就意味着在同一时间只有一个任务能被执行，所有的任务需要排队，只有前一个任务执行完毕后面的任务才能被执行。如果因为计算量比较大，CPU忙不过来，也还能忍受；可是大部分情况下CPU是空闲的，比如ajax读取数据很慢，必须等结果出来才继续往下执行。这样性能就很低，于是便有了同步任务和异步任务。同步任务是指在主线程上排队的任务，当前一个任务执行完毕就会执行后一个任务；异步任务是指不进入主线程，而是进入“<strong>任务队列</strong>”，只有“<strong>任务队列</strong>”通知主线程某个异步任务可以执行了，它才会进入主线程。</p>
+<p>可总结如下：</p>
+<ul>
+<li>所有同步任务都在主线程上执行，形成执行栈</li>
+<li>所有异步任务都在“任务队列”上，只要异步任务有了结果，就在异步任务中添加一个事件</li>
+<li>当执行栈中<strong>所有任务</strong>都执行完毕，主线程处于闲置状态时，从“任务队列”的队首读取事件加入到执行栈执行</li>
+<li>一直循环以上步骤，这个过程就叫做“<strong>事件循环（Event Loop）</strong>”</li>
+</ul>
+<p>下图可以很好的展示这个情况：</p>
+<p><img src="https://raw.githubusercontent.com/jx-zyf/jx-zyf.github.io/master/img/event-loop.jpg"></p>
+<p>图中的stack就是我们说的执行栈，WebAPIs代表一些异步事件，callback queue代表事件队列。</p>
+<h4 id="micro-task-和-macro-task"><a href="#micro-task-和-macro-task" class="headerlink" title="micro task 和 macro task"></a>micro task 和 macro task</h4><p>我们先看一段代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</div><div class="line"></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</div><div class="line">&#125;, <span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'promise1'</span>);</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'promise2'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</div></pre></td></tr></table></figure></p>
+<p>以上代码的执行结果是什么呢？不卖关子了，直接上结果吧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">script start</div><div class="line">script end</div><div class="line">promise1</div><div class="line">promise2</div><div class="line">setTimeout</div></pre></td></tr></table></figure>
+<p>你答对了吗？没答对也不要紧，下面我们来分析一下</p>
+<p>之前介绍的事件循环只是大概的一个过程，实际上不同的异步任务，它们的执行优先级也不一样。异步任务分为两类：微任务（micro task）和宏任务（macro task）</p>
+<ul>
+<li><p>macro task：每次执行栈执行的代码就是一个宏任务</p>
+<ul>
+<li>主代码块，setTimeout，setInterval等</li>
+</ul>
+</li>
+<li><p>micro task：当前宏任务执行结束后立即执行的任务</p>
+<ul>
+<li>Promise，MutaionObserver，process.nextTick等</li>
+</ul>
+</li>
+</ul>
+<p>我们知道，在一个事件循环中，异步事件返回结果后会添加一个事件到任务队列。实际上，会根据这个异步事件的类型，会被添加到对应的宏任务队列或者微任务队列上。当执行栈为空时，主线程会查看微任务队列是否有事件存在。如果不存在，再去宏任务队列取出事件加入到当前执行栈；如果存在，则依次执行队列中的事件，直到队列为空，再去执行宏任务队列中的事件。我们只需要记住：<strong>微任务队列中的事件优先级大于宏任务队列，微任务永远在宏任务之前执行</strong></p>
+<h4 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h4><p>前面我们说过定时器（setTimeout，setTimeInterval）并不是由JS引擎计数的，而是在由单独线程计数。定时器功能主要由setTimeout() 和 setInterval()两个函数来完成，这两个函数内部运行机制完全一样，唯一的区别在于前者指定的代码只执行一次，而后者反复执行。这里主要用前者举例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;<span class="built_in">console</span>.log(<span class="number">1</span>)&#125;, <span class="number">0</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="number">2</span>);</div></pre></td></tr></table></figure>
+<p>以上代码的执行结果永远是2，1；因为第二行代码是同步任务，在主线程中，而第一行是异步任务，在任务队列（宏任务队列）中；只有主线程任务全部执行完毕后才会执行任务队列中的回调。setTimeout(fn, 0)就意味着fn会尽可能早的执行，但它永远在同步任务、微任务队列以及现有的宏任务队列（已经完成的异步任务）之后才会执行。</p>
+<p>HTML5标准规定了setTimeout()的第二个参数的最小值（最短间隔），不得低于4毫秒，如果低于这个值，就会自动增加。在此之前，老版本的浏览器都将最短间隔设为10毫秒。</p>
+<blockquote>
+<p>注意：setTimeout()只是将事件插入了”任务队列”，必须等到当前代码（执行栈）执行完，主线程才会去执行它指定的回调函数。要是当前代码耗时很长，有可能要等很久，所以并没有办法保证，回调函数一定会在setTimeout()指定的时间执行。</p>
+</blockquote>
+<p>到这里，我们再看一下这段代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</div><div class="line"></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</div><div class="line">&#125;, <span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'promise1'</span>);</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'promise2'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</div></pre></td></tr></table></figure></p>
+<p>现在就可以解释上面代码的执行结果了。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="external">JavaScript 运行机制详解：再谈Event Loop</a></p>
+<p><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank" rel="external">Tasks, microtasks, queues and schedules</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/posts/338a161/" target="_blank" rel="external">https://jx-zyf.github.io/posts/338a161/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://jx-zyf.github.io'">
+            <img src="/img/avatar.jpg" alt="linxunzyf">
+            <a>linxunzyf</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/338a161/&title=《浅谈JS运行机制》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/338a161/&title=《浅谈JS运行机制》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/338a161/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浅谈JS运行机制》 — linxun&url=https://jx-zyf.github.io/posts/338a161/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/338a161/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/461d16ef/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：vue-music总结">下一篇：vue-music总结</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'jx-zyf',
+            repo: 'jx-zyf.github.io',
+            oauth: {
+                client_id: 'fb0e41d3397cae4b2285',
+                client_secret: 'f2bacbf3aefe7148c4df7f00f91ef3ff3144173e',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2017
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://jx-zyf.github.io">linxunzyf.cn</a>
+            <br/>
+            <!-- Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a> -->
+        </span>
+    
+        <br/>
+
+        <!-- <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+        
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/> -->
+        
+        <!-- <span class="license">Este blog está licenciado bajo una <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">licencia internacional Creative Commons Attribution 4.0</a>.</span> -->
+    </div>      
+</footer>
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢感谢</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    -
+<div id="wechat" class="page-modal reward-lay">
+    <a class="close" href="javascript:;">
+        <i class="icon icon-close"></i>
+    </a>
+    <h4 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>欢迎关注林寻丶</span>
+        <i class="icon icon-quote-right"></i>
+    </h4>
+    <img id="wechat_img" data-img="/img/linxun.jpg" alt="欢迎您的关注！">
+</div>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/338a161/&title=《浅谈JS运行机制》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/338a161/&title=《浅谈JS运行机制》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/338a161/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浅谈JS运行机制》 — linxun&url=https://jx-zyf.github.io/posts/338a161/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/338a161/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwUlEQVR42u3aUW7EIAxF0ex/0+kCKtB9Nnim1eWrmipwko8nbHgePN7F+P3f1S+rOZ8bQ65cuW3uux17EFl4Nc/+9+ULy5Urd5BLluEJs8fx+eXKlfu3uPtI4nEmV67c/8olIP6sXLlyv4dLip/aViZtrByr1eTKldvg8i7lvb+v9HflypVb4r7hSMueWmwtV5crV+4I91QztN9M4evKlSv3s9xaiZJSyE4mfkyuXLkNbrCxwA0OfnyS1jVy5cqd4Z7dypANDYnFoIEiV67ca1yyKekszD8EeUquXLkz3Nqk945Lg6fkypV7gRsHB2lo4hIoDVC5cuVOcsnW5EbBwyNMrly5k9y0dOEXttKrXbxkkitX7iS3gzhV8KDV5cqV+yEuuSrBw6hzcIKCTK5cude46WFqranafxm5cuVOcnl4BYVKqRWLTnvkypV7jfuGgyPSCxmoTJIrV+4Ilw+0+SjNScI0XkWuXLltLgkvUuqQQoh/guV3lStX7iC3EzQdNJkzbovIlSt3nJs2PXlUBRWbXLlyv5KbXq3otD8OBJlcuXJLXB49pHmRFlH8QoZcuXJnuHGUNDZAtdeTK1fuIPcHG0iQn3UklUgAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="/js/jquery.min.js?v=2.0"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="/js/main.min.js?v=2.0" ></script>
+
+<!-- 动画&配置 -->
+<script src="/js/script.min.js?v=2.0" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+// setInterval(function () {
+// 	setTime("2017/10/11");
+// }, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "linxunzyf");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		// console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+		console.log('hello, I`m LinXun')
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>
