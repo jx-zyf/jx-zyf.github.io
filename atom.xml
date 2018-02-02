@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jx-zyf.github.io/"/>
-  <updated>2018-01-24T03:17:42.533Z</updated>
+  <updated>2018-02-02T07:28:14.645Z</updated>
   <id>https://jx-zyf.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>react 入门笔记</title>
+    <link href="https://jx-zyf.github.io//posts/26fe786f/"/>
+    <id>https://jx-zyf.github.io//posts/26fe786f/</id>
+    <published>2018-02-02T02:46:03.193Z</published>
+    <updated>2018-02-02T07:28:14.645Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;以下仅是我个人的一些笔记，如理解有误，还望帮忙及时指出，方便及时更正。&lt;/p&gt;
+&lt;h3 id=&quot;react-生命周期&quot;&gt;&lt;a href=&quot;#react-生命周期&quot; class=&quot;headerlink&quot; title=&quot;react 生命周期&quot;&gt;&lt;/a&gt;react
+        
+      
+    
+    </summary>
+    
+      <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
+    
+    
+      <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
+    
+      <category term="react" scheme="https://jx-zyf.github.io/tags/react/"/>
+    
+  </entry>
   
   <entry>
     <title>浅谈JS运行机制</title>
@@ -49,7 +78,7 @@
     <link href="https://jx-zyf.github.io//posts/461d16ef/"/>
     <id>https://jx-zyf.github.io//posts/461d16ef/</id>
     <published>2018-01-19T01:42:37.013Z</published>
-    <updated>2018-01-19T04:54:05.609Z</updated>
+    <updated>2018-01-23T09:35:41.494Z</updated>
     
     <summary type="html">
     
@@ -66,9 +95,9 @@
       <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
     
     
-      <category term="vue" scheme="https://jx-zyf.github.io/tags/vue/"/>
-    
       <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
+    
+      <category term="vue" scheme="https://jx-zyf.github.io/tags/vue/"/>
     
   </entry>
   
@@ -95,9 +124,9 @@
       <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
     
     
-      <category term="react" scheme="https://jx-zyf.github.io/tags/react/"/>
-    
       <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
+    
+      <category term="react" scheme="https://jx-zyf.github.io/tags/react/"/>
     
   </entry>
   
