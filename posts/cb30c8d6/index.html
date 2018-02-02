@@ -39,17 +39,17 @@
 
 
     
-    <meta name="description" content="以下仅是我个人的一些笔记，如理解有误，还望帮忙及时指出，方便及时更正。 react 生命周期mounte(首次渲染) constructor(): 构造函数 如果组件中存在constructor，则必须调用super()，如果不执行super，this将无法初始化； 如果只是单纯的调用super，而没有传props，那么在constructor内就无法调用this.props，但是在组件其他地方依">
+    <meta name="description" content="以下仅是我个人一些笔记合集，如理解有误，还望帮忙及时指出，方便及时更正。 react 生命周期mounte(首次渲染) constructor(): 构造函数 如果组件中存在constructor，则必须调用super()，如果不执行super，this将无法初始化； 如果只是单纯的调用super，而没有传props，那么在constructor内就无法调用this.props，但是在组件其他地方">
 <meta name="keywords" content="JavaScript,react">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react 基础笔记">
 <meta property="og:url" content="https://jx-zyf.github.io/posts/cb30c8d6/index.html">
 <meta property="og:site_name" content="linxun">
-<meta property="og:description" content="以下仅是我个人的一些笔记，如理解有误，还望帮忙及时指出，方便及时更正。 react 生命周期mounte(首次渲染) constructor(): 构造函数 如果组件中存在constructor，则必须调用super()，如果不执行super，this将无法初始化； 如果只是单纯的调用super，而没有传props，那么在constructor内就无法调用this.props，但是在组件其他地方依">
-<meta property="og:updated_time" content="2018-02-02T07:47:50.428Z">
+<meta property="og:description" content="以下仅是我个人一些笔记合集，如理解有误，还望帮忙及时指出，方便及时更正。 react 生命周期mounte(首次渲染) constructor(): 构造函数 如果组件中存在constructor，则必须调用super()，如果不执行super，this将无法初始化； 如果只是单纯的调用super，而没有传props，那么在constructor内就无法调用this.props，但是在组件其他地方">
+<meta property="og:updated_time" content="2018-02-02T09:31:45.812Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react 基础笔记">
-<meta name="twitter:description" content="以下仅是我个人的一些笔记，如理解有误，还望帮忙及时指出，方便及时更正。 react 生命周期mounte(首次渲染) constructor(): 构造函数 如果组件中存在constructor，则必须调用super()，如果不执行super，this将无法初始化； 如果只是单纯的调用super，而没有传props，那么在constructor内就无法调用this.props，但是在组件其他地方依">
+<meta name="twitter:description" content="以下仅是我个人一些笔记合集，如理解有误，还望帮忙及时指出，方便及时更正。 react 生命周期mounte(首次渲染) constructor(): 构造函数 如果组件中存在constructor，则必须调用super()，如果不执行super，this将无法初始化； 如果只是单纯的调用super，而没有传props，那么在constructor内就无法调用this.props，但是在组件其他地方">
     
         <link rel="alternate" type="application/atom+xml" title="linxun" href="/atom.xml">
     
@@ -154,7 +154,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Búsqueda">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -188,7 +188,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#react-生命周期"><span class="post-toc-number">1.</span> <span class="post-toc-text">react 生命周期</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mounte-首次渲染"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">mounte(首次渲染)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#update-props或state发生改变"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">update(props或state发生改变)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#unmount-卸载"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">unmount(卸载)</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#jsx"><span class="post-toc-number">2.</span> <span class="post-toc-text">jsx</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#setState"><span class="post-toc-number">3.</span> <span class="post-toc-text">setState()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#虚拟DOM"><span class="post-toc-number">4.</span> <span class="post-toc-text">虚拟DOM</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#react-生命周期"><span class="post-toc-number">1.</span> <span class="post-toc-text">react 生命周期</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mounte-首次渲染"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">mounte(首次渲染)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#update-props或state发生改变"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">update(props或state发生改变)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#unmount-卸载"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">unmount(卸载)</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#jsx"><span class="post-toc-number">2.</span> <span class="post-toc-text">jsx</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#setState"><span class="post-toc-number">3.</span> <span class="post-toc-text">setState()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#虚拟DOM"><span class="post-toc-number">4.</span> <span class="post-toc-text">虚拟DOM</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#context"><span class="post-toc-number">5.</span> <span class="post-toc-text">context</span></a></li></ol>
         </nav>
     </aside>
    
@@ -218,10 +218,10 @@
         </div>
         <div class="post-count-custom">
             <i class="icon icon-lg icon-comment-o"></i>
-            阅读本文可能花费您&nbsp;<span class="post-count">5</span>&nbsp;分钟
+            阅读本文可能花费您&nbsp;<span class="post-count">6</span>&nbsp;分钟
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>以下仅是我个人的一些笔记，如理解有误，还望帮忙及时指出，方便及时更正。</p>
+            <p>以下仅是我个人一些笔记合集，如理解有误，还望帮忙及时指出，方便及时更正。</p>
 <h3 id="react-生命周期"><a href="#react-生命周期" class="headerlink" title="react 生命周期"></a>react 生命周期</h3><h4 id="mounte-首次渲染"><a href="#mounte-首次渲染" class="headerlink" title="mounte(首次渲染)"></a>mounte(首次渲染)</h4><ul>
 <li>constructor(): 构造函数<ul>
 <li>如果组件中存在constructor，则必须调用super()，如果不执行super，this将无法初始化；</li>
@@ -301,6 +301,19 @@
 <li>旧的树和实际的DOM树是完全相同的，所以对上面找出的差异进行实际的DOM操作(patch)。只对有差异的地方进行操作</li>
 </ul>
 <p>总之应该就是js运行很快，DOM操作太慢了，所以才有的虚拟DOM吧。。。</p>
+<h3 id="context"><a href="#context" class="headerlink" title="context"></a>context</h3><p>可以看做全局变量.如果需要跨很多组件传递props，并且中间的组件并不需要这个参数，只是充当一个传递的作用，就可以使用context传递。(当然你也可以使用简单粗暴的props层层传递，不过这样会损耗性能，并且代码也不易于维护)由于全局变量在开发中是很不受欢迎的，所以使用context需要严格的校验。我们使用PropTypes来做验证，早期版本PropTypes是集成在react库中的，现在的版本为了让react更轻量级，将它抽离出来，放在prop-types这个库中，这也是react官方的库。<br>使用：</p>
+<ul>
+<li><p>在父组件中使用getChildContext()函数，它返回你所需要传递的属性；</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">getChildContext() &#123;</div><div class="line">    <span class="keyword">return</span> &#123; <span class="attr">user</span>: <span class="keyword">this</span>.state.user &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>并且在父组件中要声明你所传递属性的类型；(在getChildContext中返回了哪些属性，这里必须全部声明，否则会报错)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> childContextTypes = &#123;</div><div class="line">    user: PropTypes.string</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>然后在你需要使用该属性的子组件中声明：(只有这里声明了才能用this.context获取到)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> contextTypes = &#123;</div><div class="line">    user: PropTypes.string</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>我个人觉得我们应该很少会使用到context吧，一般项目中都会使用redux管理我们的全局状态，不过了解一下还是很有必要的，说不定react-redux的实现就是依靠context呢！虽然我没有看过源码。</p>
 <p><br><br>先这样吧，溜了溜了</p>
 
         </div>
@@ -466,7 +479,7 @@
         </span>
         <br/> -->
         
-        <!-- <span class="license">このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span> -->
+        <!-- <span class="license">Este blog está licenciado bajo una <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">licencia internacional Creative Commons Attribution 4.0</a>.</span> -->
     </div>      
 </footer>
     </main>
