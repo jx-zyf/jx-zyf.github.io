@@ -6,13 +6,13 @@
     
     
     
-    <title>HTML&amp;CSS基础知识（一） | linxun | linxunzyf</title>
+    <title>react 基础笔记 | linxun | linxunzyf</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     
     <meta name="theme-color" content="#77AAFF">
     
     
-    <meta name="keywords" content="HTML">
+    <meta name="keywords" content="JavaScript,react">
     
     
 
@@ -39,17 +39,17 @@
 
 
     
-    <meta name="description" content="HTML&amp;amp;CSS1.主要浏览器有哪些？内核分别是什么？主流浏览器及内核： (1)Chrome：Webkit (2)IE：Trident (3)Safari：Webkit (4)Firefox:Gecko (5)Opera:Presto 2.DoctypeDOCTYPE是用来声明文档类型和DTD(document type definition,文档类型定义)规范的 HTML5只有一种&amp;lt">
-<meta name="keywords" content="HTML">
+    <meta name="description" content="以下仅是我个人的一些笔记，如理解有误，还望帮忙及时指出，方便及时更正。 react 生命周期mounte(首次渲染) constructor(): 构造函数 如果组件中存在constructor，则必须调用super()，如果不执行super，this将无法初始化； 如果只是单纯的调用super，而没有传props，那么在constructor内就无法调用this.props，但是在组件其他地方依">
+<meta name="keywords" content="JavaScript,react">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTML&amp;CSS基础知识（一）">
-<meta property="og:url" content="https://jx-zyf.github.io/posts/e8a88825/index.html">
+<meta property="og:title" content="react 基础笔记">
+<meta property="og:url" content="https://jx-zyf.github.io/posts/cb30c8d6/index.html">
 <meta property="og:site_name" content="linxun">
-<meta property="og:description" content="HTML&amp;amp;CSS1.主要浏览器有哪些？内核分别是什么？主流浏览器及内核： (1)Chrome：Webkit (2)IE：Trident (3)Safari：Webkit (4)Firefox:Gecko (5)Opera:Presto 2.DoctypeDOCTYPE是用来声明文档类型和DTD(document type definition,文档类型定义)规范的 HTML5只有一种&amp;lt">
-<meta property="og:updated_time" content="2017-12-19T03:19:54.463Z">
+<meta property="og:description" content="以下仅是我个人的一些笔记，如理解有误，还望帮忙及时指出，方便及时更正。 react 生命周期mounte(首次渲染) constructor(): 构造函数 如果组件中存在constructor，则必须调用super()，如果不执行super，this将无法初始化； 如果只是单纯的调用super，而没有传props，那么在constructor内就无法调用this.props，但是在组件其他地方依">
+<meta property="og:updated_time" content="2018-02-02T07:47:50.428Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTML&amp;CSS基础知识（一）">
-<meta name="twitter:description" content="HTML&amp;amp;CSS1.主要浏览器有哪些？内核分别是什么？主流浏览器及内核： (1)Chrome：Webkit (2)IE：Trident (3)Safari：Webkit (4)Firefox:Gecko (5)Opera:Presto 2.DoctypeDOCTYPE是用来声明文档类型和DTD(document type definition,文档类型定义)规范的 HTML5只有一种&amp;lt">
+<meta name="twitter:title" content="react 基础笔记">
+<meta name="twitter:description" content="以下仅是我个人的一些笔记，如理解有误，还望帮忙及时指出，方便及时更正。 react 生命周期mounte(首次渲染) constructor(): 构造函数 如果组件中存在constructor，则必须调用super()，如果不执行super，this将无法初始化； 如果只是单纯的调用super，而没有传props，那么在constructor内就无法调用this.props，但是在组件其他地方依">
     
         <link rel="alternate" type="application/atom+xml" title="linxun" href="/atom.xml">
     
@@ -148,7 +148,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">HTML&amp;CSS基础知识（一）</div>
+        <div class="flex-col header-title ellipsis">react 基础笔记</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -188,19 +188,19 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTML-amp-CSS"><span class="post-toc-number">1.</span> <span class="post-toc-text">HTML&CSS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-主要浏览器有哪些？内核分别是什么？"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.主要浏览器有哪些？内核分别是什么？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-Doctype"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2.Doctype</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-浏览器模式"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3.浏览器模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-页面引入CSS样式时，link和-import的区别"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4.页面引入CSS样式时，link和@import的区别</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-浏览器渲染原理"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">5.浏览器渲染原理</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#react-生命周期"><span class="post-toc-number">1.</span> <span class="post-toc-text">react 生命周期</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mounte-首次渲染"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">mounte(首次渲染)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#update-props或state发生改变"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">update(props或state发生改变)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#unmount-卸载"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">unmount(卸载)</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#jsx"><span class="post-toc-number">2.</span> <span class="post-toc-text">jsx</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#setState"><span class="post-toc-number">3.</span> <span class="post-toc-text">setState()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#虚拟DOM"><span class="post-toc-number">4.</span> <span class="post-toc-text">虚拟DOM</span></a></li></ol>
         </nav>
     </aside>
    
-<article id="post-HTML与CSS"
+<article id="post-react基础"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">HTML&CSS基础知识（一）</h1>
+        <h1 class="post-card-title">react 基础笔记</h1>
         <div class="post-meta">
             <i class="icon icon-lg icon-calendar-o"></i>
             发表于
-            <time class="post-time" title="2017-08-25 16:59:32" datetime="2017-08-25T08:59:32.655Z"  itemprop="datePublished">2017-08-25</time>
+            <time class="post-time" title="2018-02-02 10:46:03" datetime="2018-02-02T02:46:03.193Z"  itemprop="datePublished">2018-02-02</time>
 
             <br id="mybreak"/>
             
@@ -218,38 +218,90 @@
         </div>
         <div class="post-count-custom">
             <i class="icon icon-lg icon-comment-o"></i>
-            阅读本文可能花费您&nbsp;<span class="post-count">2</span>&nbsp;分钟
+            阅读本文可能花费您&nbsp;<span class="post-count">5</span>&nbsp;分钟
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="HTML-amp-CSS"><a href="#HTML-amp-CSS" class="headerlink" title="HTML&amp;CSS"></a>HTML&amp;CSS</h2><h3 id="1-主要浏览器有哪些？内核分别是什么？"><a href="#1-主要浏览器有哪些？内核分别是什么？" class="headerlink" title="1.主要浏览器有哪些？内核分别是什么？"></a>1.主要浏览器有哪些？内核分别是什么？</h3><p>主流浏览器及内核：</p>
-<pre><code>(1)Chrome：Webkit
-(2)IE：Trident
-(3)Safari：Webkit
-(4)Firefox:Gecko
-(5)Opera:Presto
-</code></pre><h3 id="2-Doctype"><a href="#2-Doctype" class="headerlink" title="2.Doctype"></a>2.Doctype</h3><p>DOCTYPE是用来<strong>声明文档类型</strong>和DTD(document type definition,文档类型定义)规范的</p>
-<p>HTML5只有一种&lt;!DOCTYPE&gt;声明</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-</code></pre><p></p><p style="font-size:14px;background-color:#eee;padding:10px"><br>    HTML5不基于 SGML，所以不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）。<br>    而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。<br></p><br><em>注意：&lt;!DOCTYPE&gt;不是HTML标签，没有结束标签，不区分大小写</em><p></p>
-<h3 id="3-浏览器模式"><a href="#3-浏览器模式" class="headerlink" title="3.浏览器模式"></a>3.浏览器模式</h3><p>浏览器模式分两种：<br>(1).标准模式(standards mode)：<strong>浏览器根据标准规约来渲染页面</strong></p>
-<p>以下情况浏览器会采用标准模式渲染：</p>
-<li>给出了完整的DOCTYPE声明</li><!--
---><li>DOCTYPE声明了Strict DTD</li><!--
---><li>DOCTYPE声明了Transitional DTD和URI</li>
-
-<p>(2).混杂/怪异/兼容模式(quirks mode)：<strong>浏览器采用更宽松的，向后兼容的方式来渲染页面</strong></p>
-<p>以下情况浏览器会采用混杂模式渲染：</p>
-<p><li>DOCTYPE声明了Transitional DTD但未给出URI</li><!--
---><li>DOCTYPE声明不合法 DTD</li><!--
---><li>未给出DOCTYPE声明</li><br><em>混杂模式下，浏览器会模仿旧浏览器的行为</em></p>
-<h3 id="4-页面引入CSS样式时，link和-import的区别"><a href="#4-页面引入CSS样式时，link和-import的区别" class="headerlink" title="4.页面引入CSS样式时，link和@import的区别"></a>4.页面引入CSS样式时，link和@import的区别</h3><blockquote>
-<ol style="font-size:16px;font-style:normal"><br>    <li>link属于XHTML标签，除了加载CSS外，还能用于定义RSS，定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS；</li><!--
-    --><li>页面加载时，link引入的样式会同时被加载；而@import引入的样式只有在页面加载完才会被加载</li><!--
-    --><li>import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题。</li><br></ol>
-
+            <p>以下仅是我个人的一些笔记，如理解有误，还望帮忙及时指出，方便及时更正。</p>
+<h3 id="react-生命周期"><a href="#react-生命周期" class="headerlink" title="react 生命周期"></a>react 生命周期</h3><h4 id="mounte-首次渲染"><a href="#mounte-首次渲染" class="headerlink" title="mounte(首次渲染)"></a>mounte(首次渲染)</h4><ul>
+<li>constructor(): 构造函数<ul>
+<li>如果组件中存在constructor，则必须调用super()，如果不执行super，this将无法初始化；</li>
+<li>如果只是单纯的调用super，而没有传props，那么在constructor内就无法调用this.props，但是在组件其他地方依然可以调用this.props；</li>
+<li>不能在里面调用setState()，会报一个警告Warning: setState(…): Can only update a mounted or mounting component. This usually means you called setState() on an unmounted component. This is a no-op</li>
+<li>总结：<strong>有constructor，就必须有super()；constructor中不需要访问this.props时可以不传props。</strong></li>
+</ul>
+</li>
+<li>componentWillMount(): 组件挂载之前被调用<ul>
+<li>由于它在render之前被调用，所以在这里setState()之后是可以在render中体现的，并且只渲染一次，不会导致重绘。</li>
+</ul>
+</li>
+<li>render()：组件渲染，<strong>必须有return</strong>，返回一个jsx或者null。</li>
+<li>componentDidMount()：组件挂载之后立即被调用<ul>
+<li>在这里可以做一些数据请求，DOM初始化等操作，也可以setState()，不过会重新渲染，即再次调用render。</li>
+</ul>
+</li>
+</ul>
+<h4 id="update-props或state发生改变"><a href="#update-props或state发生改变" class="headerlink" title="update(props或state发生改变)"></a>update(props或state发生改变)</h4><ul>
+<li>componentWillReceiveProps(nextProps): 已挂载组件收到新的props时调用<ul>
+<li>当父组件发生render时，不管props有没有发生改变，子组件都会触发该函数。所以使用这个钩子函数时，记得比较当前props和nextProps</li>
+<li>可以在这里setState()</li>
+</ul>
+</li>
+<li>shouldComponentUpdate(nextProps, nextState): 是否应该更新组件，默认更新<ul>
+<li>当组件收到新的props或state时，在render之前调用，默认返回true。我们可以定制这个钩子函数，根据业务返回true或false，可以在这里做优化</li>
+<li><strong>如果返回false，那么之后的componentWillUpdate(),render(),componentDidUpdate()都不会调用</strong>，但是这只能阻止当前组件的render，并不能阻止子组件的render</li>
+<li>当你调用了forceUpdate()时，React会调用render()并忽略shouldComponentUpdate()</li>
+</ul>
+</li>
+<li>componentWillUpdate(): props或state改变之后，render之前调用<ul>
+<li><strong>不能在这里setState()</strong>，因为它本身就是state改变之后调用的，如果再在里面setState()将会导致无限循环。如果需要更新state，官方建议使用componentWillReceiveProps()代替</li>
+</ul>
+</li>
+<li>render(): 同上</li>
+<li>componentDidUpdate(): 组件更新后立即调用<ul>
+<li>在这里可以操作DOM，发请求等，也可以setState()</li>
+</ul>
+</li>
+</ul>
+<h4 id="unmount-卸载"><a href="#unmount-卸载" class="headerlink" title="unmount(卸载)"></a>unmount(卸载)</h4><ul>
+<li>componentWillUnmount(): 组件卸载之前调用<ul>
+<li>在这里适合做一些收尾操作，比如清理定时器，取消网络请求，解绑DOM等</li>
+<li>不可以setState()</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>render()是react组件中必要的一个函数，其他钩子都不是必须的，记住：<strong>千万不能在render中setState()</strong></p>
 </blockquote>
-<h3 id="5-浏览器渲染原理"><a href="#5-浏览器渲染原理" class="headerlink" title="5.浏览器渲染原理"></a>5.浏览器渲染原理</h3><p>挂上大佬的博客，讲的很详细</p>
-<p><a href="http://www.jianshu.com/p/a32b890c29b1" target="_blank" rel="external">深度剖析浏览器渲染性能原理，你到底知道多少？</a><span style="float:right">文章作者：齐修_qixiuss</span></p>
+<p><strong>触发render有以下途径：</strong></p>
+<ul>
+<li>初次渲染</li>
+<li>state发生改变（并不是setState()一次就render一次，多次setState可能会合并）</li>
+<li>父组件更新，即使props没有发生改变，或者父子组件没有数据交互</li>
+<li>调用this.forceUpdate()  (还没试过这种方法)</li>
+</ul>
+<h3 id="jsx"><a href="#jsx" class="headerlink" title="jsx"></a>jsx</h3><p>react内部执行了 React.createElement(type, config, children)</p>
+<ul>
+<li>type(类型：String) 是必须的：可以是HTML标签名，也可以是ReactClass</li>
+<li>config(类型：Object)非必须：该元素的属性配置，比如className，id或者自定义属性</li>
+<li>children(可以一个一个传，也可以在一个数组里一次性传，数组的话需要key)非必须：该元素的子元素，如果又是一个元素节点(非文本节点)，会一直createElement 下去，形成一颗树</li>
+</ul>
+<h3 id="setState"><a href="#setState" class="headerlink" title="setState()"></a>setState()</h3><p><strong>异步更新组件状态</strong>，将需要更新的状态更新到一个队列里面，并不是setState()一次就render一次，多次setState可能会合并，不要在render函数，componentwillUpdate()和componentWillUnMount()里使用setState</p>
+<p>它接收两个参数： </p>
+<ul>
+<li>第一个参数是一个函数updater，它返回一个对象，就是我们平常书写的对象。updater函数接收两个参数：prevState和props;</li>
+<li>第二个参数是[callback]：可选的</li>
+</ul>
+<blockquote>
+<p>当然，第一个参数也可以直接写成一个对象(大部分时间我们是这样写的)，但是如果后面的状态取决于前一个状态，建议写成函数参数的形式，因为函数参数可以拿到之前的状态。</p>
+</blockquote>
+<h3 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h3><p>目前我所理解的就是</p>
+<ul>
+<li>用js对象去模拟DOM树，然后用这个对象构造真正的DOM树，并且插入到文档；</li>
+<li>当状态发生改变的时候重新构造一颗新的js对象树，然后用新的对象树与旧的树对比（diff算法），记录不同的地方。（只在同级对比，如果完全对比复杂度太高了），具体关于算法的我就不是很清楚了…深度优先，列表对比(因为这个所以我们遍历数组生成jsx时需要传key)什么的，，总之很牛逼就是了。</li>
+<li>旧的树和实际的DOM树是完全相同的，所以对上面找出的差异进行实际的DOM操作(patch)。只对有差异的地方进行操作</li>
+</ul>
+<p>总之应该就是js运行很快，DOM操作太慢了，所以才有的虚拟DOM吧。。。</p>
+<p><br><br>先这样吧，溜了溜了</p>
 
         </div>
 
@@ -258,7 +310,7 @@
         
 
         
-        原文链接：<a href="/posts/e8a88825/" target="_blank" rel="external">https://jx-zyf.github.io/posts/e8a88825/</a>
+        原文链接：<a href="/posts/cb30c8d6/" target="_blank" rel="external">https://jx-zyf.github.io/posts/cb30c8d6/</a>
         
     </div>
     <footer>
@@ -280,7 +332,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
 
 
             
@@ -290,7 +342,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/e8a88825/&title=《HTML&CSS基础知识（一）》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/cb30c8d6/&title=《react 基础笔记》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -300,22 +352,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/e8a88825/&title=《HTML&CSS基础知识（一）》 — linxun&source=林寻的博客" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/cb30c8d6/&title=《react 基础笔记》 — linxun&source=林寻的博客" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/e8a88825/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/cb30c8d6/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTML&CSS基础知识（一）》 — linxun&url=https://jx-zyf.github.io/posts/e8a88825/&via=https://jx-zyf.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《react 基础笔记》 — linxun&url=https://jx-zyf.github.io/posts/cb30c8d6/&via=https://jx-zyf.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/e8a88825/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/cb30c8d6/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -335,21 +387,13 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/posts/d8be64fd/" id="post-prev" class="post-nav-link">
-        <h4 class="title" >
-          上一篇：HTML&amp;CSS基础知识（二）
-        </h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/posts/f0b34752/" id="post-next" class="post-nav-link">
-        <h4 class="title" data-hover="下一篇：About Me">下一篇：About Me</h4>
+      <a href="/posts/338a161/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：浅谈JS运行机制">下一篇：浅谈JS运行机制</h4>
       </a>
     </div>
   
@@ -476,7 +520,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/e8a88825/&title=《HTML&CSS基础知识（一）》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/cb30c8d6/&title=《react 基础笔记》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -486,22 +530,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/e8a88825/&title=《HTML&CSS基础知识（一）》 — linxun&source=林寻的博客" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/cb30c8d6/&title=《react 基础笔记》 — linxun&source=林寻的博客" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/e8a88825/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/cb30c8d6/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTML&CSS基础知识（一）》 — linxun&url=https://jx-zyf.github.io/posts/e8a88825/&via=https://jx-zyf.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《react 基础笔记》 — linxun&url=https://jx-zyf.github.io/posts/cb30c8d6/&via=https://jx-zyf.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/e8a88825/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/cb30c8d6/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -512,7 +556,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p class="wechatshare">扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABw0lEQVR42u3aQY7DIAwF0N7/0pltpSr0GwONRo9VlSbwkoWFbV6veFxvI7nn/c7P38lsrYGLi9vmXsPxuWT+7N08yfXbV8LFxT3IvaOM7xkHu/HC+efAxcV9PvcOVH1hXFzc/8FNruSvgYuL+3xuNWlZld5szNVwcXEb3LxKue/3lvouLi7uFPcqjrmnVs2Ai4t7hjvXSkmKHXnaUy2v4OLi7uZ2pk5SmuqG6csVXFzcH3HzAmhe9KwGuGhHhouLu42bh6e54xTJwnNr4eLi7ubmm5J8sfzA1rIjm7i4uIu41SJI3i6tJlHRZggXF/cINw9GndZsp4xSCGe4uLiLuHmxcrxBmQuL5VILLi7uj7j55qManhL0l4+Fi4t7hNsvd3YOZc49hYuLe55bxfVbL8uKI7i4uEu51XCTFEzzlm35+AUuLu5xbh5c8kJJFEfzpi8uLu5m7lUcq0qok//i4uIe4XbapXP3JGWRzpy4uLiruHPBKw83c03ZL8kPLi7uEe5cUtR5djLM4eLiPp7babEkG51CKwUXF/cB3DFiWYFjVSDDxcWd4naSn1VbpUIgw8XF3cztpCKr0qHqZ8LFxd3G/QPkj6+OpGrgxgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABy0lEQVR42u3awarDMAxEUf//T7fbQLEzM7KVUK5Xj1Cck7cYLMljyOtzWb9Prs9nv5/tOU4suHDhlrmf5VK4a6LykYoBLly4/dx10Ohb6y+e7X9jgwsX7iu57mlk/cFw4cL9J+664FHKHrhw4b6fqxQ/epGjH4wO1mpw4cItcOuHlfrfR/q7cOHCjbhZUyNrqtYbK3Dhwu3h6oHiHoD0fdzhLly4cJ/iZgcUpUDS2zHGkBUuXLhbuS5UaYUYkWTWNXDhwu3kKlu4Q5SsiLoJTbhw4TZy9cGn/ht9sGq8ES5cuO1cvQjRX5CNS8NWKVy4cDdxs8HnrvDSWyfT/zFcuHAPc+uXJ7JBrBudcOHC7eG6UbVul2Sfre8JFy7cHq5+ZcoNoyEv4zIHXLhw27nuptkVKzfy7HtkcOHC3cR1A8tlZdcvbmo1uHDhtnCHuZTSxX2LVJnBhQv3GLd+oUqPIWUcuyEj4cKFW+ZmgaU/yVohG0IWLly4Za4eXu64JQsyu1aDCxfuMW5lvFEfwNi1Gly4cF/M1S9V6Ne2RvY1cOHCfZSrgPa2P0pHHLhw4Ra4bvRkRDfs4MKF+xTXjpIoqtxhzIb+Lly4cBPuF/UfcbDiYNWmAAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 
