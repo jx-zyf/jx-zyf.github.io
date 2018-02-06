@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jx-zyf.github.io/"/>
-  <updated>2018-02-02T09:31:45.812Z</updated>
+  <updated>2018-02-06T07:07:34.138Z</updated>
   <id>https://jx-zyf.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>react 简单优化</title>
+    <link href="https://jx-zyf.github.io//posts/d5323688/"/>
+    <id>https://jx-zyf.github.io//posts/d5323688/</id>
+    <published>2018-02-06T03:49:15.167Z</published>
+    <updated>2018-02-06T07:07:34.138Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;在url后加 ?react_pref 可以结合Chrome自带的Performance做性能测试&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;单组件优化：&quot;&gt;&lt;a href=&quot;#单组件优化：&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
+    
+    
+      <category term="react" scheme="https://jx-zyf.github.io/tags/react/"/>
+    
+      <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>react 基础笔记</title>
@@ -39,9 +70,9 @@
       <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
     
     
-      <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
-    
       <category term="react" scheme="https://jx-zyf.github.io/tags/react/"/>
+    
+      <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
     
   </entry>
   
@@ -124,9 +155,9 @@
       <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
     
     
-      <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
-    
       <category term="react" scheme="https://jx-zyf.github.io/tags/react/"/>
+    
+      <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
     
   </entry>
   
@@ -235,30 +266,6 @@
   </entry>
   
   <entry>
-    <title>About Me</title>
-    <link href="https://jx-zyf.github.io//posts/f0b34752/"/>
-    <id>https://jx-zyf.github.io//posts/f0b34752/</id>
-    <published>2017-08-04T16:00:00.000Z</published>
-    <updated>2017-12-19T06:20:01.672Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;a href=&quot;https://jx-zyf.github.io&quot; style=&quot;text-decoration:none&quot;&gt;林寻丶&lt;a&gt;&lt;br&gt;&lt;a href=&quot;http://www.weibo.com/linxun001&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="about" scheme="https://jx-zyf.github.io/categories/about/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>2017 in ShenZhen</title>
     <link href="https://jx-zyf.github.io//posts/293f0615/"/>
     <id>https://jx-zyf.github.io//posts/293f0615/</id>
@@ -278,6 +285,30 @@
     </summary>
     
       <category term="Mylife" scheme="https://jx-zyf.github.io/categories/Mylife/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>About Me</title>
+    <link href="https://jx-zyf.github.io//posts/f0b34752/"/>
+    <id>https://jx-zyf.github.io//posts/f0b34752/</id>
+    <published>2017-08-04T16:00:00.000Z</published>
+    <updated>2017-12-19T06:20:01.672Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://jx-zyf.github.io&quot; style=&quot;text-decoration:none&quot;&gt;林寻丶&lt;a&gt;&lt;br&gt;&lt;a href=&quot;http://www.weibo.com/linxun001&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="about" scheme="https://jx-zyf.github.io/categories/about/"/>
     
     
   </entry>

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>react 简单优化 | linxun | linxunzyf</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="react,JavaScript">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="在url后加 ?react_pref 可以结合Chrome自带的Performance做性能测试  单组件优化：核心：减少render函数执行次数 事件绑定： 在constructor中使用bind绑定： 1234constructor(props) &amp;#123;    super(props)    this.eventHandle = this.eventHandle.bind(this)&amp;">
+<meta name="keywords" content="react,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react 简单优化">
+<meta property="og:url" content="https://jx-zyf.github.io/posts/d5323688/index.html">
+<meta property="og:site_name" content="linxun">
+<meta property="og:description" content="在url后加 ?react_pref 可以结合Chrome自带的Performance做性能测试  单组件优化：核心：减少render函数执行次数 事件绑定： 在constructor中使用bind绑定： 1234constructor(props) &amp;#123;    super(props)    this.eventHandle = this.eventHandle.bind(this)&amp;">
+<meta property="og:updated_time" content="2018-02-06T07:07:34.138Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react 简单优化">
+<meta name="twitter:description" content="在url后加 ?react_pref 可以结合Chrome自带的Performance做性能测试  单组件优化：核心：减少render函数执行次数 事件绑定： 在constructor中使用bind绑定： 1234constructor(props) &amp;#123;    super(props)    this.eventHandle = this.eventHandle.bind(this)&amp;">
+    
+        <link rel="alternate" type="application/atom+xml" title="linxun" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link id="style" rel="stylesheet" href="/css/style.css?v=2.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">linxunzyf</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>随 笔</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/jx-zyf" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/linxun001" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微信" href="javascript:;" title="微信" >
+                <i class="icon icon-lg icon-wechat wechat"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Email" href="/linxunzyf@gmail.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">react 简单优化</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#单组件优化："><span class="post-toc-number">1.</span> <span class="post-toc-text">单组件优化：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#事件绑定："><span class="post-toc-number">1.1.</span> <span class="post-toc-text">事件绑定：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#属性传递："><span class="post-toc-number">1.2.</span> <span class="post-toc-text">属性传递：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#多组件优化："><span class="post-toc-number">2.</span> <span class="post-toc-text">多组件优化：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#定制子组件的shouldComponentUpdate"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">定制子组件的shouldComponentUpdate</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用React-PureComponent-React-15-3新增"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">使用React.PureComponent(React@15.3新增)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#redux优化"><span class="post-toc-number">3.</span> <span class="post-toc-text">redux优化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#列表类组件优化"><span class="post-toc-number">4.</span> <span class="post-toc-text">列表类组件优化</span></a></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-react简单优化"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">react 简单优化</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2018-02-06 11:49:15" datetime="2018-02-06T03:49:15.167Z"  itemprop="datePublished">2018-02-06</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coder/">coder</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">4</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>在url后加 ?react_pref 可以结合Chrome自带的Performance做性能测试</p>
+</blockquote>
+<h2 id="单组件优化："><a href="#单组件优化：" class="headerlink" title="单组件优化："></a>单组件优化：</h2><p><strong>核心：减少render函数执行次数</strong></p>
+<h3 id="事件绑定："><a href="#事件绑定：" class="headerlink" title="事件绑定："></a>事件绑定：</h3><ul>
+<li><p>在constructor中使用bind绑定：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">constructor</span>(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props)</div><div class="line">    <span class="keyword">this</span>.eventHandle = <span class="keyword">this</span>.eventHandle.bind(<span class="keyword">this</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>优点：只需要绑定一次，并且只会执行一次；</li>
+<li>缺点：即使不需要state也需要添加constructor来绑定，代码量多一点</li>
+</ul>
+</li>
+<li><p>在render中使用bind绑定：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ...</span></div><div class="line">render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.clickHandle.bind(<span class="keyword">this</span>)&#125;&gt;&lt;/button&gt;</div><div class="line">    )</div><div class="line">&#125;</div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure>
+<ul>
+<li>优点：写法简单；</li>
+<li>缺点：每次执行render都会重新执行一次，多次使用同一个函数需要绑定多次（不推荐使用该方法）</li>
+</ul>
+</li>
+<li><p>在render中使用箭头函数绑定：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ...</span></div><div class="line">render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        &lt;button onClick=&#123;() =&gt; <span class="keyword">this</span>.clickHandle()&#125;&gt;&lt;/button&gt;</div><div class="line">    )</div><div class="line">&#125;</div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure>
+<ul>
+<li>优点：写法简单，相对于上一种方法性能稍好一点；</li>
+<li>缺点：每次执行render都要重新生成一个函数</li>
+</ul>
+</li>
+<li><p>在函数初始化时使用箭头函数绑定（实验性）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ...</span></div><div class="line">clickHandle = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div><div class="line">render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.clickHandle&#125;&gt;&lt;/button&gt;</div><div class="line">    )</div><div class="line">&#125;</div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure>
+<ul>
+<li>优点：写法简单，结合了以上三种方法的优点；</li>
+<li>缺点：目前是实验性的语法，需要babel转译</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>总结：方式一是官方推荐的方式，也是性能最好的方式；方法二和方法三有性能问题，并且当方法作为属性传递给子组件时会触发re-render，因为子组件的props发生了改变；方法四是最好的绑定方式，但是需要结合babel转译</p>
+</blockquote>
+<h3 id="属性传递："><a href="#属性传递：" class="headerlink" title="属性传递："></a>属性传递：</h3><p>由于js的特性（对象在内存中的存储），如果传递的是一个对象，尽量提前声明一个索引指向该对象，避免每次render都重新在内存中生成一个新的对象。</p>
+<h2 id="多组件优化："><a href="#多组件优化：" class="headerlink" title="多组件优化："></a>多组件优化：</h2><p><strong>核心：减少子组件render函数的执行次数（减少子组件的重渲）</strong></p>
+<h3 id="定制子组件的shouldComponentUpdate"><a href="#定制子组件的shouldComponentUpdate" class="headerlink" title="定制子组件的shouldComponentUpdate"></a>定制子组件的shouldComponentUpdate</h3><p>当父组件发生了render，子组件都会重新渲染。很多时候子组件并没有发生任何改变，它接收到父组件传给它的props并没有发生变化，自身的state也没有变化，这种情况下子组件的无脑重新render就可以在其shouldComponentUpdate()钩子函数里做一些操作。这个钩子函数默认返回true，即render会执行；我们在里面做些业务上的检测，再返回true或false来确定子组件该不该重新渲染。</p>
+<h3 id="使用React-PureComponent-React-15-3新增"><a href="#使用React-PureComponent-React-15-3新增" class="headerlink" title="使用React.PureComponent(React@15.3新增)"></a>使用React.PureComponent(React@15.3新增)</h3><p>它类似于React.Component，区别在于PurComponent简单的实现了shouldComponentUpdate()而Component没有实现。适用情况：组件的render函数在给定相同的props和state时渲染相同的结果（纯组件），可以提升性能。</p>
+<blockquote>
+<p>Note(官网上的Note)<br>React.PureComponent’s shouldComponentUpdate() only shallowly compares the objects. If these contain complex data structures, it may produce false-negatives for deeper differences. Only extend PureComponent when you expect to have simple props and state, or use forceUpdate() when you know deep data structures have changed. Or, consider using immutable objects to facilitate fast comparisons of nested data.<br>Furthermore, React.PureComponent’s shouldComponentUpdate() skips prop updates for the whole component subtree. Make sure all the children components are also “pure”.</p>
+</blockquote>
+<p>PureComponent的shouldComponent()只实现了浅对比，深对比太消耗性能（对象的深比较需要用到递归，复杂度太高，性能消耗太大）。</p>
+<blockquote>
+<p>可以使用<strong>immutable</strong>这个库来进行对象的深比较，复杂度比较低，但是这个库比较大。使用方法参考<a href="https://github.com/facebook/immutable-js" target="_blank" rel="external">文档</a></p>
+</blockquote>
+<h2 id="redux优化"><a href="#redux优化" class="headerlink" title="redux优化"></a>redux优化</h2><p>当我们页面使用的数据需要对获取的redux中的数据进行一些处理（复杂的计算）才能使用，并且很多状态是经常切换得时候，我们可以将那些状态缓存起来，避免每次切换都重新计算。可以使用react官方推荐一个库——<strong>reselect</strong>，使用方法参考<a href="https://github.com/reactjs/reselect" target="_blank" rel="external">文档</a></p>
+<h2 id="列表类组件优化"><a href="#列表类组件优化" class="headerlink" title="列表类组件优化"></a>列表类组件优化</h2><p>当我们渲染一个列表时，必须给每一项传key，否则react会报一个警告。这个key不建议使用数组遍历时的index，因为它只能帮助我们消除警告而已，并没有任何实际意义。如果我们在数组前面添加一个元素，那么react会认为所有的元素都发生了改变，所以全部都重新渲染了，我们并没有感受到虚拟DOM带给我们的优化。所以key的值必须是唯一的才有意义。</p>
+<p><br><br>推荐阅读<br><a href="http://imweb.io/topic/577512fe732b4107576230b9" target="_blank" rel="external">react组件性能优化探索实践</a><br><a href="http://taobaofed.org/blog/2016/08/12/optimized-react-components/" target="_blank" rel="external">高性能 React 组件</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/posts/d5323688/" target="_blank" rel="external">https://jx-zyf.github.io/posts/d5323688/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://jx-zyf.github.io'">
+            <img src="/img/avatar.jpg" alt="linxunzyf">
+            <a>linxunzyf</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/d5323688/&title=《react 简单优化》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/d5323688/&title=《react 简单优化》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/d5323688/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《react 简单优化》 — linxun&url=https://jx-zyf.github.io/posts/d5323688/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/d5323688/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/cb30c8d6/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：react 基础笔记">下一篇：react 基础笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'jx-zyf',
+            repo: 'jx-zyf.github.io',
+            oauth: {
+                client_id: 'fb0e41d3397cae4b2285',
+                client_secret: 'f2bacbf3aefe7148c4df7f00f91ef3ff3144173e',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2017
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://jx-zyf.github.io">linxunzyf.cn</a>
+            <br/>
+            <!-- Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a> -->
+        </span>
+    
+        <br/>
+
+        <!-- <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+        
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/> -->
+        
+        <!-- <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span> -->
+    </div>      
+</footer>
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢感谢</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    -
+<div id="wechat" class="page-modal reward-lay">
+    <a class="close" href="javascript:;">
+        <i class="icon icon-close"></i>
+    </a>
+    <h4 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>欢迎关注林寻丶</span>
+        <i class="icon icon-quote-right"></i>
+    </h4>
+    <img id="wechat_img" data-img="/img/linxun.jpg" alt="欢迎您的关注！">
+</div>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/d5323688/&title=《react 简单优化》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/d5323688/&title=《react 简单优化》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/d5323688/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《react 简单优化》 — linxun&url=https://jx-zyf.github.io/posts/d5323688/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/d5323688/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwklEQVR42u3aO27DMBAFQN//0gqQKkUkvUeKjAIMK8GwqaGLBffz+cTr+F5nnxw/1tknyZ6PLVxc3GnucbmucTl0bM9fjoSLi7uRex1obrYoQ971840NFxf3ZdyE2B4eFxf3v3NnWHmAw8XFfQ83T2nGkp8kEXo4V8PFxZ3gtgXTFc8L67u4uLgl9yhXG3TycBa9HRcXdws3KXEmxdCZZkybXOHi4u7ntsEoOUY7flE0WXFxcRdzx641YwnS9WFu/jJcXNwt3LaJ0m7dhsK6YIqLi/soN0lUZlqnefskuirh4uJu4bYvmA9zeZO1yLRwcXEXcGearHmwy3fAxcV9D/c6bA0WN4cCX3Q8XFzcZdw8gWnHNOfDFi4u7pu57WDWTMJzQ8fFxd3CzcuU0cjUQ+nQzZUIFxd3MbcdtsiD15JkCRcXdyN37MKRN2XnC7W4uLj7uW2oSkqrM9+P7Li4uMu4Y03WvHTSjnG0bV1cXNx13Dx45Ydpj1E0d3FxcTdy27GJ+UZse3hcXNx3cud/lQ9hPBDIcHFx/4g7dn1JBjJObbi4uBu57QWlbdA+NZCBi4u7hztWMG3LqYONVVxc3N3cLxsO5x4RzNI3AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="/js/jquery.min.js?v=2.0"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="/js/main.min.js?v=2.0" ></script>
+
+<!-- 动画&配置 -->
+<script src="/js/script.min.js?v=2.0" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+// setInterval(function () {
+// 	setTime("2017/10/11");
+// }, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "linxunzyf");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		// console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+		console.log('hello, I`m LinXun')
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>
