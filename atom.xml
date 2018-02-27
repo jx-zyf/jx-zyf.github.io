@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jx-zyf.github.io/"/>
-  <updated>2018-02-27T03:59:32.561Z</updated>
+  <updated>2018-02-27T04:47:11.108Z</updated>
   <id>https://jx-zyf.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://jx-zyf.github.io//posts/356ff799/"/>
     <id>https://jx-zyf.github.io//posts/356ff799/</id>
     <published>2018-02-27T02:00:33.961Z</published>
-    <updated>2018-02-27T03:59:32.561Z</updated>
+    <updated>2018-02-27T04:47:11.108Z</updated>
     
     <summary type="html">
     
@@ -67,9 +67,9 @@
       <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
     
     
-      <category term="react" scheme="https://jx-zyf.github.io/tags/react/"/>
-    
       <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
+    
+      <category term="react" scheme="https://jx-zyf.github.io/tags/react/"/>
     
   </entry>
   
@@ -96,9 +96,9 @@
       <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
     
     
-      <category term="react" scheme="https://jx-zyf.github.io/tags/react/"/>
-    
       <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
+    
+      <category term="react" scheme="https://jx-zyf.github.io/tags/react/"/>
     
   </entry>
   
@@ -181,9 +181,9 @@
       <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
     
     
-      <category term="react" scheme="https://jx-zyf.github.io/tags/react/"/>
-    
       <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
+    
+      <category term="react" scheme="https://jx-zyf.github.io/tags/react/"/>
     
   </entry>
   
@@ -292,30 +292,6 @@
   </entry>
   
   <entry>
-    <title>About Me</title>
-    <link href="https://jx-zyf.github.io//posts/f0b34752/"/>
-    <id>https://jx-zyf.github.io//posts/f0b34752/</id>
-    <published>2017-08-04T16:00:00.000Z</published>
-    <updated>2017-12-19T06:20:01.672Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;a href=&quot;https://jx-zyf.github.io&quot; style=&quot;text-decoration:none&quot;&gt;林寻丶&lt;a&gt;&lt;br&gt;&lt;a href=&quot;http://www.weibo.com/linxun001&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="about" scheme="https://jx-zyf.github.io/categories/about/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>2017 in ShenZhen</title>
     <link href="https://jx-zyf.github.io//posts/293f0615/"/>
     <id>https://jx-zyf.github.io//posts/293f0615/</id>
@@ -335,6 +311,30 @@
     </summary>
     
       <category term="Mylife" scheme="https://jx-zyf.github.io/categories/Mylife/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>About Me</title>
+    <link href="https://jx-zyf.github.io//posts/f0b34752/"/>
+    <id>https://jx-zyf.github.io//posts/f0b34752/</id>
+    <published>2017-08-04T16:00:00.000Z</published>
+    <updated>2017-12-19T06:20:01.672Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://jx-zyf.github.io&quot; style=&quot;text-decoration:none&quot;&gt;林寻丶&lt;a&gt;&lt;br&gt;&lt;a href=&quot;http://www.weibo.com/linxun001&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="about" scheme="https://jx-zyf.github.io/categories/about/"/>
     
     
   </entry>
