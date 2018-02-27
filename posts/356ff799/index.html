@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>css预处理器——less的常见用法 | linxun | linxunzyf</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="css">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="写在开头为什么要有CSS预处理器CSS作为前端开发必不可少的一个环节，然而很多开发者的却并不喜欢写CSS代码。这是因为它并不像其他编程语言一样，有自己的变量，常量等；它只是一行行单纯的属性描述，书写起来很需要耐心，而且代码难以维护。于是有人开始就想着能不能给CSS加入一些编程元素，让CSS能像其他编程语言一样可以做一些预定的处理，于是就有了“CSS预处理器” 什么是CSS预处理器CSS预处理器定义">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css预处理器——less的常见用法">
+<meta property="og:url" content="https://jx-zyf.github.io/posts/356ff799/index.html">
+<meta property="og:site_name" content="linxun">
+<meta property="og:description" content="写在开头为什么要有CSS预处理器CSS作为前端开发必不可少的一个环节，然而很多开发者的却并不喜欢写CSS代码。这是因为它并不像其他编程语言一样，有自己的变量，常量等；它只是一行行单纯的属性描述，书写起来很需要耐心，而且代码难以维护。于是有人开始就想着能不能给CSS加入一些编程元素，让CSS能像其他编程语言一样可以做一些预定的处理，于是就有了“CSS预处理器” 什么是CSS预处理器CSS预处理器定义">
+<meta property="og:updated_time" content="2018-02-27T03:59:32.561Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css预处理器——less的常见用法">
+<meta name="twitter:description" content="写在开头为什么要有CSS预处理器CSS作为前端开发必不可少的一个环节，然而很多开发者的却并不喜欢写CSS代码。这是因为它并不像其他编程语言一样，有自己的变量，常量等；它只是一行行单纯的属性描述，书写起来很需要耐心，而且代码难以维护。于是有人开始就想着能不能给CSS加入一些编程元素，让CSS能像其他编程语言一样可以做一些预定的处理，于是就有了“CSS预处理器” 什么是CSS预处理器CSS预处理器定义">
+    
+        <link rel="alternate" type="application/atom+xml" title="linxun" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link id="style" rel="stylesheet" href="/css/style.css?v=2.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">linxunzyf</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>随 笔</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/jx-zyf" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/linxun001" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微信" href="javascript:;" title="微信" >
+                <i class="icon icon-lg icon-wechat wechat"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Email" href="/linxunzyf@gmail.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">css预处理器——less的常见用法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Búsqueda">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#写在开头"><span class="post-toc-number">1.</span> <span class="post-toc-text">写在开头</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#为什么要有CSS预处理器"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">为什么要有CSS预处理器</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#什么是CSS预处理器"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">什么是CSS预处理器</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Less的介绍"><span class="post-toc-number">2.</span> <span class="post-toc-text">Less的介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常见用法"><span class="post-toc-number">3.</span> <span class="post-toc-text">常见用法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#定义变量"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">定义变量</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#混合"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">混合</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#嵌套"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">嵌套</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#运算"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">运算</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Escaping"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">Escaping</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#函数"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">函数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注释"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">注释</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Import"><span class="post-toc-number">3.8.</span> <span class="post-toc-text">Import</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#写在最后"><span class="post-toc-number">4.</span> <span class="post-toc-text">写在最后</span></a></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-less的常见用法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">css预处理器——less的常见用法</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2018-02-27 10:00:33" datetime="2018-02-27T02:00:33.961Z"  itemprop="datePublished">2018-02-27</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coder/">coder</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">5</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="写在开头"><a href="#写在开头" class="headerlink" title="写在开头"></a>写在开头</h3><h4 id="为什么要有CSS预处理器"><a href="#为什么要有CSS预处理器" class="headerlink" title="为什么要有CSS预处理器"></a>为什么要有CSS预处理器</h4><p>CSS作为前端开发必不可少的一个环节，然而很多开发者的却并不喜欢写CSS代码。这是因为它并不像其他编程语言一样，有自己的变量，常量等；它只是一行行单纯的属性描述，书写起来很需要耐心，而且代码难以维护。于是有人开始就想着能不能给CSS加入一些编程元素，让CSS能像其他编程语言一样可以做一些预定的处理，于是就有了“CSS预处理器”</p>
+<h4 id="什么是CSS预处理器"><a href="#什么是CSS预处理器" class="headerlink" title="什么是CSS预处理器"></a>什么是CSS预处理器</h4><p>CSS预处理器定义了一种新的语言，目的是为了用一种专门的编程语言，为CSS增加一些编程的特性，而不是作为解释型语言。这样，我们可以在CSS中使用变量，简单的逻辑程序，函数等编程特性，让我们的CSS更容易书写和维护，可读性也更强。</p>
+<p>目前，CSS预处理器技术已经很成熟，出现了很多不同的CSS预处理器语言，其中最受欢迎的就是Sass，Less和Stylus了。今天重点讲讲Less的常见用法</p>
+<blockquote>
+<p>本文参考Less中文文档</p>
+</blockquote>
+<h3 id="Less的介绍"><a href="#Less的介绍" class="headerlink" title="Less的介绍"></a>Less的介绍</h3><p>Less是一款比较流行预处理CSS，支持变量，混合，嵌套，运算，函数等功能</p>
+<p><a href="http://lesscss.org/" target="_blank" rel="external">官网</a><br><a href="https://less.bootcss.com/" target="_blank" rel="external">中文文档</a></p>
+<h3 id="常见用法"><a href="#常见用法" class="headerlink" title="常见用法"></a>常见用法</h3><h4 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h4><p>我们可以把重复使用或经常修改的值定义为变量，在需要使用的地方引用这个变量即可。这样书写方便并且便于维护。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@bgColor:</span> <span class="number">#fff</span>;</div><div class="line"></div><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="variable">@bgColor</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>编译为<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#fff</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们还可以用变量表示选择器名，绝对路径等<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@my-selector:</span> banner;</div><div class="line"><span class="variable">@images:</span> <span class="string">'../images'</span></div><div class="line"></div><div class="line">.<span class="variable">@&#123;my-selector&#125;</span> &#123;</div><div class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;</div><div class="line">    <span class="attribute">background-image</span>: url(<span class="string">'@&#123;images&#125;/bg-img.png'</span>);</div><div class="line">    <span class="comment">/* ... */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>编译为<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.banner</span> &#123;</div><div class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;</div><div class="line">    <span class="attribute">background-color</span>: <span class="built_in">url</span>(<span class="string">'../images/bg-img.png'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样，当选择器发生改变时我们只需要更改变量定义即可，当绝对路径的url很长时用变量书写也是很不错的选择</p>
+<h4 id="混合"><a href="#混合" class="headerlink" title="混合"></a>混合</h4><p>混合的作用就是将重复的代码放到一个类中，我们每次使用时只需要引用类名即可</p>
+<ul>
+<li>定义一个类<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.borderRadius</span>(<span class="variable">@radius</span>: <span class="number">5px</span>) &#123;</div><div class="line">    <span class="attribute">border-radius</span>: <span class="variable">@radius</span>;</div><div class="line">    <span class="attribute">-moz-border-radius</span>: <span class="variable">@radius</span>;</div><div class="line">    <span class="attribute">-webkit-border-radius</span>: <span class="variable">@radius</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面代码中这个类定义了一个参数，默认值是5px</p>
+<ul>
+<li>使用这个类<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.content</span>: &#123;</div><div class="line">    <span class="selector-class">.borderRadius</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.footer</span>: &#123;</div><div class="line">    <span class="selector-class">.borderRadius</span>(<span class="number">10px</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="嵌套"><a href="#嵌套" class="headerlink" title="嵌套"></a>嵌套</h4><p>写CSS最烦的应该就是选择器很长很长，比如说：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.header</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">80vw</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.header</span>&gt;<span class="selector-class">.title</span> &#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.header</span>&gt;<span class="selector-class">.title</span> <span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.header</span>&gt;<span class="selector-class">.title</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">    <span class="attribute">color</span>: lightblue;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面的代码相对实际开发来说嵌套的不是很多，但是依旧很繁琐，如果用less，就比较简洁了<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.header</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">80vw</span>;</div><div class="line">    &gt;<span class="selector-class">.title</span> &#123;</div><div class="line">        <span class="attribute">font-size</span>: <span class="number">20px</span>;</div><div class="line">        <span class="selector-tag">a</span> &#123;</div><div class="line">            <span class="attribute">color</span>: <span class="number">#fff</span>;</div><div class="line">            <span class="selector-tag">&amp;</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">                <span class="attribute">color</span>: lightblue;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>书写起来也比较快</p>
+<h4 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h4><p>less还提供我们常用的加减乘除的运算<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 能转换单位并且有意义的</span></div><div class="line"><span class="variable">@conversion-1:</span> <span class="number">5cm</span> + <span class="number">10mm</span>; <span class="comment">// result is 6cm</span></div><div class="line"><span class="variable">@conversion-2:</span> <span class="number">2</span> - <span class="number">3cm</span> - <span class="number">5mm</span>; <span class="comment">// result is -1.5cm</span></div><div class="line"></div><div class="line"><span class="comment">// 不能转换单位的</span></div><div class="line"><span class="variable">@incompatible-units:</span> <span class="number">2</span> + <span class="number">5px</span> - <span class="number">3cm</span>; <span class="comment">// result is 4px</span></div><div class="line"></div><div class="line"><span class="comment">// 带变量的运算</span></div><div class="line"><span class="variable">@base:</span> <span class="number">5%</span>;</div><div class="line"><span class="variable">@filler:</span> <span class="variable">@base</span> * <span class="number">2</span>; <span class="comment">// result is 10%</span></div><div class="line"><span class="variable">@other:</span> <span class="variable">@base</span> + <span class="variable">@filler</span>; <span class="comment">// result is 15%</span></div><div class="line"></div><div class="line"><span class="comment">// 乘法和除法不能转换，在大多数情况下都是没有意义的，比如长度乘长度得到面积(一块区域)，而CSS不支持区域，所以得到的依旧是一维的单位</span></div><div class="line"><span class="variable">@base:</span> <span class="number">2cm</span> * <span class="number">3mm</span>; <span class="comment">// result is 6cm</span></div><div class="line"></div><div class="line"><span class="comment">// 颜色的数学运算</span></div><div class="line"><span class="variable">@color:</span> <span class="number">#224488</span> / <span class="number">2</span>; <span class="comment">//results in #112244</span></div><div class="line"><span class="attribute">background-color</span>: <span class="number">#112244</span> + <span class="number">#111</span>; <span class="comment">// result is #223355</span></div></pre></td></tr></table></figure></p>
+<ul>
+<li>calc()特例<br>为了与 CSS 保持兼容，calc() 并不对数学表达式进行计算，但是在嵌套函数中会计算变量和数学公式的值。</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@var:</span> <span class="number">50vh</span>/<span class="number">2</span>;</div><div class="line"><span class="attribute">width</span>: calc(<span class="number">50%</span> + (<span class="variable">@var</span> - <span class="number">20px</span>));  <span class="comment">// result is calc(50% + (25vh - 20px))</span></div></pre></td></tr></table></figure>
+<h4 id="Escaping"><a href="#Escaping" class="headerlink" title="Escaping"></a>Escaping</h4><p>转译：我们可以使用任意字符串作为属性或者变量值<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@min768:</span> <span class="string">~"(min-width: 768px)"</span>;</div><div class="line"><span class="selector-class">.element</span> &#123;</div><div class="line">  <span class="keyword">@media</span> <span class="variable">@min768</span> &#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">1.2rem</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>Less内置了很多函数，用于转换颜色、处理字符串、算数运算等，具体参考<a href="https://less.bootcss.com/functions/" target="_blank" rel="external">函数手册</a></p>
+<p>这里讲一下 lighten 和 darken 这两个内置函数<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">  <span class="attribute">background-color</span>: lighten(<span class="number">#000</span>, <span class="number">10%</span>);   <span class="comment">// 让黑色变亮 10%</span></div><div class="line">  <span class="attribute">color</span>: darken(<span class="number">#fff</span>, <span class="number">10%</span>);               <span class="comment">// 让白色变暗 10%</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><p>less文件中有两种注释</p>
+<ul>
+<li><p>第一种</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 这种注释转换成css后将会删除</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>第二章</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* CSS注释语法，转换成css后仍然保留 */</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Import"><a href="#Import" class="headerlink" title="Import"></a>Import</h4><p>在开发过程中，我们常常将不同的样式放到多个文件中，最后通过@import的方式导入。</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>最终浏览器认识的还只能是css代码，所以我们要把less文件转译成css文件，我用的最多的是使用webpack。</p>
+<p><a href="https://doc.webpack-china.org/loaders/less-loader/" target="_blank" rel="external">使用方法</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/posts/356ff799/" target="_blank" rel="external">https://jx-zyf.github.io/posts/356ff799/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://jx-zyf.github.io'">
+            <img src="/img/avatar.jpg" alt="linxunzyf">
+            <a>linxunzyf</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/356ff799/&title=《css预处理器——less的常见用法》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/356ff799/&title=《css预处理器——less的常见用法》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/356ff799/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《css预处理器——less的常见用法》 — linxun&url=https://jx-zyf.github.io/posts/356ff799/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/356ff799/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/d5323688/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：react 简单优化">下一篇：react 简单优化</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'jx-zyf',
+            repo: 'jx-zyf.github.io',
+            oauth: {
+                client_id: 'fb0e41d3397cae4b2285',
+                client_secret: 'f2bacbf3aefe7148c4df7f00f91ef3ff3144173e',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2017
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://jx-zyf.github.io">linxunzyf.cn</a>
+            <br/>
+            <!-- Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a> -->
+        </span>
+    
+        <br/>
+
+        <!-- <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+        
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/> -->
+        
+        <!-- <span class="license">Este blog está licenciado bajo una <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">licencia internacional Creative Commons Attribution 4.0</a>.</span> -->
+    </div>      
+</footer>
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢感谢</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    -
+<div id="wechat" class="page-modal reward-lay">
+    <a class="close" href="javascript:;">
+        <i class="icon icon-close"></i>
+    </a>
+    <h4 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>欢迎关注林寻丶</span>
+        <i class="icon icon-quote-right"></i>
+    </h4>
+    <img id="wechat_img" data-img="/img/linxun.jpg" alt="欢迎您的关注！">
+</div>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/356ff799/&title=《css预处理器——less的常见用法》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/356ff799/&title=《css预处理器——less的常见用法》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/356ff799/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《css预处理器——less的常见用法》 — linxun&url=https://jx-zyf.github.io/posts/356ff799/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/356ff799/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxElEQVR42u3aQW7DMAwEwPz/0ynQUw+xvSQtOQVGpyJwonEPBLnS6xWv9++q/v33k/PfvHnh4uKOue/Tdc46h56/wPm3Dl8YFxd3IzcpXgni6B+RF8ELGy4u7pdxJ4j8F3Bxcf8XNy9t5+Vsa93FxcUdcJPhJx+NkkBk+ayGi4s74K4LTHsDz2P5Li4ublA+ek1MjijvjouLu4WbHI3csEFxlLooc7i4uFu41UJTbYmqzzSHH1xc3Ju4vXZkHqcmR7MfPsHFxd3CrRavyXhTjV2i7+Li4i7gTkaO3hWr6sBzmOLg4uIu464+8uzRC7UWFxd3AfeusWRyXaPQEuHi4m7k5sR5zJE8efh6uLi4W7h5QzM5Iu2VLVxc3Ke4kyLVK2d5G3Rx8oOLi7uMO48yqxFJXiibgSkuLu6Y24szJtezRsMSLi7uRm716LTX0PQWLi7uU9x8JTFKfkBbPr7FxcXdwu1dpKgmsnmwUt0RFxd3HXd+lFK98pUHsh92wcXF3ci999rEJFK5eAYXF/fLuCs6qYWFDBcXdyM3L3mTCxmH++Li4m7k9hqUvOmpvtgNsQguLu6AOwlMe23QJEzBxcVdzP0BQOt2ncTcEVEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="/js/jquery.min.js?v=2.0"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="/js/main.min.js?v=2.0" ></script>
+
+<!-- 动画&配置 -->
+<script src="/js/script.min.js?v=2.0" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+// setInterval(function () {
+// 	setTime("2017/10/11");
+// }, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "linxunzyf");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		// console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+		console.log('hello, I`m LinXun')
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>
