@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jx-zyf.github.io/"/>
-  <updated>2018-02-27T04:47:11.108Z</updated>
+  <updated>2018-03-16T08:50:04.522Z</updated>
   <id>https://jx-zyf.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>async/await笔记</title>
+    <link href="https://jx-zyf.github.io//posts/ec020e93/"/>
+    <id>https://jx-zyf.github.io//posts/ec020e93/</id>
+    <published>2018-03-16T03:48:53.391Z</published>
+    <updated>2018-03-16T08:50:04.522Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;异步是JavaScript的一大难点之一，因此js的异步解决方案也是多种多样的。从最早的回调函数，到Promise对象，到Generator函数，再到现在的async/await。很多人都认为async/await是异步操作的终极解决方案，今天就来简单介绍下它。&lt;/p&gt;
+&lt;
+        
+      
+    
+    </summary>
+    
+      <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
+    
+    
+      <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>css预处理器——less的常见用法</title>

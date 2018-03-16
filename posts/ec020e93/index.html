@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>async/await笔记 | linxun | linxunzyf</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="异步是JavaScript的一大难点之一，因此js的异步解决方案也是多种多样的。从最早的回调函数，到Promise对象，到Generator函数，再到现在的async/await。很多人都认为async/await是异步操作的终极解决方案，今天就来简单介绍下它。 async/await 这名字取得就很语义化，async声明一个异步function，await用于等待异步function执行完成。并">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="async&#x2F;await笔记">
+<meta property="og:url" content="https://jx-zyf.github.io/posts/ec020e93/index.html">
+<meta property="og:site_name" content="linxun">
+<meta property="og:description" content="异步是JavaScript的一大难点之一，因此js的异步解决方案也是多种多样的。从最早的回调函数，到Promise对象，到Generator函数，再到现在的async/await。很多人都认为async/await是异步操作的终极解决方案，今天就来简单介绍下它。 async/await 这名字取得就很语义化，async声明一个异步function，await用于等待异步function执行完成。并">
+<meta property="og:updated_time" content="2018-03-16T08:50:04.522Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="async&#x2F;await笔记">
+<meta name="twitter:description" content="异步是JavaScript的一大难点之一，因此js的异步解决方案也是多种多样的。从最早的回调函数，到Promise对象，到Generator函数，再到现在的async/await。很多人都认为async/await是异步操作的终极解决方案，今天就来简单介绍下它。 async/await 这名字取得就很语义化，async声明一个异步function，await用于等待异步function执行完成。并">
+    
+        <link rel="alternate" type="application/atom+xml" title="linxun" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link id="style" rel="stylesheet" href="/css/style.css?v=2.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">linxunzyf</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>随 笔</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/jx-zyf" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/linxun001" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微信" href="javascript:;" title="微信" >
+                <i class="icon icon-lg icon-wechat wechat"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Email" href="/linxunzyf@gmail.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">async/await笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#aysnc"><span class="post-toc-number">1.</span> <span class="post-toc-text">aysnc</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#await"><span class="post-toc-number">2.</span> <span class="post-toc-text">await</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#async-await"><span class="post-toc-number">3.</span> <span class="post-toc-text">async/await</span></a></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-async-await"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">async/await笔记</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2018-03-16 11:48:53" datetime="2018-03-16T03:48:53.391Z"  itemprop="datePublished">2018-03-16</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coder/">coder</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">5</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>异步是JavaScript的一大难点之一，因此js的异步解决方案也是多种多样的。从最早的回调函数，到Promise对象，到Generator函数，再到现在的async/await。很多人都认为async/await是异步操作的终极解决方案，今天就来简单介绍下它。</p>
+<p>async/await 这名字取得就很语义化，async声明一个异步function，await用于等待异步function执行完成。并且语法规定，await只能出现在async函数中。</p>
+<h3 id="aysnc"><a href="#aysnc" class="headerlink" title="aysnc"></a>aysnc</h3><p>async到底做了什么？</p>
+<p>我们看一下下面的代码<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'hello world'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(test())</div></pre></td></tr></table></figure></p>
+<p>我们来看看打印出了什么<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Promise</span> &#123; <span class="string">'hello world'</span> &#125;</div></pre></td></tr></table></figure></p>
+<p>没错，它返回了一个Promise对象。从文档中我们知道await用于等待一个Promise对象。<br>但是在上面的例子中直接返回了一个字符串，它不是Promise对象，async函数会通过Promise.resolve()把它封装成一个Promise对象。</p>
+<p>我们回顾一下Promise的特点——无等待。如果这个async函数没有await的话，它会立即执行返回一个Promise对象，不会阻塞后面代码的运行。</p>
+<h3 id="await"><a href="#await" class="headerlink" title="await"></a>await</h3><p>我们知道await是在等待一个async函数完成，而async函数会返回一个Promise对象，因此await表达式的运算结果就是这个Promise对象resolve()的值。</p>
+<p>继续看个例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'test'</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">testAsync</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">            resolve(n)</div><div class="line">        &#125;, <span class="number">1000</span>)</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">const</span> result1 = <span class="keyword">await</span> test1()    </div><div class="line">    <span class="built_in">console</span>.log(result1)</div><div class="line">    <span class="keyword">const</span> result2 = <span class="keyword">await</span> testAsync(<span class="number">999</span>)</div><div class="line">    <span class="built_in">console</span>.log(result2)</div><div class="line">&#125;</div><div class="line"></div><div class="line">test()</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'同步代码'</span>)</div></pre></td></tr></table></figure></p>
+<p>上述代码首先打出了”同步代码”，随后又立即打出”test”，并在一秒后打出了”999”。<br>我们可以得出以下结论：</p>
+<ul>
+<li>await会阻塞它所在的异步函数的后面代码的执行(因为它需要等到testAsync函数的结果才会往下执行)，但是不会阻塞异步函数之外的代码的执行(因为先打印的”同步代码”)，其实它内部的阻塞都被封装到一个Promise对象中异步执行，我想可能是因为这样await才必须在async函数中吧。</li>
+<li>如果await等到的不是Promise对象的话会将它转成立即resolve的Promise对象，并将该值作为await表达式的结果(打印完”同步代码”之后立即打出”test”)；如果是的话就等着Promise对象resolve()，然后将resolve的结果作为await表达式的结果(一秒后打印”999”)。</li>
+</ul>
+<p>在async函数中，这样的代码看起来就像是同步代码，await等待到结果才执行后面的语句，但是却不会阻塞async函数之外的代码的执行。</p>
+<h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><p>刚开始可能会感觉async/await就是将Promise中的then变成了用await的方式书写，好像并没有什么优势。</p>
+<p>我们先举个栗子：<br>假设一个功能需要多个步骤完成，并且每个步骤都是异步的，而且后面的步骤依赖于前面步骤的结果<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">asycnTest</span>(<span class="params">time</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</div><div class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">            resolve(time + <span class="number">500</span>)</div><div class="line">        &#125;, time)</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">step1</span>(<span class="params">time</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`step1用时<span class="subst">$&#123;time&#125;</span>`</span>)</div><div class="line">    <span class="keyword">return</span> asycnTest(time)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">step2</span>(<span class="params">time</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`step2用时<span class="subst">$&#123;time&#125;</span>`</span>)</div><div class="line">    <span class="keyword">return</span> asycnTest(time)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">step3</span>(<span class="params">time</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`step3用时<span class="subst">$&#123;time&#125;</span>`</span>)</div><div class="line">    <span class="keyword">return</span> asycnTest(time)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>先看看用Promise要怎么写：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">promiseDoIt</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.time(<span class="string">'promiseDoIt'</span>)</div><div class="line">    step1(<span class="number">1000</span>)</div><div class="line">        .then(<span class="function"><span class="params">time2</span> =&gt;</span> step2(time2))</div><div class="line">        .then(<span class="function"><span class="params">time3</span> =&gt;</span> step3(time3))</div><div class="line">        .then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">`结果是<span class="subst">$&#123;result&#125;</span>`</span>)</div><div class="line">            <span class="built_in">console</span>.timeEnd(<span class="string">'promiseDoIt'</span>)</div><div class="line">        &#125;)</div><div class="line">&#125;</div><div class="line">promiseDoIt()</div><div class="line"></div><div class="line"><span class="comment">// step1用时1000</span></div><div class="line"><span class="comment">// step2用时1500</span></div><div class="line"><span class="comment">// step3用时2000</span></div><div class="line"><span class="comment">// 结果是2500</span></div><div class="line"><span class="comment">// promiseDoIt: 4507.135ms</span></div></pre></td></tr></table></figure></p>
+<p>上述三个步骤一共用时1000+1500+2000共4500ms，和console.time()/console.timeEnd()运算结果一致。<br>如果用async/await来写会怎么样呢？<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncDoIt</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.time(<span class="string">'asyncDoIt'</span>)</div><div class="line">    <span class="keyword">const</span> time2 = <span class="keyword">await</span> step1(<span class="number">1000</span>)</div><div class="line">    <span class="keyword">const</span> time3 = <span class="keyword">await</span> step2(time2)</div><div class="line">    <span class="keyword">const</span> result = <span class="keyword">await</span> step3(time3)</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`结果是<span class="subst">$&#123;result&#125;</span>`</span>)</div><div class="line">    <span class="built_in">console</span>.timeEnd(<span class="string">'asyncDoIt'</span>)</div><div class="line">&#125;</div><div class="line">asyncDoIt()</div><div class="line"></div><div class="line"><span class="comment">// step1用时1000</span></div><div class="line"><span class="comment">// step2用时1500</span></div><div class="line"><span class="comment">// step3用时2000</span></div><div class="line"><span class="comment">// 结果是2500</span></div><div class="line"><span class="comment">// asyncDoIt: 4504.294ms</span></div></pre></td></tr></table></figure></p>
+<p>运行结果都是一样的，但是这看起来就像同步代码，非常清晰。<br>再改一下需求，如果后面步骤依赖前面每一个步骤的结果，又该怎么改呢？反正用async/await修改是很方便的，只需要将前面步骤的结果当参数传递进去就行了，至于Promise的写法，好像就有点麻烦了…</p>
+<p>另外，Promise对象不会一直是resolve啊，也会reject的，所以需要将await放在try…catch代码块中对错误进行处理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncTest</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="keyword">await</span> <span class="built_in">Promise</span>.reject(<span class="string">'出错了'</span>)</div><div class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</div><div class="line">    <span class="built_in">console</span>.log(err);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 或者直接使用Promise的catch</span></div><div class="line"></div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncTest</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">await</span> <span class="built_in">Promise</span>.reject(<span class="string">'出错了'</span>).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</div><div class="line">      <span class="built_in">console</span>.log(err)</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样才不会阻塞代码的正常运行</p>
+<p>今天就先到这吧，以后有了新的理解再补充</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/posts/ec020e93/" target="_blank" rel="external">https://jx-zyf.github.io/posts/ec020e93/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://jx-zyf.github.io'">
+            <img src="/img/avatar.jpg" alt="linxunzyf">
+            <a>linxunzyf</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/ec020e93/&title=《async/await笔记》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/ec020e93/&title=《async/await笔记》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/ec020e93/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《async/await笔记》 — linxun&url=https://jx-zyf.github.io/posts/ec020e93/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/ec020e93/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/356ff799/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：css预处理器——less的常见用法">下一篇：css预处理器——less的常见用法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'jx-zyf',
+            repo: 'jx-zyf.github.io',
+            oauth: {
+                client_id: 'fb0e41d3397cae4b2285',
+                client_secret: 'f2bacbf3aefe7148c4df7f00f91ef3ff3144173e',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2017-
+            2018
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://jx-zyf.github.io">linxunzyf.cn</a>
+            <br/>
+            <!-- Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a> -->
+        </span>
+    
+        <br/>
+
+        <!-- <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+        
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/> -->
+        
+        <!-- <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span> -->
+    </div>      
+</footer>
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢感谢</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    -
+<div id="wechat" class="page-modal reward-lay">
+    <a class="close" href="javascript:;">
+        <i class="icon icon-close"></i>
+    </a>
+    <h4 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>欢迎关注林寻丶</span>
+        <i class="icon icon-quote-right"></i>
+    </h4>
+    <img id="wechat_img" data-img="/img/linxun.jpg" alt="欢迎您的关注！">
+</div>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/ec020e93/&title=《async/await笔记》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/ec020e93/&title=《async/await笔记》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/ec020e93/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《async/await笔记》 — linxun&url=https://jx-zyf.github.io/posts/ec020e93/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/ec020e93/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABx0lEQVR42u3aS27DMAwFQN//0um2QGv7kbSUBBitiiCVRlkQ/Og44vX6tc4+/7uSPY8VCxcXd8xNjsw/ub5ksv/NtXFxcTdyrwPNGSX55DoI5gZcXNzv4lYPToIgLi7ud3HzwuZ6Z1xc3M/nJsVPntBcB69NtRouLu6Am3cp1/29pL+Li4vb4r6KK9lhHrZO/xcXF3cL96liJh+d9gaxuLi4O7m943st0fxiD4QwXFzcATepLHoPKaoXKCdYuLi4W7h50zNPgHolUKGBgouLu4CbPJl6YCwahMLoXFxc3DdxJ8nNU+PSm1oNFxd3C7caqqrj0jytKTRMcXFxt3CrjcvqM6xec+Sf4gcXF3cxt/qIqofLd05+FFxc3D3cfOtesyMveMqdXVxc3GXcvPWZP8XovZeIRrO4uLjbuUnbojqITZog+WVwcXHfxe2Frevv56nPzXdwcXEXc1/FlQe+BFoeweLi4m7hVtsWzx6cP/MqXwYXF3fM7QWvaqqUXzIqfnBxcbdw54Gml+iMajVcXNyP5E4GJzcBCxcX96u41cPm7Y9RioOLizvgTkJPL1Q1yy1cXNwt3F5zM3mWke8wL5lwcXEf4v4AjXKaebuooR4AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="/js/jquery.min.js?v=2.0"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="/js/main.min.js?v=2.0" ></script>
+
+<!-- 动画&配置 -->
+<script src="/js/script.min.js?v=2.0" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+// setInterval(function () {
+// 	setTime("2017/10/11");
+// }, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "linxunzyf");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		// console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+		console.log('hello, I`m LinXun')
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>
