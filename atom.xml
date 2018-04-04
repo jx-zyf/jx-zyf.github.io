@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jx-zyf.github.io/"/>
-  <updated>2018-03-27T03:43:46.839Z</updated>
+  <updated>2018-04-04T04:00:02.840Z</updated>
   <id>https://jx-zyf.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端请求之jquery ajax, fetch, axios</title>
+    <link href="https://jx-zyf.github.io//posts/9258a52/"/>
+    <id>https://jx-zyf.github.io//posts/9258a52/</id>
+    <published>2018-04-04T01:27:04.369Z</published>
+    <updated>2018-04-04T04:00:02.840Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;前端是个发展迅速的领域，前端请求自然也发展迅速，从原生的XHR到jquery ajax，再到现在的axios和fetch。&lt;/p&gt;
+&lt;h3 id=&quot;jquery-ajax&quot;&gt;&lt;a href=&quot;#jquery-ajax&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
+    
+    
+      <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>css 变量</title>
@@ -405,30 +432,6 @@
   </entry>
   
   <entry>
-    <title>2017 in ShenZhen</title>
-    <link href="https://jx-zyf.github.io//posts/293f0615/"/>
-    <id>https://jx-zyf.github.io//posts/293f0615/</id>
-    <published>2017-08-04T16:00:00.000Z</published>
-    <updated>2017-12-19T03:36:19.746Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;深圳&quot;&gt;&lt;a href=&quot;#深圳&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Mylife" scheme="https://jx-zyf.github.io/categories/Mylife/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>About Me</title>
     <link href="https://jx-zyf.github.io//posts/f0b34752/"/>
     <id>https://jx-zyf.github.io//posts/f0b34752/</id>
@@ -448,6 +451,30 @@
     </summary>
     
       <category term="about" scheme="https://jx-zyf.github.io/categories/about/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>2017 in ShenZhen</title>
+    <link href="https://jx-zyf.github.io//posts/293f0615/"/>
+    <id>https://jx-zyf.github.io//posts/293f0615/</id>
+    <published>2017-08-04T16:00:00.000Z</published>
+    <updated>2017-12-19T03:36:19.746Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;深圳&quot;&gt;&lt;a href=&quot;#深圳&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Mylife" scheme="https://jx-zyf.github.io/categories/Mylife/"/>
     
     
   </entry>
