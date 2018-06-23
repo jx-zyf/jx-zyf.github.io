@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jx-zyf.github.io/"/>
-  <updated>2018-04-26T10:32:49.533Z</updated>
+  <updated>2018-06-23T02:46:15.126Z</updated>
   <id>https://jx-zyf.github.io/</id>
   
   <author>
@@ -15,6 +15,87 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Node反向代理请求</title>
+    <link href="https://jx-zyf.github.io//posts/11645e24/"/>
+    <id>https://jx-zyf.github.io//posts/11645e24/</id>
+    <published>2018-06-23T02:44:48.523Z</published>
+    <updated>2018-06-23T02:46:15.126Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;前一阵子有个需求是上传文件，遇到跨域的问题，我的解决办法是使用node搭建本地静态服务器，把请求转发到后端服务器。&lt;/p&gt;
+&lt;p&gt;撸起袖子就是干，却发现一个问题，node这里拿不到上传过来的formData格式的文件，然后疯狂查资料，花了我一个上午的时间，还是不行。最后在老
+        
+      
+    
+    </summary>
+    
+      <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
+    
+    
+      <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
+    
+      <category term="Node" scheme="https://jx-zyf.github.io/tags/Node/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js小技巧(一)</title>
+    <link href="https://jx-zyf.github.io//posts/60fc6c1f/"/>
+    <id>https://jx-zyf.github.io//posts/60fc6c1f/</id>
+    <published>2018-06-23T02:41:30.362Z</published>
+    <updated>2018-06-23T02:42:36.229Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;将浮点数-或字符串-转化为整数&quot;&gt;&lt;a href=&quot;#将浮点数-或字符串-转化为整数&quot; class=&quot;headerlink&quot; title=&quot;将浮点数(或字符串)转化为整数&quot;&gt;&lt;/a&gt;将浮点数(或字符串)转化为整数&lt;/h4&gt;&lt;figure
+        
+      
+    
+    </summary>
+    
+      <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
+    
+    
+      <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>常用排序算法(一)</title>
+    <link href="https://jx-zyf.github.io//posts/daae2fce/"/>
+    <id>https://jx-zyf.github.io//posts/daae2fce/</id>
+    <published>2018-06-23T02:39:14.611Z</published>
+    <updated>2018-06-23T02:47:51.860Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;冒泡排序&quot;&gt;&lt;a href=&quot;#冒泡排序&quot; class=&quot;headerlink&quot; title=&quot;冒泡排序&quot;&gt;&lt;/a&gt;冒泡排序&lt;/h3&gt;&lt;h4 id=&quot;描述：&quot;&gt;&lt;a href=&quot;#描述：&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
+    
+    
+      <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>前端请求之jquery ajax, fetch, axios</title>

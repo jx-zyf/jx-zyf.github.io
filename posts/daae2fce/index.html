@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>常用排序算法(一) | linxun | linxunzyf</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="冒泡排序描述：一次比较相邻的两个元素，如果它们顺序错误就交换位置；每次循环后最后的元素会是我们期待的数（最大或最小）；针对所有元素重复以上步骤，除了第一个。直到两层循环全部执行完毕，排序完成。 时间复杂度：O(n²)空间复杂度：O(1)代码实现：1234567891011function bubbleSort(arr) &amp;#123;    const len = arr.length;    fo">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用排序算法(一)">
+<meta property="og:url" content="https://jx-zyf.github.io/posts/daae2fce/index.html">
+<meta property="og:site_name" content="linxun">
+<meta property="og:description" content="冒泡排序描述：一次比较相邻的两个元素，如果它们顺序错误就交换位置；每次循环后最后的元素会是我们期待的数（最大或最小）；针对所有元素重复以上步骤，除了第一个。直到两层循环全部执行完毕，排序完成。 时间复杂度：O(n²)空间复杂度：O(1)代码实现：1234567891011function bubbleSort(arr) &amp;#123;    const len = arr.length;    fo">
+<meta property="og:updated_time" content="2018-06-23T02:47:51.860Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用排序算法(一)">
+<meta name="twitter:description" content="冒泡排序描述：一次比较相邻的两个元素，如果它们顺序错误就交换位置；每次循环后最后的元素会是我们期待的数（最大或最小）；针对所有元素重复以上步骤，除了第一个。直到两层循环全部执行完毕，排序完成。 时间复杂度：O(n²)空间复杂度：O(1)代码实现：1234567891011function bubbleSort(arr) &amp;#123;    const len = arr.length;    fo">
+    
+        <link rel="alternate" type="application/atom+xml" title="linxun" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link id="style" rel="stylesheet" href="/css/style.css?v=2.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">linxunzyf</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>随 笔</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/jx-zyf" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com/linxun001" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微信" href="javascript:;" title="微信" >
+                <i class="icon icon-lg icon-wechat wechat"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Email" href="/linxunzyf@gmail.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">常用排序算法(一)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#冒泡排序"><span class="post-toc-number">1.</span> <span class="post-toc-text">冒泡排序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#描述："><span class="post-toc-number">1.1.</span> <span class="post-toc-text">描述：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#时间复杂度：O-n²"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">时间复杂度：O(n²)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#空间复杂度：O-1"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">空间复杂度：O(1)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#代码实现："><span class="post-toc-number">1.4.</span> <span class="post-toc-text">代码实现：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#选择排序"><span class="post-toc-number">2.</span> <span class="post-toc-text">选择排序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#描述：-1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">描述：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#时间复杂度：O-n²-1"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">时间复杂度：O(n²)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#空间复杂度：O-1-1"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">空间复杂度：O(1)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#代码实现：-1"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">代码实现：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#插入排序"><span class="post-toc-number">3.</span> <span class="post-toc-text">插入排序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#描述：-2"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">描述：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#时间复杂度：O-n²-2"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">时间复杂度：O(n²)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#空间复杂度：O-1-2"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">空间复杂度：O(1)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#代码实现：-2"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">代码实现：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#快速排序"><span class="post-toc-number">4.</span> <span class="post-toc-text">快速排序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#描述：-3"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">描述：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#时间复杂度：O-n㏒₂n"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">时间复杂度：O(n㏒₂n)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#空间复杂度：O-n㏒₂n"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">空间复杂度：O(n㏒₂n)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#代码实现：-3"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">代码实现：</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-常用算法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">常用排序算法(一)</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2018-06-23 10:39:14" datetime="2018-06-23T02:39:14.611Z"  itemprop="datePublished">2018-06-23</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coder/">coder</a></li></ul>
+
+
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
+
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">3</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><h4 id="描述："><a href="#描述：" class="headerlink" title="描述："></a>描述：</h4><p>一次比较相邻的两个元素，如果它们顺序错误就交换位置；每次循环后最后的元素会是我们期待的数（最大或最小）；针对所有元素重复以上步骤，除了第一个。直到两层循环全部执行完毕，排序完成。</p>
+<h4 id="时间复杂度：O-n²"><a href="#时间复杂度：O-n²" class="headerlink" title="时间复杂度：O(n²)"></a>时间复杂度：O(n²)</h4><h4 id="空间复杂度：O-1"><a href="#空间复杂度：O-1" class="headerlink" title="空间复杂度：O(1)"></a>空间复杂度：O(1)</h4><h4 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">    <span class="keyword">const</span> len = arr.length;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; len - <span class="number">1</span> - i; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</div><div class="line">                arr[j] = [arr[j + <span class="number">1</span>], arr[j + <span class="number">1</span>] = arr[j]][<span class="number">0</span>];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><h4 id="描述：-1"><a href="#描述：-1" class="headerlink" title="描述："></a>描述：</h4><p>首先在未排序队列中找出最大（小）的元素，存放到已排序队列中的起始位置；然后再从剩余未排序队列中继续找出最大（小）的元素，存放到已排序队列的末尾；以此类推，直到排序完毕。</p>
+<h4 id="时间复杂度：O-n²-1"><a href="#时间复杂度：O-n²-1" class="headerlink" title="时间复杂度：O(n²)"></a>时间复杂度：O(n²)</h4><h4 id="空间复杂度：O-1-1"><a href="#空间复杂度：O-1-1" class="headerlink" title="空间复杂度：O(1)"></a>空间复杂度：O(1)</h4><h4 id="代码实现：-1"><a href="#代码实现：-1" class="headerlink" title="代码实现："></a>代码实现：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectionSort</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">    <span class="keyword">const</span> len = arr.length;</div><div class="line">    <span class="keyword">let</span> minIndex;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123;</div><div class="line">        minIndex = i;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; len; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (arr[j] &lt; arr[minIndex]) &#123;</div><div class="line">                minIndex = j;   <span class="comment">// 保存最小（大）值得索引</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        arr[i] = [arr[minIndex], arr[minIndex] = arr[i]][<span class="number">0</span>];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h4 id="描述：-2"><a href="#描述：-2" class="headerlink" title="描述："></a>描述：</h4><p>将第一个元素看做已排序队列，剩余元素为未排序队列；从未排序队列取出一个元素，在已排序队列从后向前扫描，若该元素（已排序）大（小）于新元素（未排序队列取出的），则将该元素移到下一位置；直到该元素小（大）于或者等于新元素，将新元素插入到位置。重复以上步骤直到所有元素排序完成。</p>
+<h4 id="时间复杂度：O-n²-2"><a href="#时间复杂度：O-n²-2" class="headerlink" title="时间复杂度：O(n²)"></a>时间复杂度：O(n²)</h4><h4 id="空间复杂度：O-1-2"><a href="#空间复杂度：O-1-2" class="headerlink" title="空间复杂度：O(1)"></a>空间复杂度：O(1)</h4><h4 id="代码实现：-2"><a href="#代码实现：-2" class="headerlink" title="代码实现："></a>代码实现：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSort</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">    <span class="keyword">const</span> len = arr.length;</div><div class="line">    <span class="keyword">let</span> preIndex, current;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</div><div class="line">        preIndex = i - <span class="number">1</span>;</div><div class="line">        current = arr[i];</div><div class="line">        <span class="keyword">while</span>(preIndex &gt;= <span class="number">0</span> &amp;&amp; arr[preIndex] &gt; current) &#123;</div><div class="line">            arr[preIndex + <span class="number">1</span>] = arr[preIndex];</div><div class="line">            preIndex--;</div><div class="line">        &#125;</div><div class="line">        arr[preIndex + <span class="number">1</span>] = current;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><h4 id="描述：-3"><a href="#描述：-3" class="headerlink" title="描述："></a>描述：</h4><p>选择一个合适的元素a（一般是第一个元素）作为排序基准，将未排序队列中比a小和比a大的分别放在两侧，将两侧的子数组重复以上步骤（递归），直到最后只剩下一个元素（递归出口），排序完成。</p>
+<h4 id="时间复杂度：O-n㏒₂n"><a href="#时间复杂度：O-n㏒₂n" class="headerlink" title="时间复杂度：O(n㏒₂n)"></a>时间复杂度：O(n㏒₂n)</h4><h4 id="空间复杂度：O-n㏒₂n"><a href="#空间复杂度：O-n㏒₂n" class="headerlink" title="空间复杂度：O(n㏒₂n)"></a>空间复杂度：O(n㏒₂n)</h4><h4 id="代码实现：-3"><a href="#代码实现：-3" class="headerlink" title="代码实现："></a>代码实现：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">    <span class="comment">// 递归出口</span></div><div class="line">    <span class="keyword">if</span> (arr.length &lt;= <span class="number">1</span>) <span class="keyword">return</span> arr;</div><div class="line">    <span class="comment">// 基准（可以随意选择）</span></div><div class="line">    <span class="keyword">let</span> number = arr[<span class="number">0</span>];</div><div class="line">    <span class="keyword">let</span> left = [], right = [];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</div><div class="line">        arr[i] &lt;= number ? left.push(arr[i]) : right.push(arr[i]);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> quickSort(left).concat([number], quickSort(right));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        原文链接：<a href="/posts/daae2fce/" target="_blank" rel="external">https://jx-zyf.github.io/posts/daae2fce/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://jx-zyf.github.io'">
+            <img src="/img/avatar.jpg" alt="linxunzyf">
+            <a>linxunzyf</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/daae2fce/&title=《常用排序算法(一)》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/daae2fce/&title=《常用排序算法(一)》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/daae2fce/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《常用排序算法(一)》 — linxun&url=https://jx-zyf.github.io/posts/daae2fce/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/daae2fce/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/60fc6c1f/" id="post-prev" class="post-nav-link">
+        <h4 class="title" >
+          上一篇：js小技巧(一)
+        </h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/9258a52/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：前端请求之jquery ajax, fetch, axios">下一篇：前端请求之jquery ajax, fetch, axios</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'jx-zyf',
+            repo: 'jx-zyf.github.io',
+            oauth: {
+                client_id: 'fb0e41d3397cae4b2285',
+                client_secret: 'f2bacbf3aefe7148c4df7f00f91ef3ff3144173e',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2017-
+            2018
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://jx-zyf.github.io">linxunzyf.cn</a>
+            <br/>
+            <!-- Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a> -->
+        </span>
+    
+        <br/>
+
+        <!-- <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+        
+        <span>
+            
+	<i class="icon icon-lg icon-user">
+<span id="busuanzi_container_site_uv" style='display:none'>
+       访问用户：<span id="busuanzi_value_site_uv"></span>
+    </span>人</i>
+    ·
+    <i class="icon icon-lg icon-eye">
+    <span id="busuanzi_container_site_pv" style='display:none'>
+      访问次数：<span id="busuanzi_value_site_pv"></span>
+    </span>次
+    </i>
+
+
+        </span>
+        <br/> -->
+        
+        <!-- <span class="license">このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span> -->
+    </div>      
+</footer>
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢感谢</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    -
+<div id="wechat" class="page-modal reward-lay">
+    <a class="close" href="javascript:;">
+        <i class="icon icon-close"></i>
+    </a>
+    <h4 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>欢迎关注林寻丶</span>
+        <i class="icon icon-quote-right"></i>
+    </h4>
+    <img id="wechat_img" data-img="/img/linxun.jpg" alt="欢迎您的关注！">
+</div>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/daae2fce/&title=《常用排序算法(一)》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/daae2fce/&title=《常用排序算法(一)》 — linxun&source=林寻的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/daae2fce/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《常用排序算法(一)》 — linxun&url=https://jx-zyf.github.io/posts/daae2fce/&via=https://jx-zyf.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/daae2fce/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAB0ElEQVR42u3aQW7DMAwEQP//0+kDErtcUlZiYHwqisAaXwSSy+MoP6+35+z/77+5fudxx4OLizvmVo68ppwdXH9P8Nm4uLgbudcXzfzI64+sGHBxcZ/CrRcrvTfg4uI+nVtvgXBxcZ/CrTQ/ldKkQtzUq+Hi4q6cZB7ppTb/+5b5Li4ubov7Cp+4HGmVRKen4+LibuGmQ42zgqb+Ab0gFhcX91vcetvTC2J7F1/Qq+Hi4t7GTYcd9d/UR6ilEgcXF/dm7mSpIi1o0msxCFRwcXEXcXsh6CR0SZcwPkxxcHFxN3J7R6bj0V5iMspzcHFxW9zKOCOumC4D2voApZT84OLiLuVOIs+0+ekNRz68GRcX92ZuWsqsmsTUA5ig+cHFxV3E7S1RTRYyJiuhuLi4O7mTlqZSsqwds+Li4u7kpgORSdRaX7/4p1fDxcXdyK3En5XFrF6gMqrCcHFxx9zJeLS3gJVecLi4uPu56diiAkrXLK4vr+bH4OLijrmVyysNQiYX2SgTxsXFXcpN4420MFrcq+Hi4v4Yt1Ix9UqioGPDxcX9MW4Qeywaf9xS4uDi4ha4awcfaVNUb7dwcXH3cOOrZJBupCsdo/kuLi5uh/sHG30gHgObIyYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="/js/jquery.min.js?v=2.0"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="/js/main.min.js?v=2.0" ></script>
+
+<!-- 动画&配置 -->
+<script src="/js/script.min.js?v=2.0" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+// setInterval(function () {
+// 	setTime("2017/10/11");
+// }, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "linxunzyf");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		// console.log("\n %c 一个坏掉的番茄 %c  © Simon Ma  http://tomotoes.com \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+		console.log('hello, I`m LinXun')
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+</body>
+</html>

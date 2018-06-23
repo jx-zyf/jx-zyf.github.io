@@ -6,13 +6,13 @@
     
     
     
-    <title>git 常用操作 | linxun | linxunzyf</title>
+    <title>js小技巧(一) | linxun | linxunzyf</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     
     <meta name="theme-color" content="#77AAFF">
     
     
-    <meta name="keywords" content="git">
+    <meta name="keywords" content="JavaScript">
     
     
 
@@ -39,17 +39,17 @@
 
 
     
-    <meta name="description" content="git在我们的工作中是必不可少的，这里简单记录下常用的git操作，方便以后查询  git init:                           初始化仓库（版本库） git add :                     添加文件（修改的内容）到暂存区 git commit -m “提交说明”:            提交暂存区中的所有修改到分支 git push origin &amp;l">
-<meta name="keywords" content="git">
+    <meta name="description" content="将浮点数(或字符串)转化为整数123456~~&apos;1.2&apos;     // 1~~&apos;1&apos;       // 1~~1.2       // 11.2|0       // 1&apos;1.2&apos;|0     // 1&apos;1&apos;|0       // 1 不声明第三个变量的值交换123let a = 2, b = 1;a = [b, b=a][0];console.log(`a:$&amp;#123;a&amp;#125;,b:$&amp;">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git 常用操作">
-<meta property="og:url" content="https://jx-zyf.github.io/posts/3ac54c0c/index.html">
+<meta property="og:title" content="js小技巧(一)">
+<meta property="og:url" content="https://jx-zyf.github.io/posts/60fc6c1f/index.html">
 <meta property="og:site_name" content="linxun">
-<meta property="og:description" content="git在我们的工作中是必不可少的，这里简单记录下常用的git操作，方便以后查询  git init:                           初始化仓库（版本库） git add :                     添加文件（修改的内容）到暂存区 git commit -m “提交说明”:            提交暂存区中的所有修改到分支 git push origin &amp;l">
-<meta property="og:updated_time" content="2018-03-26T03:52:47.355Z">
+<meta property="og:description" content="将浮点数(或字符串)转化为整数123456~~&apos;1.2&apos;     // 1~~&apos;1&apos;       // 1~~1.2       // 11.2|0       // 1&apos;1.2&apos;|0     // 1&apos;1&apos;|0       // 1 不声明第三个变量的值交换123let a = 2, b = 1;a = [b, b=a][0];console.log(`a:$&amp;#123;a&amp;#125;,b:$&amp;">
+<meta property="og:updated_time" content="2018-06-23T02:42:36.229Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git 常用操作">
-<meta name="twitter:description" content="git在我们的工作中是必不可少的，这里简单记录下常用的git操作，方便以后查询  git init:                           初始化仓库（版本库） git add :                     添加文件（修改的内容）到暂存区 git commit -m “提交说明”:            提交暂存区中的所有修改到分支 git push origin &amp;l">
+<meta name="twitter:title" content="js小技巧(一)">
+<meta name="twitter:description" content="将浮点数(或字符串)转化为整数123456~~&apos;1.2&apos;     // 1~~&apos;1&apos;       // 1~~1.2       // 11.2|0       // 1&apos;1.2&apos;|0     // 1&apos;1&apos;|0       // 1 不声明第三个变量的值交换123let a = 2, b = 1;a = [b, b=a][0];console.log(`a:$&amp;#123;a&amp;#125;,b:$&amp;">
     
         <link rel="alternate" type="application/atom+xml" title="linxun" href="/atom.xml">
     
@@ -148,7 +148,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">git 常用操作</div>
+        <div class="flex-col header-title ellipsis">js小技巧(一)</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -185,15 +185,22 @@
 
 <div class="container body-wrap">
     
-<article id="post-git常用操作"
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#将浮点数-或字符串-转化为整数"><span class="post-toc-number">1.</span> <span class="post-toc-text">将浮点数(或字符串)转化为整数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#不声明第三个变量的值交换"><span class="post-toc-number">2.</span> <span class="post-toc-text">不声明第三个变量的值交换</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#获取文件的后缀名"><span class="post-toc-number">3.</span> <span class="post-toc-text">获取文件的后缀名</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#验证座机号码正则"><span class="post-toc-number">4.</span> <span class="post-toc-text">验证座机号码正则</span></a></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-js小技巧(1)"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">git 常用操作</h1>
+        <h1 class="post-card-title">js小技巧(一)</h1>
         <div class="post-meta">
             <i class="icon icon-lg icon-calendar-o"></i>
             发表于
-            <time class="post-time" title="2018-03-26 11:33:21" datetime="2018-03-26T03:33:21.996Z"  itemprop="datePublished">2018-03-26</time>
+            <time class="post-time" title="2018-06-23 10:41:30" datetime="2018-06-23T02:41:30.362Z"  itemprop="datePublished">2018-06-23</time>
 
             <br id="mybreak"/>
             
@@ -211,46 +218,14 @@
         </div>
         <div class="post-count-custom">
             <i class="icon icon-lg icon-comment-o"></i>
-            阅读本文可能花费您&nbsp;<span class="post-count">2</span>&nbsp;分钟
+            阅读本文可能花费您&nbsp;<span class="post-count">1</span>&nbsp;分钟
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>git在我们的工作中是必不可少的，这里简单记录下常用的git操作，方便以后查询</p>
-<ul>
-<li>git init:                           初始化仓库（版本库）</li>
-<li>git add <file>:                     添加文件（修改的内容）到暂存区</file></li>
-<li>git commit -m “提交说明”:            提交暂存区中的所有修改到分支</li>
-<li>git push origin &lt;分支名&gt;:            将提交推送到远程分支</li>
-<li>git status:                         查看仓库状态</li>
-<li>git diff <file>:                    查看具体修改了什么内容</file></li>
-<li>git diff HEAD – <file>:            查看工作区和版本库里最新版本的区别</file></li>
-<li>git log (–pretty=oneline):         查看提交记录（提交记录内容一条显示），会有每次提交的commit id，以便确定要回退到哪个版本<br><br><blockquote>
-<p>在Git中，用HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100</p>
-</blockquote>
-</li>
-</ul>
-<p><br></p>
-<ul>
-<li>git reset –hard HEAD^:             回到上一个版本</li>
-<li>git reset –hard <commit id="">:       回到指定版本（版本号不用写全，但一定要让Git能找到唯一的那个版本）<br><br></commit></li>
-<li>git checkout – <file>:         将该文件在工作区的修改全部撤销（好像 – 没有也可以…）其实是用版本库中的版本替换工作区的版本（修改和删除都可以用）</file></li>
-<li>git reset HEAD <file>:          将暂存区的修改撤销，重新放回工作区<br><br></file></li>
-<li>git rm <file>:     从版本库中删除文件 （后面需要提交  git commit -m “说明”）<br><br></file></li>
-<li>git checkout -b &lt;分支名&gt;:     创建并切换到该分支</li>
-<li>git branch &lt;分支名&gt;:          创建分支</li>
-<li>git checkout &lt;分支名&gt;:        切换到该分支</li>
-<li>git branch:                  查看当前分支（本地）</li>
-<li>git branch -r:               查看远程分支</li>
-<li>git branch -a:               查看所有分支（包括远程）</li>
-<li>git merge &lt;分支名&gt;:           将指定分支合并到当前分支</li>
-<li>git branch -d &lt;分支名&gt;:       删除指定分支（本地）<br><br></li>
-<li>git push origin test:test:          将本地test分支推送到远程test（远程本身没有test）</li>
-<li>git push origin :test:              删除远程分支test（推送一个不存在的分支到test）</li>
-<li>git push origin –delete test:      删除远程分支test<br><br></li>
-<li>git stash:                  工作进行到一半，还没有提交时，把当前工作现场’储藏’起来，等以后恢复现场后继续工作</li>
-<li>git stash list:             查看工作现场列表</li>
-<li>git stash apply:            恢复工作现场，但是此方法恢复后stash内容并不删除，需要用 git stash drop 删除</li>
-<li>git stash pop:              恢复工作现场的同时把stash内容也删除了   </li>
-</ul>
+            <h4 id="将浮点数-或字符串-转化为整数"><a href="#将浮点数-或字符串-转化为整数" class="headerlink" title="将浮点数(或字符串)转化为整数"></a>将浮点数(或字符串)转化为整数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">~~<span class="string">'1.2'</span>     <span class="comment">// 1</span></div><div class="line">~~<span class="string">'1'</span>       <span class="comment">// 1</span></div><div class="line">~~<span class="number">1.2</span>       <span class="comment">// 1</span></div><div class="line"><span class="number">1.2</span>|<span class="number">0</span>       <span class="comment">// 1</span></div><div class="line"><span class="string">'1.2'</span>|<span class="number">0</span>     <span class="comment">// 1</span></div><div class="line"><span class="string">'1'</span>|<span class="number">0</span>       <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<h4 id="不声明第三个变量的值交换"><a href="#不声明第三个变量的值交换" class="headerlink" title="不声明第三个变量的值交换"></a>不声明第三个变量的值交换</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> a = <span class="number">2</span>, b = <span class="number">1</span>;</div><div class="line">a = [b, b=a][<span class="number">0</span>];</div><div class="line"><span class="built_in">console</span>.log(<span class="string">`a:<span class="subst">$&#123;a&#125;</span>,b:<span class="subst">$&#123;b&#125;</span>`</span>);   <span class="comment">// a:1,b:2</span></div></pre></td></tr></table></figure>
+<h4 id="获取文件的后缀名"><a href="#获取文件的后缀名" class="headerlink" title="获取文件的后缀名"></a>获取文件的后缀名</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension</span>(<span class="params">fileName</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> arr = fileName.split(<span class="string">'.'</span>);</div><div class="line">    <span class="keyword">return</span> arr.length &gt;= <span class="number">2</span> ? arr.pop() : <span class="string">''</span>;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(getFileExtension(<span class="string">'test'</span>));  <span class="comment">// ''</span></div><div class="line"><span class="built_in">console</span>.log(getFileExtension(<span class="string">'test.test.txt'</span>)); <span class="comment">// txt</span></div></pre></td></tr></table></figure>
+<h4 id="验证座机号码正则"><a href="#验证座机号码正则" class="headerlink" title="验证座机号码正则"></a>验证座机号码正则</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/((\+\d&#123;<span class="number">2</span>,<span class="number">4</span>&#125;-)?(<span class="number">0</span>\d&#123;<span class="number">1</span>,<span class="number">3</span>&#125;-)\d&#123;<span class="number">7</span>,<span class="number">8</span>&#125;)/</div></pre></td></tr></table></figure>
+<p>不定期更新…</p>
 
         </div>
 
@@ -259,7 +234,7 @@
         
 
         
-        原文链接：<a href="/posts/3ac54c0c/" target="_blank" rel="external">https://jx-zyf.github.io/posts/3ac54c0c/</a>
+        原文链接：<a href="/posts/60fc6c1f/" target="_blank" rel="external">https://jx-zyf.github.io/posts/60fc6c1f/</a>
         
     </div>
     <footer>
@@ -281,7 +256,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
 
 
             
@@ -291,7 +266,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/3ac54c0c/&title=《git 常用操作》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/60fc6c1f/&title=《js小技巧(一)》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -301,22 +276,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/3ac54c0c/&title=《git 常用操作》 — linxun&source=林寻的博客" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/60fc6c1f/&title=《js小技巧(一)》 — linxun&source=林寻的博客" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/3ac54c0c/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/60fc6c1f/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《git 常用操作》 — linxun&url=https://jx-zyf.github.io/posts/3ac54c0c/&via=https://jx-zyf.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js小技巧(一)》 — linxun&url=https://jx-zyf.github.io/posts/60fc6c1f/&via=https://jx-zyf.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/3ac54c0c/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/60fc6c1f/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -339,9 +314,9 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/posts/5f2b98d1/" id="post-prev" class="post-nav-link">
+      <a href="/posts/11645e24/" id="post-prev" class="post-nav-link">
         <h4 class="title" >
-          上一篇：css 变量
+          上一篇：Node反向代理请求
         </h4>
       </a>
     </div>
@@ -349,8 +324,8 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/posts/23508308/" id="post-next" class="post-nav-link">
-        <h4 class="title" data-hover="下一篇：antd-pro 使用笔记">下一篇：antd-pro 使用笔记</h4>
+      <a href="/posts/daae2fce/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：常用排序算法(一)">下一篇：常用排序算法(一)</h4>
       </a>
     </div>
   
@@ -478,7 +453,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/3ac54c0c/&title=《git 常用操作》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/60fc6c1f/&title=《js小技巧(一)》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -488,22 +463,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/3ac54c0c/&title=《git 常用操作》 — linxun&source=林寻的博客" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/60fc6c1f/&title=《js小技巧(一)》 — linxun&source=林寻的博客" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/3ac54c0c/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/60fc6c1f/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《git 常用操作》 — linxun&url=https://jx-zyf.github.io/posts/3ac54c0c/&via=https://jx-zyf.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js小技巧(一)》 — linxun&url=https://jx-zyf.github.io/posts/60fc6c1f/&via=https://jx-zyf.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/3ac54c0c/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/60fc6c1f/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -514,7 +489,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p class="wechatshare">扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwUlEQVR42u3awa7CMAwEwP7/T/ddkeBV6zh1QZqcUCnRhIPlbHIc8ThfRvLk9fn1nMcdAxcXt809L0fyzvub1SUlM+Pi4s5zrwtN/533b6vz4+Li/go3b1ySAoeLi/vr3KQw5aUNFxf3O7nVLc31b/M048a9Gi4uboNbbVzu+HxLvouLi7vEPYtjrZCtxa8f5sTFxR3h5gVlVwuydhCLi4v7FLcfm1YXk2+TopMZXFzcrdw87szbl/yotXq9AxcXd5Lboa8FoGsRLS4u7jw3iT86cWr1Eka50cHFxW1zq9Ml667OU9j84OLiPsTNr14lzzvXNaJChouLewN3ra3Jw4tOcfz3r8TFxR3ndgpZHm1cl7bFM2FcXNyt3LXjk11bnXxhuLi4k9yosahejyhezii0Wbi4uIPcQjBRXEyyvHwxuLi4k9xOiLkYfQbtTrki4uLitrlncSQt0VqcGrVKuLi4I9xqbLGrVOVpzeJicHFx29y8eFVj0+phbTIbLi7uJLdfaPLGaMNeDRcX9yu5ebtT3T4da6vBxcV9lDsff7RaHFxc3Aa306BUG53OhQxcXNwZbrmUbIpHq8czuLi4I9w/axiaea4DsU8AAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABvklEQVR42u3aQW7DMAwEwPz/0+61QGB7SVpqUoxORVLL4xwIcuXXK17Hr3X2+ftK9nytWLi4uGNucstrxPt/nl2V7H/z2Li4uBu5OSIpc8mjJvvj4uJ+Czcvate74eLi/ifudXuUPxIuLu7nc5PhZ17gts5quLi4A26eUq77e0m+i4uL2+IexVWNOXpl6/RaXFzcLdy8oCTEZHTpHcTi4uLu5K4IN+evX5RLGC4u7gJu8npEDzcPTU47Mlxc3MXcvKxUU4vq5zcBCi4u7hZur/lIEHmrdM2KfixcXNxHuZO2ozos5QcnheEHFxd3Abd6gyql2tYU8l1cXNzt3Anuqcc7bX1wcXG3cJPGIh9R8sEpvy8uLu5fca8pvVJVHXgeiEpxcXEf4s4jjBwxj1lxcXF3cntHpNXAtBrO3sxquLi4i7nVQ9bet/lrHM0uDBcXd8w9imtybS9MwcXF3c/NV/X2kyhksicuLu5T3KT09A5I8kPcZHzCxcXdz50cb+QPvGRWw8XF/QBuL2athrC4uLjfy833mcQfoxYHFxd3wK02KEnZ6l1182Ph4uJu4ZZLSatU9V7RGOW7uLi4He4P6Uop+Bab5IsAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 
