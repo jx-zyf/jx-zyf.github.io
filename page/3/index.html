@@ -152,7 +152,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -185,6 +185,63 @@
 
 <div class="container body-wrap">
     <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-react简单优化"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a href="/posts/d5323688/">react 简单优化</a>
+    </h3>
+  
+
+
+
+
+     <div class="post-meta">
+        <time class="post-time" title="2018-02-06 11:49:15" datetime="2018-02-06T03:49:15.167Z"  itemprop="datePublished">2018-02-06</time>
+
+        <!--
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coder/">coder</a></li></ul>
+
+-->
+       
+</span>
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+在url后加 ?react_pref 可以结合Chrome自带的Performance做性能测试
+
+单组件优化：核心：减少render函数执行次数
+事件绑定：
+在constructor中使用bind绑定：
+1234constructor(props) &#123;    super(props)    this.eventHandle = ...
+    
+        <div>
+            <a href="/posts/d5323688/" class="post-more waves-button">
+                阅读全文 »»»
+            </a>
+        </div>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
     
         <li class="post-list-item fade">
             <article id="post-react基础"
@@ -404,58 +461,6 @@ react 作为当下最流行的前端框架，之所以能被如此多前端开�
 
         </li>
     
-        <li class="post-list-item fade">
-            <article id="post-数组"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/posts/82c69460/">JS数组</a>
-    </h3>
-  
-
-
-
-
-     <div class="post-meta">
-        <time class="post-time" title="2017-12-22 00:00:00" datetime="2017-12-21T16:00:00.000Z"  itemprop="datePublished">2017-12-22</time>
-
-        <!--
-	<i class="icon icon-lg icon-folder-o"></i>
-	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coder/">coder</a></li></ul>
-
--->
-       
-</span>
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        写在开头在js中，数组应该是最常用的类型之一。并且，js中的数组和其他语言的数组有很大的区别。虽然都是有序列表，但是js中数组的每一项可以保存任何类型的值。也就是说，可以用数组的第一项来保存数值，第二项保存字符串，第三项保存对象，非常灵活。而且js数组的大小是具有呼吸性的，即可以随着数据的增加或删除自动改变length的大小。
-常见的创建数组...
-    
-        <div>
-            <a href="/posts/82c69460/" class="post-more waves-button">
-                阅读全文 »»»
-            </a>
-        </div>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
     </ul>
 
     
@@ -505,7 +510,7 @@ react 作为当下最流行的前端框架，之所以能被如此多前端开�
         </span>
         <br/> -->
         
-        <!-- <span class="license">このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span> -->
+        <!-- <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span> -->
     </div>      
 </footer>
     </main>
