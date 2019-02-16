@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jx-zyf.github.io/"/>
-  <updated>2018-07-04T14:20:08.705Z</updated>
+  <updated>2019-02-16T02:07:56.282Z</updated>
   <id>https://jx-zyf.github.io/</id>
   
   <author>
@@ -17,11 +17,65 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>React父组件中使用子组件的方法</title>
+    <link href="https://jx-zyf.github.io//posts/e527abd2/"/>
+    <id>https://jx-zyf.github.io//posts/e527abd2/</id>
+    <published>2019-02-16T02:05:44.554Z</published>
+    <updated>2019-02-16T02:07:56.282Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;父组件中使用子组件的方法&quot;&gt;&lt;a href=&quot;#父组件中使用子组件的方法&quot; class=&quot;headerlink&quot; title=&quot;父组件中使用子组件的方法&quot;&gt;&lt;/a&gt;父组件中使用子组件的方法&lt;/h3&gt;&lt;figure class=&quot;highlight
+        
+      
+    
+    </summary>
+    
+      <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
+    
+    
+      <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
+    
+      <category term="react" scheme="https://jx-zyf.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js小技巧(二)</title>
+    <link href="https://jx-zyf.github.io//posts/cfcdf77d/"/>
+    <id>https://jx-zyf.github.io//posts/cfcdf77d/</id>
+    <published>2019-02-16T01:57:07.126Z</published>
+    <updated>2019-02-16T02:07:01.378Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;获取当前浏览器信息&quot;&gt;&lt;a href=&quot;#获取当前浏览器信息&quot; class=&quot;headerlink&quot; title=&quot;获取当前浏览器信息&quot;&gt;&lt;/a&gt;获取当前浏览器信息&lt;/h4&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+      <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
+    
+    
+      <category term="JavaScript" scheme="https://jx-zyf.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
     <title>小程序学习</title>
     <link href="https://jx-zyf.github.io//posts/8cc9dda6/"/>
     <id>https://jx-zyf.github.io//posts/8cc9dda6/</id>
     <published>2018-07-04T14:18:09.185Z</published>
-    <updated>2018-07-04T14:20:08.705Z</updated>
+    <updated>2019-02-16T02:04:49.715Z</updated>
     
     <summary type="html">
     
@@ -509,56 +563,6 @@
     
     
       <category term="HTML" scheme="https://jx-zyf.github.io/tags/HTML/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HTML&amp;CSS基础知识（一）</title>
-    <link href="https://jx-zyf.github.io//posts/e8a88825/"/>
-    <id>https://jx-zyf.github.io//posts/e8a88825/</id>
-    <published>2017-08-25T08:59:32.655Z</published>
-    <updated>2017-12-19T03:19:54.463Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;HTML-amp-CSS&quot;&gt;&lt;a href=&quot;#HTML-amp-CSS&quot; class=&quot;headerlink&quot; title=&quot;HTML&amp;amp;CSS&quot;&gt;&lt;/a&gt;HTML&amp;amp;CSS&lt;/h2&gt;&lt;h3 id=&quot;1-主要浏览器有哪些？内核分别是什么？&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="coder" scheme="https://jx-zyf.github.io/categories/coder/"/>
-    
-    
-      <category term="HTML" scheme="https://jx-zyf.github.io/tags/HTML/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>About Me</title>
-    <link href="https://jx-zyf.github.io//posts/f0b34752/"/>
-    <id>https://jx-zyf.github.io//posts/f0b34752/</id>
-    <published>2017-08-04T16:00:00.000Z</published>
-    <updated>2017-12-19T06:20:01.672Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;a href=&quot;https://jx-zyf.github.io&quot; style=&quot;text-decoration:none&quot;&gt;林寻丶&lt;a&gt;&lt;br&gt;&lt;a href=&quot;http://www.weibo.com/linxun001&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="about" scheme="https://jx-zyf.github.io/categories/about/"/>
-    
     
   </entry>
   

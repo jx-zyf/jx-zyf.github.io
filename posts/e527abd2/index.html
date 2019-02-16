@@ -6,13 +6,13 @@
     
     
     
-    <title>HTML&amp;CSS基础知识（一） | linxun | linxunzyf</title>
+    <title>React父组件中使用子组件的方法 | linxun | linxunzyf</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     
     <meta name="theme-color" content="#77AAFF">
     
     
-    <meta name="keywords" content="HTML">
+    <meta name="keywords" content="JavaScript,react">
     
     
 
@@ -39,17 +39,17 @@
 
 
     
-    <meta name="description" content="HTML&amp;amp;CSS1.主要浏览器有哪些？内核分别是什么？主流浏览器及内核： (1)Chrome：Webkit (2)IE：Trident (3)Safari：Webkit (4)Firefox:Gecko (5)Opera:Presto 2.DoctypeDOCTYPE是用来声明文档类型和DTD(document type definition,文档类型定义)规范的 HTML5只有一种&amp;lt">
-<meta name="keywords" content="HTML">
+    <meta name="description" content="父组件中使用子组件的方法12345678910111213141516171819202122232425262728293031323334import React, &amp;#123; Component, Fragment &amp;#125; from &apos;react&apos;;class Child extends Component &amp;#123;    componentDidMount() &amp;#123;">
+<meta name="keywords" content="JavaScript,react">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTML&amp;CSS基础知识（一）">
-<meta property="og:url" content="https://jx-zyf.github.io/posts/e8a88825/index.html">
+<meta property="og:title" content="React父组件中使用子组件的方法">
+<meta property="og:url" content="https://jx-zyf.github.io/posts/e527abd2/index.html">
 <meta property="og:site_name" content="linxun">
-<meta property="og:description" content="HTML&amp;amp;CSS1.主要浏览器有哪些？内核分别是什么？主流浏览器及内核： (1)Chrome：Webkit (2)IE：Trident (3)Safari：Webkit (4)Firefox:Gecko (5)Opera:Presto 2.DoctypeDOCTYPE是用来声明文档类型和DTD(document type definition,文档类型定义)规范的 HTML5只有一种&amp;lt">
-<meta property="og:updated_time" content="2017-12-19T03:19:54.463Z">
+<meta property="og:description" content="父组件中使用子组件的方法12345678910111213141516171819202122232425262728293031323334import React, &amp;#123; Component, Fragment &amp;#125; from &apos;react&apos;;class Child extends Component &amp;#123;    componentDidMount() &amp;#123;">
+<meta property="og:updated_time" content="2019-02-16T02:07:56.282Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTML&amp;CSS基础知识（一）">
-<meta name="twitter:description" content="HTML&amp;amp;CSS1.主要浏览器有哪些？内核分别是什么？主流浏览器及内核： (1)Chrome：Webkit (2)IE：Trident (3)Safari：Webkit (4)Firefox:Gecko (5)Opera:Presto 2.DoctypeDOCTYPE是用来声明文档类型和DTD(document type definition,文档类型定义)规范的 HTML5只有一种&amp;lt">
+<meta name="twitter:title" content="React父组件中使用子组件的方法">
+<meta name="twitter:description" content="父组件中使用子组件的方法12345678910111213141516171819202122232425262728293031323334import React, &amp;#123; Component, Fragment &amp;#125; from &apos;react&apos;;class Child extends Component &amp;#123;    componentDidMount() &amp;#123;">
     
         <link rel="alternate" type="application/atom+xml" title="linxun" href="/atom.xml">
     
@@ -148,7 +148,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">HTML&amp;CSS基础知识（一）</div>
+        <div class="flex-col header-title ellipsis">React父组件中使用子组件的方法</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -188,19 +188,19 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTML-amp-CSS"><span class="post-toc-number">1.</span> <span class="post-toc-text">HTML&CSS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-主要浏览器有哪些？内核分别是什么？"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.主要浏览器有哪些？内核分别是什么？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-Doctype"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2.Doctype</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-浏览器模式"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3.浏览器模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-页面引入CSS样式时，link和-import的区别"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4.页面引入CSS样式时，link和@import的区别</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-浏览器渲染原理"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">5.浏览器渲染原理</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#父组件中使用子组件的方法"><span class="post-toc-number">1.</span> <span class="post-toc-text">父组件中使用子组件的方法</span></a></li></ol>
         </nav>
     </aside>
    
-<article id="post-HTML与CSS"
+<article id="post-react父组件使用子组件中的方法"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">HTML&CSS基础知识（一）</h1>
+        <h1 class="post-card-title">React父组件中使用子组件的方法</h1>
         <div class="post-meta">
             <i class="icon icon-lg icon-calendar-o"></i>
             发表于
-            <time class="post-time" title="2017-08-25 16:59:32" datetime="2017-08-25T08:59:32.655Z"  itemprop="datePublished">2017-08-25</time>
+            <time class="post-time" title="2019-02-16 10:05:44" datetime="2019-02-16T02:05:44.554Z"  itemprop="datePublished">2019-02-16</time>
 
             <br id="mybreak"/>
             
@@ -218,39 +218,10 @@
         </div>
         <div class="post-count-custom">
             <i class="icon icon-lg icon-comment-o"></i>
-            阅读本文可能花费您&nbsp;<span class="post-count">2</span>&nbsp;分钟
+            阅读本文可能花费您&nbsp;<span class="post-count">1</span>&nbsp;分钟
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="HTML-amp-CSS"><a href="#HTML-amp-CSS" class="headerlink" title="HTML&amp;CSS"></a>HTML&amp;CSS</h2><h3 id="1-主要浏览器有哪些？内核分别是什么？"><a href="#1-主要浏览器有哪些？内核分别是什么？" class="headerlink" title="1.主要浏览器有哪些？内核分别是什么？"></a>1.主要浏览器有哪些？内核分别是什么？</h3><p>主流浏览器及内核：</p>
-<pre><code>(1)Chrome：Webkit
-(2)IE：Trident
-(3)Safari：Webkit
-(4)Firefox:Gecko
-(5)Opera:Presto
-</code></pre><h3 id="2-Doctype"><a href="#2-Doctype" class="headerlink" title="2.Doctype"></a>2.Doctype</h3><p>DOCTYPE是用来<strong>声明文档类型</strong>和DTD(document type definition,文档类型定义)规范的</p>
-<p>HTML5只有一种&lt;!DOCTYPE&gt;声明</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-</code></pre><p></p><p style="font-size:14px;background-color:#eee;padding:10px"><br>    HTML5不基于 SGML，所以不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）。<br>    而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。<br></p><br><em>注意：&lt;!DOCTYPE&gt;不是HTML标签，没有结束标签，不区分大小写</em><p></p>
-<h3 id="3-浏览器模式"><a href="#3-浏览器模式" class="headerlink" title="3.浏览器模式"></a>3.浏览器模式</h3><p>浏览器模式分两种：<br>(1).标准模式(standards mode)：<strong>浏览器根据标准规约来渲染页面</strong></p>
-<p>以下情况浏览器会采用标准模式渲染：</p>
-<li>给出了完整的DOCTYPE声明</li><!--
---><li>DOCTYPE声明了Strict DTD</li><!--
---><li>DOCTYPE声明了Transitional DTD和URI</li>
-
-<p>(2).混杂/怪异/兼容模式(quirks mode)：<strong>浏览器采用更宽松的，向后兼容的方式来渲染页面</strong></p>
-<p>以下情况浏览器会采用混杂模式渲染：</p>
-<p><li>DOCTYPE声明了Transitional DTD但未给出URI</li><!--
---><li>DOCTYPE声明不合法 DTD</li><!--
---><li>未给出DOCTYPE声明</li><br><em>混杂模式下，浏览器会模仿旧浏览器的行为</em></p>
-<h3 id="4-页面引入CSS样式时，link和-import的区别"><a href="#4-页面引入CSS样式时，link和-import的区别" class="headerlink" title="4.页面引入CSS样式时，link和@import的区别"></a>4.页面引入CSS样式时，link和@import的区别</h3><blockquote>
-<ol style="font-size:16px;font-style:normal"><br>    <li>link属于XHTML标签，除了加载CSS外，还能用于定义RSS，定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS；</li><!--
-    --><li>页面加载时，link引入的样式会同时被加载；而@import引入的样式只有在页面加载完才会被加载</li><!--
-    --><li>import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题。</li><br></ol>
-
-</blockquote>
-<h3 id="5-浏览器渲染原理"><a href="#5-浏览器渲染原理" class="headerlink" title="5.浏览器渲染原理"></a>5.浏览器渲染原理</h3><p>挂上大佬的博客，讲的很详细</p>
-<p><a href="http://www.jianshu.com/p/a32b890c29b1" target="_blank" rel="external">深度剖析浏览器渲染性能原理，你到底知道多少？</a><span style="float:right">文章作者：齐修_qixiuss</span></p>
-
+            <h3 id="父组件中使用子组件的方法"><a href="#父组件中使用子组件的方法" class="headerlink" title="父组件中使用子组件的方法"></a>父组件中使用子组件的方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component, Fragment &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">    componentDidMount() &#123;</div><div class="line">        <span class="keyword">this</span>.props.onRef(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">    testEvent = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'我被触发了'</span>);</div><div class="line">    &#125;</div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            <span class="string">'我是子组件'</span></div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">    onRef = <span class="function">(<span class="params">ref</span>) =&gt;</span> &#123;</div><div class="line">        <span class="keyword">this</span>.child = ref;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    handleClick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">this</span>.child.testEvent();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            &lt;Fragment&gt;</div><div class="line">                &lt;Child onRef=&#123;<span class="keyword">this</span>.onRef&#125; /&gt;</div><div class="line">                &lt;button onClick=&#123;<span class="keyword">this</span>.handleClick&#125;&gt;click&lt;<span class="regexp">/button&gt;</span></div><div class="line"><span class="regexp">            &lt;/</span>Fragment&gt;</div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
         </div>
 
         <blockquote class="post-copyright">
@@ -258,7 +229,7 @@
         
 
         
-        原文链接：<a href="/posts/e8a88825/" target="_blank" rel="external">https://jx-zyf.github.io/posts/e8a88825/</a>
+        原文链接：<a href="/posts/e527abd2/" target="_blank" rel="external">https://jx-zyf.github.io/posts/e527abd2/</a>
         
     </div>
     <footer>
@@ -280,7 +251,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
 
 
             
@@ -290,7 +261,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/e8a88825/&title=《HTML&CSS基础知识（一）》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/e527abd2/&title=《React父组件中使用子组件的方法》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -300,22 +271,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/e8a88825/&title=《HTML&CSS基础知识（一）》 — linxun&source=林寻的博客" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/e527abd2/&title=《React父组件中使用子组件的方法》 — linxun&source=林寻的博客" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/e8a88825/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/e527abd2/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTML&CSS基础知识（一）》 — linxun&url=https://jx-zyf.github.io/posts/e8a88825/&via=https://jx-zyf.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《React父组件中使用子组件的方法》 — linxun&url=https://jx-zyf.github.io/posts/e527abd2/&via=https://jx-zyf.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/e8a88825/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/e527abd2/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -335,21 +306,13 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/posts/d8be64fd/" id="post-prev" class="post-nav-link">
-        <h4 class="title" >
-          上一篇：HTML&amp;CSS基础知识（二）
-        </h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/posts/f0b34752/" id="post-next" class="post-nav-link">
-        <h4 class="title" data-hover="下一篇：About Me">下一篇：About Me</h4>
+      <a href="/posts/cfcdf77d/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：js小技巧(二)">下一篇：js小技巧(二)</h4>
       </a>
     </div>
   
@@ -477,7 +440,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/e8a88825/&title=《HTML&CSS基础知识（一）》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jx-zyf.github.io/posts/e527abd2/&title=《React父组件中使用子组件的方法》 — linxun&pic=https://jx-zyf.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -487,22 +450,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/e8a88825/&title=《HTML&CSS基础知识（一）》 — linxun&source=林寻的博客" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jx-zyf.github.io/posts/e527abd2/&title=《React父组件中使用子组件的方法》 — linxun&source=林寻的博客" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/e8a88825/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jx-zyf.github.io/posts/e527abd2/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTML&CSS基础知识（一）》 — linxun&url=https://jx-zyf.github.io/posts/e8a88825/&via=https://jx-zyf.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《React父组件中使用子组件的方法》 — linxun&url=https://jx-zyf.github.io/posts/e527abd2/&via=https://jx-zyf.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/e8a88825/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jx-zyf.github.io/posts/e527abd2/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -513,7 +476,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p class="wechatshare">扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABw0lEQVR42u3aQY7DIAwF0N7/0pltpSr0GwONRo9VlSbwkoWFbV6veFxvI7nn/c7P38lsrYGLi9vmXsPxuWT+7N08yfXbV8LFxT3IvaOM7xkHu/HC+efAxcV9PvcOVH1hXFzc/8FNruSvgYuL+3xuNWlZld5szNVwcXEb3LxKue/3lvouLi7uFPcqjrmnVs2Ai4t7hjvXSkmKHXnaUy2v4OLi7uZ2pk5SmuqG6csVXFzcH3HzAmhe9KwGuGhHhouLu42bh6e54xTJwnNr4eLi7ubmm5J8sfzA1rIjm7i4uIu41SJI3i6tJlHRZggXF/cINw9GndZsp4xSCGe4uLiLuHmxcrxBmQuL5VILLi7uj7j55qManhL0l4+Fi4t7hNsvd3YOZc49hYuLe55bxfVbL8uKI7i4uEu51XCTFEzzlm35+AUuLu5xbh5c8kJJFEfzpi8uLu5m7lUcq0qok//i4uIe4XbapXP3JGWRzpy4uLiruHPBKw83c03ZL8kPLi7uEe5cUtR5djLM4eLiPp7babEkG51CKwUXF/cB3DFiWYFjVSDDxcWd4naSn1VbpUIgw8XF3cztpCKr0qHqZ8LFxd3G/QPkj6+OpGrgxgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwklEQVR42u3aMW7EMAwEwPv/pxMgVRrbS1FijGBcGXeANWoIacnPJ36+fp7f78mTf3Pzg4uL2+YmS159+gp39cvVNwvbxsXFHeTmxSuB3rPu3x9suLi4L+Pm/yY4XFzc/8G9L2edYxAuLu47ucnlJ7+iVDdw5K6Gi4vb4K4Fpnvfj+e7uLi4m7oS1VJVXb68Oi4u7gg3iTx2tVqr8evl5nFxcce5SXhRvSxVxy8KTVZcXNzD3DySqLZa1wLWy19wcXEPc9eC0eRSlBSsatsGFxd3htu5AiWXnLx9cm+IOsO4uLibuHkMutby7DRZC8ULFxd3K7cfX1bHNarbwMXFneeeA1VjlGQtXFzcGW5e2qq5RL9s4eLi/hU3j0pzVufC80DHxcUd4eYHi7VYZC1mfVgXFxf3MDc/ylRHrxaHrnBxcV/DzZusfW6n/OHi4k5y+wNYyfHlvqEbbQ8XF3eE2xmkyJuy1XilnO/i4uIe4CbFa+0ok28jGRHDxcWd53bGJjoHnfLFCRcX92Xc/MqUn6QOFjJcXNxB7lrIUh3IuFwXFxd3kLs39KyOdOQDGbi4uDPcamBaLUDVxdaOSri4uJu437C1BhxinXFLAAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 
