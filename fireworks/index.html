@@ -192,8 +192,8 @@
         </div>
 
         <div id="info">
-            👆 伸出手指，烟花将从指尖绽放！<br>
-            <small style="opacity: 0.7;">请确保允许浏览器访问摄像头</small>
+            ✋ 张开手指，烟花将从指尖绽放！<br>
+            <small style="opacity: 0.7;">完全伸直手指效果更好</small>
         </div>
 
         <div id="debugInfo">
@@ -441,16 +441,18 @@
                 ctx.strokeStyle = 'rgba(0, 255, 255, 0.6)';
                 ctx.lineWidth = 2;
 
+                // 绘制连接线（镜像翻转）
                 for (const [start, end] of connections) {
                     ctx.beginPath();
-                    ctx.moveTo(hand[start].x * canvas.width, hand[start].y * canvas.height);
-                    ctx.lineTo(hand[end].x * canvas.width, hand[end].y * canvas.height);
+                    ctx.moveTo((1 - hand[start].x) * canvas.width, hand[start].y * canvas.height);
+                    ctx.lineTo((1 - hand[end].x) * canvas.width, hand[end].y * canvas.height);
                     ctx.stroke();
                 }
 
+                // 绘制关键点（镜像翻转）
                 for (let i = 0; i < hand.length; i++) {
                     const landmark = hand[i];
-                    const x = landmark.x * canvas.width;
+                    const x = (1 - landmark.x) * canvas.width;
                     const y = landmark.y * canvas.height;
 
                     ctx.beginPath();
@@ -468,21 +470,54 @@
             }
         }
 
+        // 检查手指是否张开
+        function isFingerExtended(hand, fingerTipIndex, fingerPipIndex) {
+            const tip = hand[fingerTipIndex];
+            const pip = hand[fingerPipIndex];
+            const wrist = hand[0];
+            
+            // 计算指尖到手腕的距离
+            const tipToWrist = Math.sqrt(
+                Math.pow(tip.x - wrist.x, 2) + 
+                Math.pow(tip.y - wrist.y, 2)
+            );
+            
+            // 计算指关节到手腕的距离
+            const pipToWrist = Math.sqrt(
+                Math.pow(pip.x - wrist.x, 2) + 
+                Math.pow(pip.y - wrist.y, 2)
+            );
+            
+            // 如果指尖距离明显大于指关节距离，说明手指伸直
+            return tipToWrist > pipToWrist * 1.1;
+        }
+
         // 触发烟花效果
         function triggerFireworks(landmarks) {
-            const fingerTipIndices = [8, 12, 16, 20];
+            // 食指、中指、无名指、小指的指尖和对应的PIP关节
+            const fingers = [
+                { tip: 8, pip: 6 },   // 食指
+                { tip: 12, pip: 10 }, // 中指
+                { tip: 16, pip: 14 }, // 无名指
+                { tip: 20, pip: 18 }  // 小指
+            ];
 
             for (const hand of landmarks) {
-                for (const index of fingerTipIndices) {
-                    const tip = hand[index];
-                    if (tip) {
-                        const x = tip.x * canvas.width;
+                for (const finger of fingers) {
+                    // 只有当手指张开时才触发烟花
+                    if (isFingerExtended(hand, finger.tip, finger.pip)) {
+                        const tip = hand[finger.tip];
+                        
+                        // 镜像翻转 x 坐标，使手势方向与实际一致
+                        const x = (1 - tip.x) * canvas.width;
                         const y = tip.y * canvas.height;
 
-                        if (Math.random() < 0.15) {
+                        // 大幅降低触发概率：从 15% 降到 3%
+                        if (Math.random() < 0.03) {
                             fireworks.launch(1);
                             
-                            const particleCount = 30;
+                            // 减少粒子数量：从 30 降到 15
+                            const particleCount = 15;
                             for (let i = 0; i < particleCount; i++) {
                                 const angle = (Math.PI * 2 * i) / particleCount;
                                 const speed = Math.random() * 3 + 2;
